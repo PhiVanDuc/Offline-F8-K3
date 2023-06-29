@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+:root {
+    --Width-tab-bar: 1200px;
+    --Width-box-product: 240px;
+    --Base-color: rgb(40, 56, 141);
+    --Default-star-color: rgb(159, 159, 159);
+    --Default-tab-color: rgb(245, 245, 245);
+}
+
+/* Begin Heading Sections */
+
+.heading-sec {
+    font-size: 45px;
+    font-weight: 600;
+    color: rgb(32, 32, 32);
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.heading-sec::first-letter {
+    font-size: 70px;
+}
+
+/* End Heading Sections */
+
+/* Begin Tab-bar */
+
+.tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: var(--Width-tab-bar);
+}
+
+.tab-bar .tab-content:nth-of-type(1) {
+    order: 1;
+}
+.tab-bar .tab-content:nth-of-type(2) {
+    order: 2;
+}
+.tab-bar .tab-content:nth-of-type(3) {
+    order: 3;
+}
+.tab-bar .tab-content:nth-of-type(4) {
+    order: 4;
+}
+.tab-bar .tab-content:nth-of-type(5) {
+    order: 5;
+}
+
+input {
+    display: none;
+}
+
+label {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(58, 58, 58);
+    padding: 20px 32px;
+    background-color: var(--Default-tab-color);
+    border-radius: 2px;
+    margin-right: 4px;
+    margin-bottom: 100px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+input:checked + label {
+    background-color: var(--Base-color);
+    color: white;
+    -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 85%, 0 100%, 0 0);
+    clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 85%, 0 100%, 0 0);
+    border-radius: 2px 2px 5px 5px;
+    transform: translateY(-15%);
+}
+
+/* End Tab-bar */
+
+/* Begin Tab-content */
+
+input:checked + label + .tab-content {
+    display: flex;
+}
+
+.tab-content {
+    width: var(--Width-tab-bar);
+    height: 422px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: moving-in 0.8s ease;
+}
+
+.tab-content.tab-skincare {
+    justify-content: space-between;
+}
+
+@keyframes moving-in {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes moving-on {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.box-product {
+    width: var(--Width-box-product);
+    position: relative;
+}
+
+.thumb-product {
+    background-color: cornflowerblue;
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+    background-image: url(../Images/Skincare-1.jpg);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 45px;
+    transition: 0.4s;
+}
+
+.tab-content .icon-star {
+    color: rgb(245, 195, 66);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.tab-content.tab-skincare .box-product:first-child .icon-star:nth-of-type(4),
+.tab-content .icon-star:last-child {
+    color: var(--Default-star-color);
+}
+
+.heading-product {
+    color: rgb(32, 32, 32);
+    margin-bottom: 15px;
+}
+
+.cost {
+    font-weight: 600;
+}
+
+.action-button {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 188px;
+    left: 0;
+    right: 0;
+    animation: moving-on 0.5s linear;
+}
+
+.action-button .add-card {
+    display: inline-block;
+    width: 80%;
+    padding: 13px 0px;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.action-button .icon-action {
+    padding: 15px 23px;
+    font-size: 14px;
+    margin-right: 2px;
+}
+.action-button a:nth-child(3) > .icon-action {
+    margin-right: 0;
+}
+
+.action-button .icon-action,
+.action-button .add-card {
+    color: white;
+    background-color: var(--Base-color);
+}
+
+.box-product:hover .action-button {
+    display: block;
+}
+
+.box-product:hover .thumb-product {
+    background-image: url(../Images/Skincare-2.jpg);
+}
+
+article > span {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--Base-color);
+    opacity: 0.7;
+}
+/* End Tab-content */

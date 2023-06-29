@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bài 1</title>
+        <!-- Internal CSS -->
+        <style>
+            body {
+                background-color: rgb(231, 231, 231);
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            form {
+                padding-top: 20px;
+            }
+
+            td {
+                width: 325px;
+            }
+
+            label {
+                display: inline-block;
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            span {
+                font-size: 14px;
+                color: rgb(150, 150, 150);
+            }
+
+            select,
+            input {
+                width: 85%;
+                height: 30px;
+                outline: none;
+                border: 2px solid rgb(190, 190, 190);
+                padding-left: 8px;
+                font-size: 15px;
+                color: rgb(92, 92, 92);
+            }
+
+            select {
+                width: 89%;
+                height: 36.5px;
+            }
+
+            button {
+                border: none;
+                background-color: rgb(8, 119, 139);
+                color: white;
+                font-size: 16px;
+                padding: 15px 25px 13px 25px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+            div {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Try a free sample</h1>
+        <p style="max-width: 476px">
+            Sign up to get a coupon you can redeem at your nearest Dancing Goat
+            cafe for a sample of the Colombia Carlos Imbachi coffee. We'll also
+            make sure you don't miss out on news introducing the new coffees
+            that we add to our store regularly.
+        </p>
+
+        <!-- Begin form -->
+        <form autocomplete="off">
+            <!-- Begin table -->
+            <table>
+                <tr>
+                    <td>
+                        <label for="firstName">First name</label>
+                        <div>
+                            <input type="text" id="firstName" />
+                        </div>
+                    </td>
+                    <td>
+                        <label for="lastName">Last name</label>
+                        <div>
+                            <input type="text" id="lastName" />
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="e-mail">Email address</label>
+                        <div>
+                            <input type="email" id="e-mail" />
+                        </div>
+                    </td>
+                    <td>
+                        <label for="address">Address</label>
+                        <div>
+                            <input type="text" id="address" />
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="city">City</label>
+                        <div>
+                            <input type="text" id="city" />
+                        </div>
+                    </td>
+                    <td>
+                        <label for="state">State <span>(optional)</span></label>
+                        <div>
+                            <input type="text" id="state" />
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="z-code">ZIP code</label>
+                        <div>
+                            <input type="text" id="z-code" />
+                        </div>
+                    </td>
+                    <td>
+                        <label for="country">Country</label>
+                        <div>
+                            <select>
+                                <option value="UK">United Kingdom</option>
+                                <option value="VN">Viet Nam</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button>SEND ME FREE COFFEE</button>
+                    </td>
+                </tr>
+            </table>
+            <!-- End table -->
+        </form>
+        <!-- End form -->
+
+        <script src="./main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form Access Manager</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <!-- Begin form -->
+        <form action="" autocomplete="off" spellcheck="false">
+            <div>
+                <label for="name">Usename:</label>
+                <input type="text" name="name" id="name" />
+            </div>
+
+            <div>
+                <label for="pass">Password:</label>
+                <input type="password" name="pass" id="pass" />
+            </div>
+
+            <div>
+                <label for="">City of Employment:</label>
+                <input type="text" name="city" id="city" />
+            </div>
+
+            <div>
+                <label>Please specify your role:</label>
+                <div class="row-radio">
+                    <label>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="role"
+                            value="Admin"
+                        />
+                        Admin
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="role"
+                            value="Engineer"
+                        />
+                        Engineer
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="role"
+                            value="Manager"
+                        />
+                        Manager
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="role"
+                            value=" Guest"
+                        />
+                        Guest
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label>Please Sign-on to the following:</label>
+                <div class="row-checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="sign-on"
+                            id="sign-on"
+                            value="Mail"
+                        />
+                        Mail
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="sign-on"
+                            id="sign-on"
+                            value="Payroll"
+                        />
+                        Payroll
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="sign-on"
+                            id="sign-on"
+                            value="Self-service"
+                        />
+                        Self-service
+                    </label>
+                </div>
+            </div>
+
+            <div class="wrap-button">
+                <button type="submit">Login</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+        <!-- End form -->
+    </body>
+</html>

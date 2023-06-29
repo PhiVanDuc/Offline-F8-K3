@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-size: 65.2%;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+/* Begin Tab-bar */
+
+.tab-bar {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid rgb(175, 150, 84);
+    border-radius: 3px;
+    margin-bottom: 60px;
+}
+
+.tab-item {
+    color: rgb(175, 150, 84);
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 15px 38px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.tab-item:hover {
+    background-color: rgb(244, 239, 226);
+    transition: 0.4s;
+}
+
+/* Mặc định khi mới vào trang web cần phải có một tab-item đã mặc định active có màu nền và màu chữ khác biệt so với các tab-item còn lại */
+.tab-item.active {
+    background-color: rgb(175, 150, 84);
+    color: white;
+}
+
+/* End Tab-bar */
+
+/* Begin Content */
+
+.container {
+    background-color: rgb(246, 246, 246);
+    width: 1440px;
+    height: 450px;
+}
+
+.content {
+    display: none;
+    border-radius: 3px;
+    height: 100%;
+    animation: moving 0.5s ease;
+}
+
+@keyframes moving {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.content.active {
+    display: flex;
+}
+
+.content.content-UAE {
+    justify-content: space-between;
+}
+
+.content.content-HK,
+.content.content-London,
+.content.content-Sing {
+    justify-content: center;
+    align-items: center;
+}
+
+.empty {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+    color: rgb(175, 150, 84);
+}
+
+.address {
+    margin-left: 50px;
+    margin-top: 70px;
+}
+
+.address > .heading {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    color: rgb(48, 48, 48);
+}
+
+.address > .heading,
+.address > .info-contact {
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.address > .info-contact {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(163, 163, 163);
+}
+
+.address > .info-contact > a {
+    font-weight: 500;
+    color: rgb(175, 150, 84);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.map {
+    width: 63%;
+}
+/* End Content */
