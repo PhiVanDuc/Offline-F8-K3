@@ -1,0 +1,276 @@
+@font-face {
+    font-family: 'Font-text';
+    src: url(../Fonts/Lato-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Font-text';
+    src: url(../Fonts/Lato-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Font-text';
+    src: url(../Fonts/Lato-Black.ttf);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Font-heading';
+    src: url(../Fonts/Lobster-Regular.ttf);
+    font-weight: 400;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Font-text', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 595px;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: "Font-text", sans-serif;
+}
+
+/* Begin Heading */
+
+.heading {
+    font-family: 'Font-heading', sans-serif;
+    font-size: 50px;
+    color: rgb(51,51,51);
+    margin-bottom: 35px;
+}
+
+/* End Heading */
+
+/* Begin Desc */
+
+.desc {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: rgb(186, 186, 186);
+}
+
+.desc > span {
+    color: rgb(234,63,50);
+}
+
+/* End Desc */
+
+/* Begin Form */
+
+.form {
+    width: 100%;
+}
+
+.footer-form,
+.form > .form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    position: relative;
+}
+
+.form > .form-group:nth-child(5) {
+    align-items: start;
+}
+
+.footer-form{
+    justify-content: space-between;
+}
+
+.input,
+.textarea,
+.select-subject {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border: 2px solid rgb(221,221,221);
+    border-left: none;
+    line-height: 1.5;
+    font-size: 16px;
+    color: rgb(113, 113, 113);
+    transform: .3s;
+}
+
+.input::placeholder,
+.textarea::placeholder,
+.select-subject::placeholder {
+    color: rgb(163, 163, 163);
+}
+
+.input,
+.select-subject {
+    padding: 10px 0px 10px 15px;
+}
+
+.select-subject {
+    color: rgb(163, 163, 163);
+}
+
+.textarea {
+    padding: 15px 0px 0px 15px;
+    height: 200px;
+}
+
+.icon-form {
+    background-color: rgb(221,221,221);
+    color: white;
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+    padding: 14px 0px;
+    transition: .3s;
+}
+
+.form > .form-group:nth-child(5) .icon-form {
+    height: 200px;
+    padding-top: 20px;
+}
+
+.icon-star {
+    position: absolute;
+    font-size: 10px;
+    color: rgb(191, 191, 191);
+    right: 15px;
+}
+
+.form > .form-group:nth-child(5) .icon-star {
+    top: 20px;
+}
+
+.form > .form-group:hover .icon-form {
+    background-color: rgb(51,51,51);
+    transition: .3s;
+}
+
+.form > .form-group:hover input,
+.form > .form-group:hover select,
+.form > .form-group:hover textarea {
+    border-color: rgb(51,51,51);
+    transition: .3s;
+}
+
+.submit-btn {
+    font-size: 17px;
+    font-family: 700;
+    color: white;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(234,63,51);
+    cursor: pointer;
+}
+
+/* End Form */
+
+/* Begin Required */
+
+.required {
+    position: absolute;
+    font-size: 17px;
+    color: white;
+    padding: 15px 25px;
+    background-color: rgb(51,51,51);
+    top: -70px;
+    left: 27px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.triangle {
+    position: absolute;
+    border: 10px solid rgb(51,51,51);
+    border-color: rgb(51,51,51) transparent transparent transparent;
+    top: 47px;
+    left: 28px;
+}
+
+.textarea:focus + .required,
+.input:focus + .required {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* End Required */
+
+/* Begin Icon For Select */
+
+.up-down-arrow {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    font-size: 15px;
+    color: rgb(172, 172, 172);
+}
+
+.up-down-arrow > .icon-up {
+    margin-bottom: -3px;
+}
+/* End Icon For Select */
+
+/* Custom checkbox */
+
+.check-box {
+    display: flex;
+    position: relative;
+    align-items: end;
+}
+
+input[type="checkbox"] + label {
+    margin: 0 0 2px 4px;
+    color: rgb(127, 127, 127);
+}
+
+input[type="checkbox"] {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgb(221,221,221);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    /* display: none; */
+    position: absolute;
+    font-size: 20px;
+    color: rgb(127, 127, 127);
+    left: 2.5px;
+    display: none;
+}
+
+input[type="checkbox"]:checked:after {
+    display: initial;
+}
+
+input[type="checkbox"]:checked + .icon-check {
+    display: initial;
+}

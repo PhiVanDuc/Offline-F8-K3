@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 1250px;
+    text-align: center;
+}
+
+/* Begin title */
+
+.heading {
+    font-size: 35px;
+    font-weight: 700;
+    color: rgb(37, 37, 37);
+    margin-bottom: 15px;
+}
+
+.intro {
+    margin-bottom: 100px;
+}
+
+/* End title */
+
+/* Begin Block-services */
+
+.block-services {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.block-item {
+    width: 30%;
+    padding: 35px 25px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 50px -40px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 50px -40px rgba(0,0,0,0.75);
+}
+
+.block-item > .icon,
+.block-item > .block-heading,
+.block-item > .desc {
+    margin-bottom: 35px;
+}
+
+
+.block-item > .icon {
+    font-size: 50px;
+    color: rgb(242,169,59);
+    height: 130px;
+    width: 130px;
+    line-height: 130px;
+    border: 2px solid rgb(242,169,59);
+    border-radius: 50%;
+}
+
+.block-item > .block-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(37, 37, 37);
+}
+
+.block-item > .desc {
+    line-height: 1.5;
+}
+
+.block-item > .read-btn {
+    border: none;
+    background-color: rgb(242,169,59);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* End Block-services */

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Submit Form</title>
+        <!-- Link -->
+        <link rel="stylesheet" href="./Assets/CSS/reset.css">
+        <link rel="stylesheet" href="./Assets/CSS/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+
+    <body>
+        <section class="container">
+            <h2 class="heading">Hey there</h2>
+            <p class="desc">
+                <span>We'd like to hear from you.</span> Send us your message or just say hi with our contact form or directly via phone, we love to chat.
+            </p>
+
+            <!-- Begin form -->
+            <form class="form" autocomplete="off">
+                <!-- Form-group Input name -->
+                <div class="form-group">
+                    <label for="name">
+                        <i class="fa-solid fa-user icon-form"></i>
+                    </label>
+                    <input type="text" class="input input-name" id="name" placeholder="Your name">
+                    <div class="required">
+                        <span>Enter your name</span>
+                        <div class="triangle"></div>
+                    </div>
+                    <i class="fa-solid fa-star-of-life icon-star"></i>
+                </div>
+
+                <!-- Form-group Input email -->
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fa-solid fa-envelope icon-form"></i>
+                    </label>
+                    <input type="email" class="input input-email" id="email" placeholder="your@domain.com">
+                    <div class="required">
+                        <span>Enter your email</span>
+                        <div class="triangle"></div>
+                    </div>
+                    <i class="fa-solid fa-star-of-life icon-star"></i>
+                </div>
+
+                <!-- Form-group Input phone -->
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fa-solid fa-mobile-screen-button icon-form"></i>
+                    </label>
+                    <input type="text" class="input input-phone" id="phone" placeholder="+44 00 123">
+                    <div class="required">
+                        <span>Enter your phone number</span>
+                        <div class="triangle"></div>
+                    </div>
+                    <i class="fa-solid fa-star-of-life icon-star"></i>
+                </div>
+
+                <!-- Form-group Select subject -->
+                <div class="form-group">
+                    <label for="subject">
+                        <i class="fa-solid fa-book-open icon-form"></i>
+                    </label>
+                    <select class="select-subject" id="subject">
+                        <option value="">Subject</option>
+                        <option value="Math">Math</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Chemistry">Chemistry</option>
+                    </select>
+                    <div class="up-down-arrow">
+                        <i class="fa-solid fa-angle-up icon-up"></i>
+                        <i class="fa-solid fa-angle-down icon-down"></i>
+                    </div>
+                </div>
+
+                <!-- Form-group Textarea message -->
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fa-solid fa-message icon-form"></i>
+                    </label>
+                    <textarea class="textarea" id="message" placeholder="Message"></textarea>
+                    <div class="required">
+                        <span>Enter your message</span>
+                        <div class="triangle"></div>
+                    </div>
+                    <i class="fa-solid fa-star-of-life icon-star"></i>
+                </div>
+
+                <!-- Footer form -->
+                <div class="footer-form">
+                    <div class="check-box">
+                        <input type="checkbox" class="input-check" id="check">
+                        <label for="check">Send me a copy of this message</label>
+                    </div>
+                    <button class="submit-btn" type="button">Send</button>
+                </div>
+            </form>
+            <!-- End form -->
+        </section>
+    </body>
+</html>
