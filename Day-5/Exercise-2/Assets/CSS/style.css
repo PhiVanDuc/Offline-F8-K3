@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 1060px;
+}
+
+input {
+    display: none;
+}
+
+/* Begin wrap-tab */
+
+.instruction {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    background-color: #D95924;
+    color: white;
+    padding: 15px 0 15px 45px;
+    width: 100%;
+}
+
+.instruction > .icon-min,
+.instruction > .icon-plus {
+    position: absolute;
+    left: 21px;
+    top: 15px;
+    font-size: 18px;
+    color: white;
+}
+
+/* End wrap-tab */
+
+/* Begin content */
+
+.content {
+    display: none;
+    padding: 10px 20px;
+    animation: moving-down 0.8s ease;
+}
+
+@keyframes moving-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+p, li {
+    line-height: 1.5;
+}
+
+/* End content */
+
+/* Effect */
+
+input:checked + .content {
+    display: block;
+}
+
+input:checked + .content + .icon-plus {
+    display: none;
+}
