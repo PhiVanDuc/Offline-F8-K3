@@ -34,6 +34,7 @@ label {
     color: white;
     padding: 15px 0 15px 45px;
     width: 100%;
+    cursor: pointer;
 }
 
 .instruction > .icon-min,
@@ -55,6 +56,15 @@ label {
     animation: moving-down 0.8s ease;
 }
 
+ul strong {
+    color: #D95924;
+    font-weight: 600;
+}
+
+p, li {
+    line-height: 1.5;
+}
+
 @keyframes moving-down {
     from {
         transform: translateY(-20px);
@@ -64,10 +74,6 @@ label {
         transform: translateY(0px);
         opacity: 1;
     }
-}
-
-p, li {
-    line-height: 1.5;
 }
 
 /* End content */
