@@ -44,7 +44,7 @@ body {
     background-color: var(--Background);
 }
 
-.container {
+.service {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,7 +56,7 @@ body {
 
 /* Begin Block Item */
 
-.block-item {
+.service-item {
     position: relative;
     width: 31.5%;
     background-color: white;
@@ -67,7 +67,7 @@ body {
     -moz-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.1);
 }
 
-.block-item > .title {
+.service-item > .title {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -80,22 +80,22 @@ body {
     border-radius: 50%;
 }
 
-.block-item:first-child .image {
+.service-item:first-child .image {
     background-image: linear-gradient(to right, rgb(228,92,121), rgb(228,121,91));
 }
-.block-item:nth-child(2) .image {
+.service-item:nth-child(2) .image {
     background-image: linear-gradient(to right, rgb(76,162,164), rgb(131,220,164));
 }
-.block-item:nth-child(3) .image {
+.service-item:nth-child(3) .image {
     background-image: linear-gradient(to right, rgb(225,135,50), rgb(244,194,74));
 }
-.block-item:nth-child(4) .image {
+.service-item:nth-child(4) .image {
     background-image: linear-gradient(to right, rgb(46,105,203), rgb(121,152,247));
 }
-.block-item:nth-child(5) .image {
+.service-item:nth-child(5) .image {
     background-image: linear-gradient(to right, rgb(110,33,202), rgb(192,105,237));
 }
-.block-item:last-child .image {
+.service-item:last-child .image {
     background-image: linear-gradient(to right, rgb(104,136,43), rgb(166,207,117));
 }
 
@@ -138,32 +138,32 @@ body {
     transition: visibility 0s, opacity 0.5s linear;
 }
 
-.block-item:first-child:hover .border-line,
-.block-item:nth-child(2):hover .border-line,
-.block-item:nth-child(3):hover .border-line,
-.block-item:nth-child(4):hover .border-line,
-.block-item:nth-child(5):hover .border-line,
-.block-item:last-child:hover .border-line {
+.service-item:first-child:hover .border-line,
+.service-item:nth-child(2):hover .border-line,
+.service-item:nth-child(3):hover .border-line,
+.service-item:nth-child(4):hover .border-line,
+.service-item:nth-child(5):hover .border-line,
+.service-item:last-child:hover .border-line {
     visibility: visible;
     opacity: 1;
 }
 
-.block-item:first-child:hover .border-line {
+.service-item:first-child:hover .border-line {
     border-color: rgb(228,92,121);
 }
-.block-item:nth-child(2):hover .border-line {
+.service-item:nth-child(2):hover .border-line {
     border-color: rgb(76,162,164);
 }
-.block-item:nth-child(3):hover .border-line {
+.service-item:nth-child(3):hover .border-line {
     border-color: rgb(225,135,50);
 }
-.block-item:nth-child(4):hover .border-line {
+.service-item:nth-child(4):hover .border-line {
     border-color: rgb(46,105,203);
 }
-.block-item:nth-child(5):hover .border-line {
+.service-item:nth-child(5):hover .border-line {
     border-color: rgb(110,33,202);
 }
-.block-item:last-child:hover .border-line {
+.service-item:last-child:hover .border-line {
     border-color: rgb(104,136,43);
 }
 
