@@ -1,0 +1,198 @@
+@font-face {
+    font-family: "Font-Open-Sans";
+    src: url(../Fonts/Open_Sans/static/OpenSans-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Font-Open-Sans";
+    src: url(../Fonts/Open_Sans/static/OpenSans-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Font-Open-Sans";
+    src: url(../Fonts/Open_Sans/static/OpenSans-SemiBold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Font-Open-Sans";
+    src: url(../Fonts/Open_Sans/static/OpenSans-Bold.ttf);
+    font-weight: 700;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: "Font-Open-Sans", sans-serif;
+}
+
+:root {
+    --Background-hover: #2da5da;
+    --Text-color: #666;
+}
+
+/* Begin menu */
+
+.menu {
+    width: 1200px;
+    margin: 50px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #d5d5d5;
+}
+
+.menu-list {
+    display: flex;
+}
+
+/* End menu */
+
+/* Begin menu-item */
+
+.menu > .menu-item:last-child {
+    border-right: none;
+    border-left: 1px solid #d5d5d5;
+}
+
+.menu-item {
+    border-right: 1px solid #d5d5d5;
+    padding: 5px;
+}
+
+.menu-link,
+span {
+    display: inline-block;
+    padding: 15px 35px 15px 50px;
+    color: var(--Text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s;
+}
+.menu-link {
+    padding: 15px 15px;
+}
+
+/* End menu-item */
+
+/* Begin aligning icon */
+
+.menu-link.special,
+.group-active {
+    position: relative;
+}
+
+.group-active {
+    color: var(--Text-color);
+}
+
+.icon-before,
+.icon-after {
+    position: absolute;
+}
+
+.icon-before {
+    font-size: 18px;
+    top: 13px;
+    left: 17px;
+}
+
+.icon-after {
+    font-size: 14px;
+    top: 16px;
+    right: 11px;
+}
+
+.menu-link.special {
+    padding-left: 40px;
+}
+
+.icon-layer,
+.icon-layer-2 {
+    position: absolute;
+}
+
+.icon-layer {
+    font-size: 18px;
+    top: 14px;
+    left: 13px;
+}
+
+.icon-layer-2 {
+    font-size: 14px;
+    top: 13px;
+    left: 22px;
+}
+
+.icon-link {
+    margin-right: 10px;
+}
+
+.icon-check {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* End aligning icon */
+
+/* Begin hover */
+
+.menu-item:hover .group-active,
+.menu-item:hover .menu-link,
+.menu-item:hover span {
+    color: white;
+    background-color: var(--Background-hover);
+    transition: .3s;
+}
+
+/* End hover */
+
+/* Begin menu-drop-down */
+
+.drop-list {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0px;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.515);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.515);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.515);
+}
+
+.triangle {
+    display: none;
+    position: absolute;
+    border: 8px solid white;
+    border-color: transparent transparent white transparent;
+    top: 48px;
+    left: 19px;
+}
+
+.drop-list .drop-link {
+    display: inline-block;
+    width: 240px;
+    color: var(--Text-color);
+    font-weight: 500;
+    padding: 20px 0px 20px 20px;
+    background-color: white;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.drop-list > .drop-item:last-child > .drop-link {
+    border-bottom: none;
+}
+
+/* End menu-drop-down */
+
+/* Begin appear menu-drop-down */
+
+.menu-item:hover .triangle,
+.menu-item:hover .drop-list {
+    display: initial;
+}
+
+/* End appear menu-drop-down */
