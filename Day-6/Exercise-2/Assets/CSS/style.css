@@ -1,0 +1,193 @@
+@font-face {
+    font-family: "Font-Roboto";
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Font-Roboto";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Font-Roboto";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Font-Roboto";
+    src: url(../Fonts/Roboto/Roboto-Black.ttf);
+    font-weight: 900;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    --Background: #ebf5fe;
+    --Text-color: #666666;
+}
+
+html {
+    font-family: "Font-Roboto", sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Background);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin: 0 auto;
+    row-gap: 30px;
+}
+
+/* Begin Block Item */
+
+.block-item {
+    position: relative;
+    width: 31.5%;
+    background-color: white;
+    padding: 25px 37px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.1);
+}
+
+.block-item > .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.block-item:first-child .image {
+    background-image: linear-gradient(to right, rgb(228,92,121), rgb(228,121,91));
+}
+.block-item:nth-child(2) .image {
+    background-image: linear-gradient(to right, rgb(76,162,164), rgb(131,220,164));
+}
+.block-item:nth-child(3) .image {
+    background-image: linear-gradient(to right, rgb(225,135,50), rgb(244,194,74));
+}
+.block-item:nth-child(4) .image {
+    background-image: linear-gradient(to right, rgb(46,105,203), rgb(121,152,247));
+}
+.block-item:nth-child(5) .image {
+    background-image: linear-gradient(to right, rgb(110,33,202), rgb(192,105,237));
+}
+.block-item:last-child .image {
+    background-image: linear-gradient(to right, rgb(104,136,43), rgb(166,207,117));
+}
+
+.block-heading {
+    font-size: 25px;
+    font-weight: 700;
+    margin-left: 20px;
+    width: 150px;
+    line-height: 1.25;
+}
+
+.desc {
+    color: var(--Text-color);
+    margin-bottom: 45px;
+    line-height: 1.5;
+}
+
+.action-link {
+    position: absolute;
+    font-weight: 700;
+    color: rgb(43,101,235);
+    bottom: 28px;
+    z-index: 2;
+}
+
+/* End Block Item */
+
+/* Begin Hover */
+
+.border-line {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 3px solid black;
+    border-radius: 10px;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.block-item:first-child:hover .border-line,
+.block-item:nth-child(2):hover .border-line,
+.block-item:nth-child(3):hover .border-line,
+.block-item:nth-child(4):hover .border-line,
+.block-item:nth-child(5):hover .border-line,
+.block-item:last-child:hover .border-line {
+    visibility: visible;
+    opacity: 1;
+}
+
+.block-item:first-child:hover .border-line {
+    border-color: rgb(228,92,121);
+}
+.block-item:nth-child(2):hover .border-line {
+    border-color: rgb(76,162,164);
+}
+.block-item:nth-child(3):hover .border-line {
+    border-color: rgb(225,135,50);
+}
+.block-item:nth-child(4):hover .border-line {
+    border-color: rgb(46,105,203);
+}
+.block-item:nth-child(5):hover .border-line {
+    border-color: rgb(110,33,202);
+}
+.block-item:last-child:hover .border-line {
+    border-color: rgb(104,136,43);
+}
+
+/* End Hover */
+
+/* Icon */
+
+.icon {
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon-brush.icon {
+    left: 33%;
+    top: 32%;
+    transform: rotate(45deg);
+}
+
+.icon-rocket.icon {
+    left: 22px;
+    top: 23px;
+    transform: rotate(-90deg);
+}

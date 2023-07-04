@@ -93,6 +93,7 @@ span {
 .icon-before,
 .icon-after {
     position: absolute;
+    cursor: pointer;
 }
 
 .icon-before {
