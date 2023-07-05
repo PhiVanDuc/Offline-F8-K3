@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Price-font";
+    src: url(../Fonts/sf-ui-display-cufonfonts/sf-ui-display-semibold-58646eddcae92.otf);
+    font-weight: 600;
+}
+
+:root {
+    --Heading-color: #bf4240;
+    --Text-color: #3f3424;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Asap', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Begin banner */
+
+.project {
+    width: 1400px;
+    /* overflow: hidden; */
+}
+
+.project > .banner {
+    width: 100%;
+    height: 418px;
+    background-image: url(../Images/ha-noi-melody-residences-cover.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* End banner */
+
+/* Begin desc-project */
+
+.desc-project {
+    display: inline-block;
+    position: relative;
+    padding: 35px 25px 60px 25px;
+    width: 555px;
+    background-color: rgba(255, 255, 255, 0.759);
+    color: var(--Text-color);
+    border-radius: 8px;
+    margin: 90px 0px 0px 178px;
+}
+
+.desc-project > .heading {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--Heading-color);
+    margin-bottom: 20px;
+}
+
+.desc-project > .desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.desc-project > .address > .icon-address {
+    float: left;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.desc-project > .price {
+    position: absolute;
+    font-family: "Price-cost", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    padding: 20px 22px;
+    background-color: var(--Heading-color);
+    border-radius: 4px;
+    bottom: -13%;
+    right: 37px;
+}
+
+/* End desc-project */
