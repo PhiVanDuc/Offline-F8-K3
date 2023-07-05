@@ -81,6 +81,7 @@ body {
     padding: 100px 20px 120px 20px;
     border-radius: 10px 0 0 10px;
     order: 1;
+    transition: .4s;
 }
 
 .intro-heading {
@@ -149,7 +150,6 @@ body {
     text-align: center;
     border-radius: 0 10px 10px 0;
     width: 550px;
-    animation: moving-in 0.5s ease;
 }
 
 .main-heading {
@@ -280,7 +280,17 @@ label > span {
     }
 }
 
-.appear-btn > .icon-in,
+@keyframes moving-out {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
 #check-appaer {
     display: none;
 } 
@@ -297,32 +307,39 @@ label > span {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.1);
+    animation: moving-in 0.4s ease;
 }
 
-.appear-btn > .icon-in,
-.appear-btn > .icon-out {
+.appear-btn > .icon-appear {
     margin: 0 auto 0 auto;
+    transition: .4s;
 }
+
+#check-appaer:checked + .appear-btn {
+    right: -20px;
+    left: auto;
+    animation: moving-out 0.8s ease;
+}
+
+#check-appaer:checked + .appear-btn > .icon-appear {
+    transform: rotate(180deg);
+    transition: .4s;
+} 
 
 #check-appaer:checked ~ .form-login {
-    display: none;
+    width: 0%;
+    padding: 0;
+    transition: .4s;
+}
+
+#check-appaer:checked ~ .form-login > * {
+    width: 0%;
+    opacity: 0;
 }
 
 #check-appaer:checked ~ .intro {
     width: 100%;
-    transition: .1s;
-}
-
-#check-appaer:checked + .appear-btn {
-    left: auto;
-    right: -20px;
-}
-
-#check-appaer:checked + .appear-btn > .icon-in {
-    display: initial;
-}
-#check-appaer:checked + .appear-btn > .icon-out {
-    display: none;
+    border-radius: 10px;
 }
 
 /* End appear botton */
