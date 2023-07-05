@@ -307,7 +307,7 @@ label > span {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.1);
-    animation: moving-in 0.4s ease;
+    animation: moving-in 0.8s ease-out;
 }
 
 .appear-btn > .icon-appear {
@@ -318,7 +318,7 @@ label > span {
 #check-appaer:checked + .appear-btn {
     right: -20px;
     left: auto;
-    animation: moving-out 0.8s ease;
+    animation: moving-out 0.8s ease-in;
 }
 
 #check-appaer:checked + .appear-btn > .icon-appear {
