@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Asap', sans-serif;;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 1400px;
+    margin: 0 auto 0 auto;
+}
+
+.heading {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: rgb(34, 34, 34);
+}
+
+/* Begin tab-bar */
+
+.tab-bar {
+    margin-bottom: 25px;
+}
+
+.tab-bar > .tab-list {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.tab-list > .tab-item {
+    padding: 14px 25px;
+    margin-right: 20px;
+    background-color: rgb(229,229,229);
+    border-radius: 99px;
+    color: rgb(34, 34, 34);
+    cursor: pointer;
+}
+.tab-list > .tab-item:last-child {
+    margin-right: 0;
+}
+
+.tab-list > .tab-item:first-child {
+    color: white;
+    background-color: rgb(175,123,55);
+}
+
+.tab-list > .tab-item > .corvered-area {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.tab-list > .tab-item > .quantity {
+    font-size: 11px;
+    font-style: italic;
+}
+
+/* End tab-bar */
+
+/* Begin content-hcm */
+
+.content-hcm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 25px;
+}
+
+.content-hcm > .content-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32%;
+    height: 270px;
+    padding: 30px 0 30px 30px;
+    border-radius: 5px;
+    color: white;
+}
+
+.content-hcm > .content-item:first-child {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/Quan-2.jpg);
+}
+.content-hcm > .content-item:nth-child(2) {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/Quan-7.jpg);
+}
+.content-hcm > .content-item:nth-child(3) {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/Quan-9.jpg);
+}
+.content-hcm > .content-item:nth-child(4) {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/21194637-bat-dong-san-quan-tan-binh-1.jpeg);
+}
+.content-hcm > .content-item:nth-child(5) {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/Quan-Thu-Duc.jpg);
+}
+.content-hcm > .content-item:last-child {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.23)), url(../Images/Huyen-Binh-Chanh.jpg);
+}
+
+.content-hcm > .content-item:first-child,
+.content-hcm > .content-item:nth-child(2),
+.content-hcm > .content-item:nth-child(3),
+.content-hcm > .content-item:nth-child(4),
+.content-hcm > .content-item:nth-child(5),
+.content-hcm > .content-item:last-child {
+    background-size: cover;
+    background-position: center;
+}
+
+.content-hcm > .content-item > .area {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.content-hcm > .content-item > .on-sale {
+    font-size: 14px;
+}
+
+.content-hcm > .content-item span {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* End content-hcm */
