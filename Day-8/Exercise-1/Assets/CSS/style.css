@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Manrope', sans-serif;
+}
+
+.container {
+    width: 1440px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+:root {
+    --Text-color: rgb(55,64,81);
+    --Menu-color: rgb(80,88,102);
+}
+
+/* Begin header */
+
+.header > .container {
+    position: relative;
+}
+
+/* End header */
+
+/* Begin navbar */
+
+.nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 36px;
+}
+
+.nav-top .nav-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.nav-top .nav-list {
+    display: flex;
+}
+
+.nav-top > .logo {
+    font-size: 35px;
+    font-weight: 800;
+    color: rgb(54,63,80);
+    letter-spacing: 0.5px;
+}
+
+.nav-top .nav-link {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--Text-color);
+    padding: 9px 20px;
+    transition: color 0.4s linear;
+}
+
+.nav-top .nav-item > .nav-link:hover {
+    color: rgb(137,142,152);
+}
+
+.nav-top .nav-link > i {
+    font-size: 16px;
+    margin-left: 6px;
+}
+
+.nav-top .action {
+    margin-left: 20px;
+}
+
+.nav-top .icon-info,
+.nav-top .icon-search {
+    display: inline-block;
+    color: var(--Text-color);
+}
+
+.nav-top .icon-info {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--Text-color);
+    border-radius: 50%;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.nav-top .icon-info > i {
+    font-size: 12px;
+    transform: translateY(-20%);
+}
+
+.nav-top .icon-search {
+    font-size: 20px;
+    transform: translateY(1px);
+}
+
+/* End navbar */
+
+/* Begin mega-menu */
+
+.mega-menu {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.mega-flex {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 110px;
+    padding: 40px 0 30px 30px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 24px 4px rgba(0,0,0,0.08);
+}
+
+.mega-menu .col-1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.mega-menu .col-1::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 430px;
+    background-color: #ededed;
+    top: 0;
+    right: 0;
+}
+
+.mega-menu .col-2 {
+    width: 67%;
+}
+
+.mega-menu .menu-list {
+    color: var(--Menu-color);
+}
+
+.mega-menu .col-1 .menu-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mega-menu .col-1 .menu-item {
+    display: inline-block;
+    width: 50%;
+}
+
+.mega-menu .col-2 .menu-item {
+    display: inline-block;
+    width: 33%;
+}
+
+.mega-menu .menu-heading {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.mega-menu .menu-link {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Menu-color);
+}
+
+.mega-menu .menu-item,
+.mega-menu .menu-heading {
+    margin-bottom: 25px;
+}
+
+/* End mega-menu */
+
+/* Hover to Appear */
+
+/* Ngăn chặn việc rời hover từ Documentation thì sẽ bị mất mega-menu */
+.mega-padding {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: black; */
+    left: 0;
+}
+
+.nav-item.dropdown:hover .mega-menu {
+    visibility: visible;
+    opacity: 1;
+}
