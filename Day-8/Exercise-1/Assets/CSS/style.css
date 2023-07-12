@@ -60,7 +60,7 @@ html {
     font-weight: 700;
     color: var(--Text-color);
     padding: 9px 20px;
-    transition: color 0.4s linear;
+    transition: color 0.2s linear;
 }
 
 .nav-top .nav-item > .nav-link:hover {
@@ -166,14 +166,19 @@ html {
 }
 
 .mega-menu .menu-heading {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .mega-menu .menu-link {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--Menu-color);
+    transition: color 0.2s linear;
+}
+
+.mega-menu .menu-link:hover {
+    color: rgb(137,142,152);
 }
 
 .mega-menu .menu-item,
