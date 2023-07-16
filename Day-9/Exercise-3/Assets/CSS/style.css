@@ -104,6 +104,14 @@ textarea {
 .choose > option:first-child {
     color: rgb(105, 105, 105)
 }
+.down-icon {
+    position: absolute;
+    right: 25px;
+    color: rgb(154, 154, 154);
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
 
 textarea {
     width: 100%;
@@ -111,7 +119,8 @@ textarea {
     padding-top: 27px;
 }
 
-label {
+.input + label,
+textarea + label {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
