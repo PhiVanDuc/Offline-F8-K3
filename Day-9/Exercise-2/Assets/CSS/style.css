@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    --Main-color: rgb(163,113,93);
+    --Heading-color: rgb(5,6,29);
+    --Text-color: rgb(142, 129, 123);
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.container {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+/* Begin block-list */
+
+.block-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}
+
+/* End block-list */
+
+/* Begin block-item */
+
+.block-item {
+    position: relative;
+    width: 32%;
+    height: 332px;
+    border: 2px solid rgb(229, 229, 229);
+    border-radius: 2px;
+    padding: 50px 40px 0 40px;
+    overflow: hidden;
+}
+
+.block-item > .block-icon {
+    font-size: 55px;
+    color: var(--Main-color);
+}
+
+.block-item > .block-heading {
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--Heading-color);
+    line-height: 1.25;
+    margin-top: 40px;
+}
+
+.block-item > .block-desc {
+    font-weight: 500;
+    color: var(--Text-color);
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+.block-item > .block-link {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    margin-top: 82px;
+}
+
+.block-item > .block-link > span {
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.block-item > .block-link > .right-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* End block-item */
+
+/* Begin background */
+
+.hover-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../Images/img-2.jpg);
+    background-size: cover;
+    background-position: center;
+    inset: 0;
+    z-index: -2;
+}
+
+.hover-background::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(165, 125, 108, 0.85);
+    inset: 0;
+}
+
+/* Dùng để tạo border từ ngoài vào khi hover */
+.hover-background::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    border: 2px solid rgba(232, 232, 232, 0.2);
+    transition: all 0.4s ease-in;
+}
+
+.origin-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    inset: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease-in;
+}
+
+/* End -background */
+
+/* Begin Hover */
+
+.block-item:hover > .block-icon,
+.block-item:hover > .block-heading,
+.block-item:hover > .block-desc {
+    color: white;
+}
+
+.block-item:hover .origin-background {
+    opacity: 0;
+}
+
+.block-item:hover .hover-background::after {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    inset: 15px;
+    opacity: 1;
+}
+
+.block-item > .block-icon {
+    transition: 0.4s linear;
+    transition-property: scale, color;
+}
+.block-item:hover > .block-icon {
+    scale: 0;
+}
+
+.block-item > .block-heading {
+    transition: 0.5s ease-out;
+    transition-property:  margin-top, transform;
+}
+.block-item:hover > .block-heading {
+    margin-top: 0;
+    transform: translateY(-94%);
+}
+
+.block-item > .block-desc {
+    transition: 0.5s ease-out;
+    transition-property:  margin-top, transform;
+    transition-delay: 0.1s;
+}
+.block-item:hover > .block-desc {
+    margin-top: 0;
+    transform: translateY(-88%);
+}
+
+.block-item > .block-link {
+    transition: transform 0.4s cubic-bezier(0, 0.4, 0.6, 1.0);
+}
+.block-item:hover > .block-link {
+    transform: translateY(-30px);
+}
+.block-item > .block-link > .right-icon {
+    transition: transform 0.4s linear;
+    transition-property:  color, background-color;
+
+}
+.block-item > .block-link:hover > .right-icon {
+    color: black;
+    background-color: white;
+}
+
+
+/* End Hover */

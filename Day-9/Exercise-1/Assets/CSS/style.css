@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --Heading-font: 'Space Grotesk', sans-serif;
+    --Heading-color: rgb(3,4,27);
+    --Text-color: rgb(117, 117, 117);
+    --Time-color: rgb(121,121,125);
+    --Background-color: rgb(243,243,243);
+    --Point-bright-color: rgb(96,195,180);
+    --Point-dark-color: rgb(83,144,134);
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    width: 1360px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 70px;
+    cursor: pointer;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Begin achievement */
+
+.timeline-item > .achievement {
+    width: 350px;
+    margin-right: 30px;
+    text-align: right;
+}
+
+.timeline-item .heading-achievement,
+.timeline-item .desc-achievement {
+    margin-bottom: 25px;
+}
+
+.timeline-item .heading-achievement {
+    font-family: var(--Heading-font);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--Heading-color);
+}
+
+.timeline-item .desc-achievement {
+    color: var(--Text-color);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.timeline-item .field-achievement {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--Time-color);
+    padding: 6px 14px;
+    border-radius: 99px;
+    background-color: var(--Background-color);
+    transition: all 1s linear;
+}
+
+/* End achievement */
+
+/* Begin point */
+
+.timeline-item > .point {
+    display: inline-block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom, var(--Point-bright-color), var(--Point-dark-color));
+    outline: 8px solid var(--Background-color);
+    margin-top: 10px;
+}
+
+.timeline-item > .point::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 160px;
+    background-color: rgb(240, 240, 240);
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+}
+
+.timeline-item:last-child > .point::before {
+    width: 0;
+    height: 0;
+}
+
+/* End line and point */
+
+/* Begin time */
+
+.timeline-item > .time {
+    margin-left: 40px;
+    color: var(--Time-color);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* End time */
+
+/* Begin Hover */
+
+@keyframes move {
+    0% {
+        opacity: 50%;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+.timeline-item:hover > .achievement {
+    transform: translateX(123%);
+    text-align: left;
+    animation: move 1s ease-out;
+}
+
+.timeline-item:hover > .time {
+    animation: move 1s ease-out;
+    transform: translateX(-194%);
+}
+
+.timeline-item:hover .field-achievement {
+    background-color: rgb(162,111,90);
+    color: white;
+}
+
+/* End Hover */
+
+/* Begin timeline-image */
+
+.timeline-image {
+    position: relative;
+}
+
+.timeline-image > .main-img,
+.timeline-image > .sub-img {
+    object-fit: cover;
+    object-position: center;
+}
+
+.timeline-image > .main-img {
+    width: 430px;
+    height: 486px;
+}
+
+.timeline-image > .sub-img {
+    position: absolute;
+    width: 290px;
+    height: 420px;
+    top: 137px;
+    left: -130px;
+    filter: blur(1.2px);
+}
+
+.timeline-image > .overlay {
+    position: absolute;
+    width: 290px;
+    height: 420px;
+    padding: 20px;
+    background-clip: content-box;
+    background-color: rgba(71,93,175, 0.95);
+    top: 137px;
+    left: -130px;
+}
+
+.timeline-image > .text-img {
+    position: absolute;
+    width: 290px;
+    height: 420px;
+    top: 137px;
+    left: -130px;
+    background-image: url(../Images/img-1.jpg);
+    background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: right;
+}
+
+.timeline-image > .text-img > p:first-child {
+    font-family: var(--Heading-font);
+    font-size: 70px;
+    font-weight: 700;
+    margin-top: 280px;
+    /* filter: brightness(80%); */
+}
+
+.timeline-image > .text-img > p:last-child {
+    background-clip: none;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.timeline-image > .text-img > p:first-child,
+.timeline-image > .text-img > p:last-child {
+    margin-right: 44px;
+}
+
+/* End timeline-image */

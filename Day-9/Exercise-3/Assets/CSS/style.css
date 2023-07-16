@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+:root {
+    --Height-input: 60px;
+}
+
+/* Begin CSS Title */
+
+.heading {
+    font-size: 50px;
+    font-weight: 700;
+    color: rgb(53,63,80);
+    margin-bottom: 25px;
+}
+
+.desc {
+    font-size: 21px;
+    color: rgb(97,104,137);
+    margin-bottom: 40px;
+}
+
+/* End CSS Title */
+
+/* Begin CSS form */
+
+.main-form {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 25px;
+}
+.form-row:last-child {
+    display: inline-block;
+    padding-top: 130px;
+}
+
+.form-group {
+    position: relative;
+    width: 48.5%;
+    height: var(--Height-input);
+}
+.form-row:nth-child(3) > .form-group {
+    width: 100%;
+}
+
+.input,
+.choose {
+    width: 100%;
+    height: var(--Height-input);
+}
+
+.input,
+textarea {
+    font-size: 17px;
+    color: rgb(44, 44, 44);
+}
+
+.input,
+.choose,
+textarea {
+    font-family: 'Roboto', sans-serif;
+    appearance: none;
+    border: 1px solid rgb(219, 222, 235);
+    border-radius: 15px;
+    padding-left: 25px;
+    outline: none;
+}
+
+.input {
+    padding-top: 18px;
+}
+
+.choose {
+    color: rgb(154, 154, 154);
+    font-size: 18px;
+    cursor: pointer;
+}
+.choose > option:first-child {
+    color: rgb(105, 105, 105)
+}
+
+textarea {
+    width: 100%;
+    height: 160px;
+    padding-top: 27px;
+}
+
+label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25px;
+    font-size: 18px;
+    color: rgb(154, 154, 154);
+    cursor: text;
+    transition: all 0.3s ease-out;
+}
+
+.send-btn {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px 35px;
+    border: none;
+    border-radius: 99px;
+    background-color: #4D77D8;
+    cursor: pointer;
+}
+
+/* End CSS form */
+
+/* Begin focus */
+
+.input:focus + label,
+textarea:focus + label {
+    font-size: 14px;
+    top: 17px;
+}
+
+.input:focus,
+textarea:focus {
+    border-color: rgb(197, 190, 241);
+}
+
+/* End focus */
