@@ -168,21 +168,25 @@ body {
 
 .block-item > .block-heading {
     transition: 0.5s ease-out;
-    transition-property:  margin-top, transform;
+    transition-property:  margin-top, transform, color;
+    transition-delay: 0.1s;
 }
 .block-item:hover > .block-heading {
+    transition: 0.4s ease-out;
+    transition-property:  margin-top, transform, color;
     margin-top: 0;
     transform: translateY(-94%);
 }
 
 .block-item > .block-desc {
-    transition: 0.5s ease-out;
+    transition: 0.4s ease-out;
     transition-property:  margin-top, transform;
-    transition-delay: 0.1s;
+    /* transition-delay: 0.1s; */
 }
 .block-item:hover > .block-desc {
     margin-top: 0;
     transform: translateY(-88%);
+    transition-delay: 0.1s;
 }
 
 .block-item > .block-link {
@@ -200,6 +204,5 @@ body {
     color: black;
     background-color: white;
 }
-
 
 /* End Hover */

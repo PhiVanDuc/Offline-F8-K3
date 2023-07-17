@@ -146,6 +146,8 @@ textarea + label {
 
 /* Begin focus */
 
+.input:valid + label,
+textarea:valid + label,
 .input:focus + label,
 textarea:focus + label {
     font-size: 14px;
