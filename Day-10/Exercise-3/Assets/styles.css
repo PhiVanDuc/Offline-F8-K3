@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: system-ui;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #323543;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Bắt đầu dựng khung phong bì */
+
+.wrap-envelop {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    background-color: rgb(203,78,67);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.envelop {
+    position: absolute;
+    border-top: 50px solid transparent;
+    border-right: 100px solid rgb(228,99,87);
+    border-bottom: 50px solid rgb(228,99,87);
+    border-left: 100px solid rgb(221,86,75);
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+
+
+/* Kết thúc */
+
+/* Bắt đầu dựng khung lá thư */
+
+.letter {
+    position: absolute;
+    width: 80%;
+    height: 75%;
+    background-color: white;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+.letter > .letter-border {
+    height: 12px;
+    margin-bottom: 10px;
+    background-image: repeating-linear-gradient(-45deg, #cb5a5e, #cb5a5e 8px, transparent 8px, transparent 18px);
+}
+
+.letter > .letter-heading,
+.letter > .letter-context {
+    background-color: rgb(199,92,92);
+    margin: 0 0 10px 5px;
+    height: 10px;
+}
+
+.letter > .letter-heading {
+    width: 40%;
+}
+.letter > .letter-context {
+    width: 20%;
+}
+
+.letter > .letter-circle {
+    /* visibility: hidden; */
+    position: absolute;
+    padding: 15px;
+    background-color: rgb(239,206,207);
+    border-radius: 50%;
+    bottom: 0px;
+    right: 10px;
+    transition: 0.5s ease-in-out;
+    transition-property: bottom;
+}
+
+/* Kết thúc */
+
+/* Dựng phần shadow */
+
+.shadow,
+.shadow::before {
+    filter: blur(5px);
+    border-radius: 50%;
+}
+
+.shadow {
+    position: relative;
+    margin: 60px auto 0 auto;
+    width: 250px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.35);
+    filter: blur(6px);
+    transform: rotateX(40deg);
+    transition: 0.4s ease-in-out;
+    transition-property: width, transform;
+}
+
+/* Kết thúc */
+
+/* Hiệu ứng hover */
+
+.wrap-envelop:hover {
+    transform: translateY(35%);
+}
+
+.wrap-envelop:hover .letter > .letter-circle {
+    bottom: 70px;
+    right: 10px;
+    transition-delay: 0.2s;
+}
+
+.wrap-envelop:hover .letter {
+    height: 180px;
+    transition-delay: 0.2s;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-width: 50px 100px 0 100px;
+    border-color: rgb(203,78,67) transparent transparent transparent;
+    transform-origin: top;
+    transition: transform 0.2s linear;
+}
+
+.top.one {
+    transform: rotateX(0deg);
+    z-index: 3;
+    transition-delay: 0.4s;
+}
+.top.two {
+    transform: rotateX(90deg);
+    z-index: 0;
+    transition-delay: 0.3s;
+}
+
+.wrap-envelop:hover .top.one {
+    transform: rotateX(90deg);
+    transition-delay: 0s;
+}
+.wrap-envelop:hover .top.two {
+    transform: rotateX(180deg);
+    transition-delay: 0.2s;
+}
+
+.wrap-envelop:hover + .shadow {
+    width: 142px;
+    transform: rotateX(45deg);
+}
+
+/* Kết thúc */

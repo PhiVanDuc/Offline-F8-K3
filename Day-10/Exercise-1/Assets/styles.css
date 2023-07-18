@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    height: 100vh;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    background-color: #31A8F7;
+    overflow: hidden;
+}
+
+/* Begin rate */
+
+.rate {
+    text-align: end;
+    margin-right: 10%;
+    z-index: 1;
+}
+
+.rate > .heading,
+.rate > .desc {
+    color: white;
+}
+
+.rate > .heading {
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.rate > .desc {
+    font-size: 18px;
+}
+.rate > .desc > span {
+    font-size: 32px;
+}
+
+/* end rate */
+
+/* Begin group-menu */
+
+.group-menu {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.input-checkbox {
+    display: none;
+}
+
+.group-menu,
+.group-menu > .circle,
+.group-menu > .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.group-menu > .circle {
+    display: inline-block;
+    clip-path: circle(8% at 0 0);
+    background-color: white;
+    cursor: pointer;
+    transition: clip-path 0.6s ease-in-out;
+    z-index: 1;
+}
+
+.input-checkbox:checked + .circle {
+    clip-path: circle(150% at 0 0);
+}
+
+.shadow {
+    clip-path: circle(8.2% at 0 0);
+    background-color: rgba(0, 0, 0, 0.1);
+    filter: blur(5px);
+    z-index: 0;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 125px;
+    left: 0px;
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.menu > .menu-link {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 5px 65px;
+    margin-bottom: 20px;
+    color: #31A8F7;
+    transition: background-color, color;
+    transition: 0.4s linear;
+}
+.menu > .menu-link:last-child {
+    margin-bottom: 0;
+}
+
+.menu > .menu-link:focus {
+    background-color: rgb(238,237,239);
+    color: rgb(20,32,60);
+}
+
+.input-checkbox:checked ~ .menu {
+    transform: translateX(0);
+}
+
+/* End group-menu */
+
+/* Begin icon-bars */
+
+.circle > .align {
+    position: relative;
+    margin: 50px 0 0 30px;
+}
+
+.menu-bar {
+    position: absolute;
+    top: 0;
+    width: 40px;
+}
+
+.menu-bar::after,
+.menu-bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.menu-bar,
+.menu-bar::after,
+.menu-bar::before {
+    width: 40px;
+    height: 4px;
+    background-color: #31A8F7;
+    border-radius: 99px;
+    left: 0;
+    transition: inset, transform;
+    transition: 0.6s ease-in-out;
+}
+
+.menu-bar::before {
+    top: -12px;
+}
+.menu-bar::after {
+    bottom: -12px;
+}
+
+.input-checkbox:checked + .circle .menu-bar {
+    transform: rotate(180deg);
+}
+.input-checkbox:checked + .circle .menu-bar::before {
+    transform: rotate(30deg);
+    top: -5px;
+    width: 20px;
+    left: 20px;
+}
+.input-checkbox:checked + .circle .menu-bar::after {
+    transform: rotate(-30deg);
+    bottom: -5px;
+    width: 20px;
+    left: 20px;
+}
+
+/* End icon-bars */
