@@ -25,6 +25,7 @@ html {
 .rate {
     text-align: end;
     margin-right: 10%;
+    z-index: 2;
 }
 
 .rate > .heading,
@@ -82,6 +83,11 @@ html {
     clip-path: circle(123px at 0 0);
     background-color: rgba(0, 0, 0, 0.1);
     filter: blur(5px);
+}
+
+.input-checkbox:checked ~ .menu,
+.input-checkbox:checked + .circle {
+    z-index: 3;
 }
 
 .input-checkbox:checked + .circle {
