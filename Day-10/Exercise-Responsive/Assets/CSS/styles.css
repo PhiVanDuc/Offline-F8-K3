@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: system-ui;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 1320px;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.header > .container {
+    height: 78.89px;
+    padding-top: 6px;
+}
+
+.input-menu {
+    display: none;
+}
+
+/* Begin logo-link */
+
+.logo-link > img {
+    height: 26px;
+}
+
+.logo-link {
+    margin-right: auto;
+}
+
+/* End logo-link */
+
+/* Begin navbar */
+
+.navbar > .nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-link {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 24px 20px;
+    color: rgb(52, 63, 82);
+}
+
+.navbar .nav-link > i {
+    font-size: 13px;
+    color: #5eb9f0;
+}
+
+/* End navbar */
+
+/* Begin btn-contact */
+
+.btn-contact {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 16px 22.7px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(94, 185, 240);
+    border-radius: 99px;
+}
+
+/* End btn-contact */
+
+/* Begin bar-menu-icon */
+
+.bar-menu-icon {
+    display: none;
+    font-size: 25px;
+    margin-left: 16px;
+    color: rgb(52, 63, 82);
+    cursor: pointer;
+}
+
+/* End bar-menu-icon */
+
+/* Responsive */
+
+/* Tablet and Mobile screen */
+@media (max-width: 991px) {
+    .navbar {
+        display: none;
+    }
+
+    .bar-menu-icon {
+        display: initial;
+    }
+
+    .container {
+        height: 74px;
+    }
+
+    .overlay,
+    .side-bar {
+        position: fixed;
+    }
+
+    .overlay {
+        visibility: hidden;
+        background-color: rgba(30,34,40,.7);
+        inset: 0;
+        opacity: 0;
+        transition-property: visibility, opacity;
+        transition: 0.5s linear;
+    }
+
+    .side-bar {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        background-color: rgb(30, 34, 40);
+        transform: translateX(-100%);
+        opacity: 0;
+        transition-property: opacity, transform;
+        transition: 0.5s ease-in-out;
+        z-index: 1;
+    }
+
+    .input-menu:checked ~ .overlay {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .input-menu:checked ~ .side-bar {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/* Tablet screen */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 720px;
+    }
+}
+
+/* Mobile screen */
+@media (max-width: 765px) {
+    .container {
+        width: 540px;
+    }
+
+    .btn-contact {
+        display: none;
+    }
+}
