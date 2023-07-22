@@ -13,56 +13,44 @@
     </head>
 
     <body style="height: 5000px;">
-        <!-- Begin Header -->
+        <!-- Header -->
         <header class="header">
-            <!-- Begin Navbar -->
             <nav class="navbar">
                 <div class="container">
-                    <!-- Logo -->
                     <a href="#!" class="logo-link">
-                        <img src="./Assets/Images/logo.svg" alt="Grover" class="logo-link__image">
+                        <img src="./Assets/Images/logo.svg" alt="Grover" class="logo-link__img">
                     </a>
+    
+                    <div class="icon-burger">
+                        <div class="icon-burger__size">
+                            <div class="icon-burger__layer"></div>
+                            <div class="icon-burger__layer"></div>
+                            <div class="icon-burger__layer"></div>
+                        </div>
+                    </div>
 
-                    <!-- icon-menu-navbar -->
-                    <div class="icon-menu-navbar">
-                        <i class="fa-solid fa-bars"></i>
+                    <ul class="navbar__list">
+                        <li class="navbar__item">
+                            <a href="#!" class="navbar__link active">Home</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a href="#!" class="navbar__link">Menu</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a href="#!" class="navbar__link">Service</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a href="#!" class="navbar__link">Shop</a>
+                        </li>
+                    </ul>
+
+                    <div class="navbar__search">
+                        <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                        <input type="search" placeholder="Search" class="navbar__input">
+                        <i class="fa-solid fa-basket-shopping icon-basket"></i>
                     </div>
                 </div>
             </nav>
-            <!-- End Navbar -->
-
-            <!-- Begin Hero -->
-            <section class="hero">
-                <div class="container">
-                    <div class="row">
-                        <!-- First Column -->
-                        <div class="col-12">
-                            <div class="hero__faster">
-                                <div class="hero__faster--align">
-                                    <h3 class="hero__title">More than Faster</h3>
-                                    <img src="./Assets/Images/strawberry.svg" alt="Ảnh dâu tây" class="hero__title--img">
-                                </div>
-                            </div>
-                            <div class="hero__heading">Groceries delivered in as little as <span>2 hours</span></div>
-                            <div class="hero__desc">Grocen atssures fresh grocery every morning to your family without getting out in this pandemic.</div>
-                            <div class="hero__btn">
-                                <a href="#!" class="hero__btn--order">Order Now</a>
-                                <a href="#!" class="hero__btn--process">
-                                    <i class="fa-solid fa-play icon-play"></i>
-                                    <span>Order Process</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="hero__img">
-                                <img src="./Assets/Images/header-img.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- End Hero -->
         </header>
-        <!-- End Header -->
     </body>
 </html>
