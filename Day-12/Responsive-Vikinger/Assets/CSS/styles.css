@@ -1,0 +1,510 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:wght@600;700;900&display=swap");
+.access-info > .switch-toggle > .switch-toggle__register, .access-info > .switch-toggle > .switch-toggle__login {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  width: 50%;
+  height: 54px;
+  line-height: 54px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition: 0.2s linear;
+}
+
+.form-register, .form-login {
+  width: 450px;
+  max-width: 100%;
+  padding: 40px 32px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.form-register__heading, .form-login > .form-login__heading {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1em;
+  color: #3e3f5e;
+}
+
+.inner-register, .form-login > .inner-login {
+  margin-top: 76px;
+}
+
+.access-page .switch-register:checked ~ .access-info .switch-toggle__register, .access-page .switch-login:checked ~ .access-info .switch-toggle__login {
+  color: #3e3f5e;
+  background-color: #fff;
+}
+
+.fake-placeholder > .type {
+  font-family: "Rajdhani", sans-serif;
+  width: 100%;
+  height: 54px;
+  outline: none;
+  border: 1px solid #dedeea;
+  border-radius: 12px;
+  padding: 0px 18px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #3e3f5e;
+  transition: border-color 0.3s linear;
+}
+
+.fake-placeholder > label {
+  position: absolute;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1em;
+  color: #adafca;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  transition-property: font-size, top;
+  transition: 0.2s linear;
+}
+
+.fake-placeholder > .type:valid + label, .fake-placeholder > .type:focus + label {
+  font-size: 1.2rem;
+  top: 0px;
+  padding: 0px 8px;
+  background-color: white;
+}
+
+.inner-register .inner-register__support-btn, .form-login > .inner-login > .inner-login__support-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+.inner-register .inner-register__support-btn .inner-register__group > .verify-btn, .form-login > .inner-login > .inner-login__support-btn > .inner-login__group > .remember-btn {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #dedeea;
+  border-radius: 6px;
+  background-color: #fff;
+  transition-property: border, background-color;
+  transition: 0.3s ease-in-out;
+}
+
+.inner-register .inner-register__support-btn .inner-register__group > .verify-btn::before, .form-login > .inner-login > .inner-login__support-btn > .inner-login__group > .remember-btn::before {
+  content: "\f00d";
+  opacity: 0;
+  position: absolute;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #fff;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.inner-register .inner-register__support-btn .inner-register__group > label, .form-login > .inner-login > .inner-login__support-btn > .link-form, .form-login > .inner-login > .inner-login__support-btn > .inner-login__group > label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  cursor: pointer;
+}
+
+.form-login > .form-login__line::after, .form-login > .form-login__line::before {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 1px;
+  background-color: #eaeaf5;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.inner-register .register-btn, .form-login > .inner-login .login-btn {
+  font-family: "Rajdhani", sans-serif;
+  margin-top: 28px;
+  width: 100%;
+  height: 54px;
+  border: none;
+  outline: none;
+  background-color: #615dfa;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 54px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0px;
+  box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
+}
+
+@media (min-width: 501px) {
+  .access-info > .switch-toggle > .switch-toggle__register, .access-info > .switch-toggle > .switch-toggle__login {
+    width: 180px;
+  }
+  .form-register, .form-login {
+    width: 540px;
+    max-width: 100%;
+    padding: 64px;
+    margin: 0 30px;
+  }
+}
+@media (min-width: 601px) {
+  .form-register, .form-login {
+    width: 484px;
+    margin: 0;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.access-page {
+  width: 100%;
+  min-height: 100vh;
+  background: url(../Images/landing-background.jpg) no-repeat 0;
+  background-size: cover;
+  padding: 80px 0px 100px 0px;
+}
+.access-page .dot-background {
+  display: none;
+  position: absolute;
+  background: url(../Images/dot-texture.png) repeat 0 0;
+  background-color: white;
+  width: 64%;
+  height: 140%;
+  right: -32%;
+  border-radius: 50%;
+}
+.access-page .switch-login:checked ~ .access-forms .form-login {
+  display: initial;
+}
+.access-page .switch-register:checked ~ .access-forms .form-register {
+  display: initial;
+}
+.access-page .switch-input {
+  display: none;
+}
+
+.access-info {
+  text-align: center;
+  color: white;
+}
+.access-info > .logo {
+  height: 60px;
+}
+.access-info > .access-info__sub-heading {
+  font-size: 2.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1em;
+  margin-top: 36px;
+}
+.access-info > .access-info__heading {
+  font-family: "Titillium Web", sans-serif;
+  position: relative;
+  font-size: 6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  top: -10px;
+}
+.access-info .access-info__desc {
+  display: none;
+  width: 384px;
+  margin-top: 10px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.3333333333em;
+}
+.access-info > .switch-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 25px 0px 25px;
+}
+.access-info > .switch-toggle > .switch-toggle__login {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.access-info > .switch-toggle > .switch-toggle__register {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.access-forms {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  margin: 60px 25px 0px 25px;
+}
+
+.form-login {
+  display: none;
+}
+.form-login .icon-rocket {
+  display: none;
+}
+.form-login > .inner-login > .inner-login__group:nth-of-type(2) {
+  margin-top: 28px;
+}
+.form-login > .inner-login > .inner-login__support-btn > .inner-login__group {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+.form-login > .inner-login > .inner-login__support-btn > .inner-login__group > .remember-btn:checked {
+  background-color: rgb(35, 210, 226);
+  border: none;
+}
+.form-login > .inner-login > .inner-login__support-btn > .inner-login__group > .remember-btn:checked::before {
+  opacity: 1;
+}
+.form-login > .inner-login > .inner-login__support-btn > .inner-login__group > label {
+  padding-left: 10px;
+  color: #3e3f5e;
+}
+.form-login > .inner-login > .inner-login__support-btn > .link-form {
+  color: #adafca;
+}
+.form-login > .form-login__line {
+  position: relative;
+  margin-top: 40px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1em;
+  color: #3e3f5e;
+}
+.form-login > .form-login__line::before {
+  left: 0px;
+}
+.form-login > .form-login__line::after {
+  right: 0px;
+}
+.form-login .social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.form-login .social-media .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 10px;
+}
+.form-login .social-media .social-icon > img {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+.form-login .social-media .social-icon:last-child {
+  margin-right: 0px;
+}
+.form-login .social-media .icon-facebook {
+  background-color: #3763d2;
+}
+.form-login .social-media .icon-twitter {
+  background-color: #1abcff;
+}
+.form-login .social-media .icon-twitch {
+  background-color: #7b5dfa;
+}
+.form-login .social-media .icon-youtube {
+  background-color: #fd434f;
+}
+
+.fake-placeholder {
+  position: relative;
+}
+.fake-placeholder > .type:focus {
+  border-color: #615dfa;
+}
+.form-register {
+  display: none;
+}
+.form-register .icon-rocket {
+  display: none;
+}
+
+.inner-register .inner-register__group {
+  margin-top: 28px;
+}
+.inner-register .inner-register__group:first-child {
+  margin-top: 0px;
+}
+.inner-register .inner-register__support-btn {
+  height: 22px;
+}
+.inner-register .inner-register__support-btn .inner-register__group {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+.inner-register .inner-register__support-btn .inner-register__group > .verify-btn:checked {
+  background-color: rgb(35, 210, 226);
+  border: none;
+}
+.inner-register .inner-register__support-btn .inner-register__group > .verify-btn:checked::before {
+  opacity: 1;
+}
+.inner-register .inner-register__support-btn .inner-register__group > label {
+  padding-left: 10px;
+  color: #3e3f5e;
+}
+.inner-register .register-btn {
+  background-color: rgb(35, 210, 226);
+  box-shadow: 4px 7px 12px 0 rgba(35, 210, 226, 0.2);
+}
+
+.form-instruction {
+  text-align: left;
+  margin-top: 30px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.7142857143em;
+  color: #3e3f5e;
+}
+.form-instruction > a {
+  font-weight: 600;
+  color: rgb(35, 210, 226);
+}
+
+@media (min-width: 501px) {
+  .access-info > .access-info__heading {
+    font-size: 10.4rem;
+  }
+  .access-info > .switch-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0px 0px 0px;
+  }
+  .access-forms {
+    margin: 80px 0px 0px 0px;
+  }
+}
+@media (min-width: 1366px) {
+  .access-page {
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .access-page .switch-login:checked ~ .access-forms .form-login {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+    z-index: 2;
+  }
+  .access-page .switch-register:checked ~ .access-forms .form-register {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+    z-index: 2;
+  }
+  .access-info {
+    position: absolute;
+    width: 584px;
+    height: 400px;
+    left: 6%;
+    top: 16%;
+  }
+  .access-info .access-info__desc {
+    display: inline-block;
+  }
+  .access-forms {
+    margin: 0px;
+    right: 80px;
+    width: 484px;
+    height: 740px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .access-forms .form-login {
+    display: initial;
+    height: 625px;
+    position: absolute;
+    transform: translateX(50%);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    transition-property: transform, opacity, visibility, z-index;
+    transition: 0.6s ease-in-out;
+  }
+  .access-forms .form-login .icon-rocket {
+    position: absolute;
+    top: -68px;
+    left: -80px;
+  }
+  .access-forms .form-register {
+    display: initial;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 740px;
+    transform: translateX(50%);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    transition-property: transform, opacity, visibility, z-index;
+    transition: 0.6s ease-in-out;
+  }
+  .access-forms .form-register .icon-rocket {
+    position: absolute;
+    top: -14px;
+    left: -80px;
+  }
+}
+@media (min-width: 1501px) {
+  .access-page .dot-background {
+    display: block;
+  }
+  .access-info {
+    position: absolute;
+    width: 584px;
+    height: 400px;
+    left: 13%;
+    top: 16%;
+  }
+  .access-info .access-info__desc {
+    display: inline-block;
+    margin-top: 30px;
+  }
+  .access-info > .switch-toggle {
+    margin-top: 90px;
+  }
+  .access-forms {
+    right: 13%;
+  }
+  .access-forms .form-login {
+    box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+  }
+  .access-forms .form-login .icon-rocket {
+    display: initial;
+  }
+  .access-forms .form-register {
+    box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+  }
+  .access-forms .form-register .icon-rocket {
+    display: initial;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

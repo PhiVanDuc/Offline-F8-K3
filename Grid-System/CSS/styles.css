@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+h2 {
+    background-color: orange;
+    color: white;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vikinger | Home</title>
+        <!-- Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./Assets/CSS/reset.css">
+        <link rel="stylesheet" href="./Assets/CSS/styles.css">
+    </head>
+    <body>
+        <div class="access-page">
+            <div class="dot-background"></div>
+            <!-- Input radio -->
+            <input type="radio" name="radio" id="switch-login" class="switch-login switch-input" checked>
+            <input type="radio" name="radio" id="switch-register" class="switch-register switch-input">
+            <!-- Access Info -->
+            <div class="access-info">
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="./Assets/Images/Icon-head.svg" alt="Logo">
+                </div>
+                <!-- Group Heading -->
+                <h2 class="access-info__sub-heading">welcome to</h2>
+                <h1 class="access-info__heading">vikinger</h1>
+                <!-- Group Desc -->
+                <p class="access-info__desc">The next generation social network & community! Connect with your friends and play with our quests and badges gamification system!</p>
+                <!-- Group switch toggle -->
+                <div class="switch-toggle">
+                    <label for="switch-login" class="switch-toggle__login">Login</label>
+                    <label for="switch-register" class="switch-toggle__register">Register</label>
+                </div>
+            </div>
+            <!-- Access Forms -->
+            <div class="access-forms">
+                <!-- Form Login -->
+                <div class="form-login">
+                    <img src="./Assets/Images/rocket.png" alt="" class="icon-rocket">
+                    <!-- Form Login Heading -->
+                    <h2 class="form-login__heading">Account Login</h2>
+                    <!-- Inner Form Login -->
+                    <form class="inner-login" autocomplete="off">
+                        <!-- Inner Group 1 -->
+                        <div class="inner-login__group">
+                            <div class="fake-placeholder">
+                                <input type="text" id="type-email" class="type-email type" required>
+                                <label for="type-email">Username or Email</label>
+                            </div>
+                        </div>
+                        <!-- Inner Group 2 -->
+                        <div class="inner-login__group">
+                            <div class="fake-placeholder">
+                                <input type="password" id="type-password" class="type-password type" required>
+                                <label for="type-password">Password</label>
+                            </div>
+                        </div>
+                        <!-- Support Button -->
+                        <div class="inner-login__support-btn">
+                            <!-- Inner Group 3 In Support Button -->
+                            <div class="inner-login__group">
+                                <input type="checkbox" id="remember-btn" class="remember-btn" checked>
+                                <label for="remember-btn">Remember Me</label>
+                            </div>
+                            <a href="#!" class="link-form">Forgot Password?</a>
+                        </div>
+                        <button class="login-btn">Login to your Account!</button>
+                    </form>
+                    <!-- Form login Line -->
+                    <div class="form-login__line">Login with your Social Account</div>
+                    <!-- Social-media -->
+                    <div class="social-media">
+                        <a href="#!" class="icon-facebook social-icon">
+                        <img src="./Assets/Images/Icon-facebook.svg">
+                        </a>
+                        <a href="#!" class="icon-twitter social-icon">
+                        <img src="./Assets/Images/Icon-twitter.svg">
+                        </a>
+                        <a href="#!" class="icon-twitch social-icon">
+                        <img src="./Assets/Images/svgexport-5.svg">
+                        </a>
+                        <a href="#!" class="icon-youtube social-icon">
+                        <img src="./Assets/Images/Icon-youtube.svg">
+                        </a>
+                    </div>
+                </div>
+                <!-- End Form Login -->
+                <!-- Form Register -->
+                <div class="form-register">
+                    <img src="./Assets/Images/rocket.png" alt="" class="icon-rocket">
+                    <!-- Form Register Heading -->
+                    <h2 class="form-register__heading">Create your Account!</h2>
+                    <!-- Inner Form Register -->
+                    <form class="inner-register" autocomplete="off">
+                        <!-- Inner Group 1 -->
+                        <div class="inner-register__group">
+                            <div class="fake-placeholder">
+                                <input type="text" id="initial-email" class="initial-email type" required>
+                                <label for="initial-email">Your Email</label>
+                            </div>
+                        </div>
+                        <!-- Inner Group 2 -->
+                        <div class="inner-register__group">
+                            <div class="fake-placeholder">
+                                <input type="text" id="initial-name" class="initial-name type" required>
+                                <label for="initial-name">Username</label>
+                            </div>
+                        </div>
+                        <!-- Inner Group 3 -->
+                        <div class="inner-register__group">
+                            <div class="fake-placeholder">
+                                <input type="text" id="initial-password" class="initial-password type" required>
+                                <label for="initial-password">Password</label>
+                            </div>
+                        </div>
+                        <!-- Inner Group 4 -->
+                        <div class="inner-register__group">
+                            <div class="fake-placeholder">
+                                <input type="text" id="retype-password" class="retype-password type" required>
+                                <label for="retype-password">Repeat Password</label>
+                            </div>
+                        </div>
+                        <!-- Inner Register Support Button -->
+                        <div class="inner-register__support-btn">
+                            <!-- Inner Group 5 -->
+                            <div class="inner-register__group">
+                                <input type="checkbox" id="verify-btn" class="verify-btn" checked>
+                                <label for="verify-btn">Send me news and updates via email</label>
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <button class="register-btn">Register Now!</button>
+                    </form>
+                    <p class="form-instruction">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#!">contact us</a>!</p>
+                </div>
+                <!-- End Form Register -->
+            </div>
+        </div>
+    </body>
+</html>

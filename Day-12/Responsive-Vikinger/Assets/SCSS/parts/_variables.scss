@@ -1,0 +1,22 @@
+// Font
+$fontHeading: 'Titillium Web', sans-serif;
+
+// Color
+$blackColor: #3e3f5e;
+$borderColor: #dedeea;
+$greyColor: #adafca;
+$baseColor: #615dfa;
+$lineColor: #eaeaf5;
+$checkboxColor: rgb(35, 210, 226);
+$facebookColor: #3763d2;
+$twitterColor: #1abcff;
+$twitchColor: #7b5dfa;
+$youtubeColor: #fd434f;
+
+// Icon social media
+$social: (
+    facebook: $facebookColor,
+    twitter: $twitterColor,
+    twitch: $twitchColor,
+    youtube: $youtubeColor,
+);

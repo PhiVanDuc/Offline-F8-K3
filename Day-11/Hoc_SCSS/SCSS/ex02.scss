@@ -1,0 +1,53 @@
+@import "Parts/variable", "Parts/reset";
+
+html {
+    font-family: system-ui;
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.header {
+    // Biến cục bộ
+    // Có thể sử dụng cho chính nó và các thằng con của chính nó
+    $totalPadding: 20px;
+
+    .header-inner {
+        padding: 10px 0px;
+
+        .menu {
+            background-color: $primaryColor;
+
+            .row[class^='col-'] {
+                padding: 10px;
+
+                .menu__list {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    // Dùng dấu và để xóa khoảng cách (Được dùng trong trường hợp dùng selector cùng cấp, lớp giả, ...)
+                    &:hover {
+                        color: orange;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$copyrightSelector: ".copyright";
+$size: 4px;
+
+.footer {
+    padding: 20px 0;
+
+    #{$copyrightSelector} {
+        text-align: center;
+        margin: 0px $size + 6px;
+    }
+}
+
+// Trên thực tế khi dùng SCSS chúng ta không viết tất vào 1 file mà ta sẽ tách ra thành từng file nhỏ

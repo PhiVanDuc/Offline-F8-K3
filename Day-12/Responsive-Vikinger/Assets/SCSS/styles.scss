@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:wght@600;700;900&display=swap');
+
+@import 'parts/variables', 'parts/models';
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+// Access Page
+.access-page {
+    width: 100%;
+    min-height: 100vh;
+    background: url(../Images/landing-background.jpg) no-repeat 0;
+    background-size: cover;
+    padding: 80px 0px 100px 0px;
+
+    .dot-background {
+        display: none;
+        position: absolute;
+        background: url(../Images/dot-texture.png) repeat 0 0;
+        background-color: white;
+        width: 64%;
+        height: 140%;
+        right: -32%;
+        border-radius: 50%;
+    }
+
+    .switch-login:checked {
+        ~.access-info {
+            .switch-toggle__login {
+                @extend %switch-checked;
+            }
+        }
+
+        ~.access-forms {
+            .form-login {
+                display: initial;
+            }
+        }
+    }
+
+    .switch-register:checked {
+        ~.access-info {
+            .switch-toggle__register {
+                @extend %switch-checked;
+            }
+        }
+
+        ~.access-forms {
+            .form-register {
+                display: initial;
+            }
+        }
+    }
+
+    .switch-input {
+        display: none;
+    }
+}
+
+// Access Info
+.access-info {
+    text-align: center;
+    color: white;
+
+    >.logo {
+        height: 60px;
+    }
+
+    >.access-info__sub-heading {
+        font-size: 2.4rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 1em;
+        margin-top: 36px;
+    }
+
+    >.access-info__heading {
+        font-family: $fontHeading;
+        position: relative;
+        font-size: 6rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        top: -10px;
+    }
+
+    .access-info__desc {
+        display: none;
+        width: 384px;
+        margin-top: 10px;
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.3333333333em;
+    }
+
+    >.switch-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 25px 0px 25px;
+
+        >.switch-toggle__login {
+            @extend %switch-btn;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+
+        >.switch-toggle__register {
+            @extend %switch-btn;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+    }
+}
+
+// Access Forms
+.access-forms {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    margin: 60px 25px 0px 25px;
+}
+
+// Form Login
+.form-login {
+    display: none;
+    @extend %frame-form;
+
+    .icon-rocket {
+        display: none
+    }
+
+    >.form-login__heading {
+        @extend %form-heading;
+    }
+
+    // Main form
+    >.inner-login {
+        @extend %frame-inner;
+
+        >.inner-login__group:nth-of-type(2) {
+            margin-top: 28px;
+        }
+
+        >.inner-login__support-btn {
+            @extend %support-btn;
+
+            >.inner-login__group {
+                display: flex;
+                align-items: center;
+                height: 25px;
+
+                >.remember-btn {
+                    @extend %custom-checkbox;
+                }
+
+                >.remember-btn::before {
+                    @extend %custom-checkbox-active;
+                }
+
+                >.remember-btn:checked {
+                    background-color: $checkboxColor;
+                    border: none;
+                }
+
+                >.remember-btn:checked::before {
+                    opacity: 1;
+                }
+
+                >label {
+                    @extend %support-btn-text;
+                    padding-left: 10px;
+                    color: $blackColor;
+                }
+            }
+
+            >.link-form {
+                @extend %support-btn-text;
+                color: $greyColor;
+            }
+        }
+
+        .login-btn {
+            @extend %btn;
+        }
+    }
+
+    >.form-login__line {
+        position: relative;
+        margin-top: 40px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1em;
+        color: $blackColor;
+    }
+
+    >.form-login__line::before {
+        @extend %line;
+        left: 0px;
+    }
+
+    >.form-login__line::after {
+        @extend %line;
+        right: 0px;
+    }
+
+    // Social media
+    .social-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 10px;
+
+            >img {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        .social-icon:last-child {
+            margin-right: 0px;
+        }
+
+        @each $name,
+        $color in $social {
+            .icon-#{$name} {
+                background-color: $color;
+            }
+        }
+    }
+}
+
+// Group CSS input
+.fake-placeholder {
+    position: relative;
+
+    >.type {
+        @extend %input-type;
+    }
+
+    >label {
+        @extend %type-placeholder;
+    }
+
+    >.type:focus {
+        border-color: $baseColor;
+
+        +label {
+            @extend %type-placeholder-focus;
+        }
+    }
+
+    >.type:valid {
+        +label {
+            @extend %type-placeholder-focus;
+        }
+    }
+}
+
+// Form Register
+.form-register {
+    display: none;
+    @extend %frame-form;
+
+    .icon-rocket {
+        display: none
+    }
+}
+
+.form-register__heading {
+    @extend %form-heading;
+}
+
+// Main form
+.inner-register {
+    @extend %frame-inner;
+
+    .inner-register__group {
+        margin-top: 28px;
+    }
+
+    .inner-register__group:first-child {
+        margin-top: 0px;
+    }
+
+    .inner-register__support-btn {
+        @extend %support-btn;
+        height: 22px;
+
+        .inner-register__group {
+            display: flex;
+            align-items: center;
+            height: 25px;
+
+            >.verify-btn {
+                @extend %custom-checkbox;
+            }
+
+            >.verify-btn::before {
+                @extend %custom-checkbox-active;
+            }
+
+            >.verify-btn:checked {
+                background-color: $checkboxColor;
+                border: none;
+            }
+
+            >.verify-btn:checked::before {
+                opacity: 1;
+            }
+
+            >label {
+                @extend %support-btn-text;
+                padding-left: 10px;
+                color: $blackColor;
+            }
+        }
+    }
+
+    .register-btn {
+        @extend %btn;
+        background-color: $checkboxColor;
+        box-shadow: 4px 7px 12px 0 rgba(35, 210, 226, .2);
+    }
+}
+
+.form-instruction {
+    text-align: left;
+    margin-top: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.7142857143em;
+    color: $blackColor;
+
+    >a {
+        font-weight: 600;
+        color: $checkboxColor;
+    }
+}
+
+@media (min-width: 501px) {
+    .access-info {
+        >.access-info__heading {
+            font-size: 10.4rem;
+        }
+
+        >.switch-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0px 0px 0px;
+        }
+    }
+
+    .access-forms {
+        margin: 80px 0px 0px 0px;
+    }
+}
+
+@media (min-width: 1366px) {
+    .access-page {
+        padding: 0px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .switch-login:checked {
+            ~.access-forms {
+                .form-login {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(0%);
+                    z-index: 2;
+                }
+            }
+        }
+
+        .switch-register:checked {
+            ~.access-forms {
+                .form-register {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(0%);
+                    z-index: 2;
+                }
+            }
+        }
+    }
+
+    .access-info {
+        position: absolute;
+        width: 584px;
+        height: 400px;
+        left: 6%;
+        top: 16%;
+
+        .access-info__desc {
+            display: inline-block;
+        }
+    }
+
+    .access-forms {
+        margin: 0px;
+        right: 80px;
+        width: 484px;
+        height: 740px;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .form-login {
+            display: initial;
+            height: 625px;
+            position: absolute;
+            transform: translateX(50%);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            transition-property: transform, opacity, visibility, z-index;
+            transition: 0.6s ease-in-out;
+
+            .icon-rocket {
+                position: absolute;
+                top: -68px;
+                left: -80px;
+            }
+        }
+
+        .form-register {
+            display: initial;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 740px;
+            transform: translateX(50%);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            transition-property: transform, opacity, visibility, z-index;
+            transition: 0.6s ease-in-out;
+
+            .icon-rocket {
+                position: absolute;
+                top: -14px;
+                left: -80px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1501px) {
+    .access-page {
+        .dot-background {
+            display: block;
+        }
+    }
+
+    .access-info {
+        position: absolute;
+        width: 584px;
+        height: 400px;
+        left: 13%;
+        top: 16%;
+
+        .access-info__desc {
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        >.switch-toggle {
+            margin-top: 90px;
+        }
+    }
+
+    .access-forms {
+        right: 13%;
+
+        .form-login {
+            box-shadow: 0 0 60px 0 rgba(94, 92, 154, .12);
+
+            .icon-rocket {
+                display: initial;
+            }
+        }
+
+        .form-register {
+            box-shadow: 0 0 60px 0 rgba(94, 92, 154, .12);
+
+            .icon-rocket {
+                display: initial;
+            }
+        }
+    }
+}

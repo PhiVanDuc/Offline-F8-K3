@@ -1,0 +1,18 @@
+body {
+  color: #333;
+  font-size: 1.6rem;
+}
+
+.header {
+  background-color: #333;
+}
+.header .navbar > .nav__list {
+  display: flex;
+  align-items: center;
+}
+.header .navbar .nav__link {
+  font-size: 16px;
+  color: blue;
+}
+
+/*# sourceMappingURL=ex01.css.map */
