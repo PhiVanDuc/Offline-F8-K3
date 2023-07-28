@@ -66,6 +66,10 @@ ol {
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   box-shadow: 0px 1.6666666269px 8.3333330154px 0px rgba(0, 0, 0, 0.15);
 }
 .header .row {
@@ -77,7 +81,7 @@ ol {
 }
 .header .logo img {
   width: 107px;
-  min-width: 80px;
+  min-width: 70px;
 }
 .header .overlay {
   position: fixed;
@@ -161,9 +165,8 @@ ol {
     background-color: white;
     opacity: 0;
     transform: translateX(-100%);
-    transition-property: opacity, transform;
-    transition: 0.4s ease-in-out;
-    box-shadow: 9px -1px 45px 0px rgba(216, 241, 203, 0.6);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    box-shadow: 5px 0px 25px 0px rgba(216, 241, 203, 0.6);
   }
   .header .header-nav .menu .cancel-icon {
     position: absolute;
@@ -197,7 +200,7 @@ ol {
     justify-content: flex-end;
     cursor: pointer;
     font-size: 2.5rem;
-    padding-left: 30px;
+    padding-left: 25px;
   }
   .header .toggle:checked ~ .overlay {
     visibility: visible;
