@@ -1,7 +1,7 @@
 :root {
     --container-width: 1200px;
     --container-padding: 15px;
-    --column-padding: 12px;
+    --column-padding: 20px;
 }
 
 .container {
@@ -13,7 +13,7 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0px calc(-1 * --column-padding);
+    margin: 0px calc(-1 * --column-padding / 2);
 }
 
 .col-1 {
@@ -69,7 +69,7 @@
     --Final-column-width: calc(100% / var(--column-number-on-row));
     flex-basis: var(--Final-column-width);
     max-width: var(--Final-column-width);
-    padding: var(--column-padding);
+    padding: var(--column-padding / 2);
 }
 
 /* 

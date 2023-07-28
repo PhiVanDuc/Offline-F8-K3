@@ -1,0 +1,115 @@
+.header {
+    box-shadow: 0px 1.6666666269302368px 8.333333015441895px 0px rgba(0, 0, 0, 0.15);
+
+    .row {
+        height: 108px;
+    }
+
+    .logo {
+        display: inline-block;
+        font-size: 0;
+
+        img {
+            width: 107px;
+            min-width: 80px;
+        }
+    }
+
+    .header-nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .menu {
+            .menu-list {
+                display: flex;
+            }
+
+            .menu-item {
+                padding: 0px 25px;
+
+                .menu-link {
+                    font-weight: 600;
+                }
+
+                &.active {
+                    .menu-link {
+                        color: $primaryColor;
+                        border-bottom: 2px solid $primaryColor;
+                        padding-bottom: 47px;
+                    }
+                }
+
+                &:hover {
+                    .menu-link {
+                        color: $primaryColor;
+                        transition: color 0.2s linear;
+                    }
+                }
+            }
+        }
+
+        .cart-icon,
+        .search-icon {
+            display: inline-block;
+            padding: 0px 25px;
+            font-size: 0;
+
+            img {
+                width: 25px;
+                height: 22.3px;
+            }
+        }
+
+        .cart-icon {
+            position: relative;
+
+            span {
+                display: inline-block;
+                position: absolute;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: white;
+                width: 18px;
+                height: 18px;
+                line-height: 18px;
+                text-align: center;
+                background-color: #E05000;
+                border-radius: 50%;
+                top: -8px;
+                right: 16px;
+            }
+        }
+
+        .search-icon {
+            padding-right: 0px;
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
+
+// --------------------------------------------------------------------------------
+// Responsive
+// --------------------------------------------------------------------------------
+
+@media screen and (max-width: 991.98px) {
+    .header {
+
+        .header-nav {
+            .menu {
+                display: none;
+            }
+        }
+
+        .menu-toggle {
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+            font-size: 2.5rem;
+            padding-left: 25px;
+        }
+    }
+}
