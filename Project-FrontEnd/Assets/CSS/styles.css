@@ -79,10 +79,22 @@ ol {
   width: 107px;
   min-width: 80px;
 }
+.header .overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  opacity: 0;
+  transition-property: opacity, visibility;
+  transition: 0.4s linear;
+}
 .header .header-nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.header .header-nav .menu .cancel-icon {
+  display: none;
 }
 .header .header-nav .menu .menu-list {
   display: flex;
@@ -140,17 +152,45 @@ ol {
 
 @media screen and (max-width: 991.98px) {
   .header .header-nav .menu {
+    visibility: hidden;
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: #46B20F;
+    bottom: 0px;
+    padding-top: 50px;
+    background-color: white;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition-property: opacity, transform;
+    transition: 0.4s ease-in-out;
+    box-shadow: 9px -1px 45px 0px rgba(216, 241, 203, 0.6);
+  }
+  .header .header-nav .menu .cancel-icon {
+    position: absolute;
+    display: initial;
+    top: 25px;
+    right: 25px;
+    transform: translateX(-50%);
+    cursor: pointer;
+    font-size: 2.2rem;
+    color: #46B20F;
   }
   .header .header-nav .menu .menu-list {
     display: block;
     width: 300px;
   }
+  .header .header-nav .menu .menu-list .menu-item {
+    padding: 0 0 35px 40px;
+  }
+  .header .header-nav .menu .menu-list .menu-item.active .menu-link {
+    padding-bottom: 0;
+    border: 0;
+  }
   .header .header-nav .cart-icon {
     padding: 0px;
+  }
+  .header .header-nav .cart-icon span {
+    right: -7px;
   }
   .header .menu-toggle {
     display: flex;
@@ -158,6 +198,17 @@ ol {
     cursor: pointer;
     font-size: 2.5rem;
     padding-left: 30px;
+  }
+  .header .toggle:checked ~ .overlay {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+  }
+  .header .toggle:checked ~ .header-nav .menu {
+    visibility: visible;
+    transform: translateX(0%);
+    opacity: 1;
+    z-index: 2;
   }
 }
 

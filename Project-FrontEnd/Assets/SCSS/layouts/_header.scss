@@ -15,12 +15,26 @@
         }
     }
 
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        visibility: hidden;
+        opacity: 0;
+        transition-property: opacity, visibility;
+        transition: 0.4s linear;
+    }
+
     .header-nav {
         display: flex;
         align-items: center;
         justify-content: flex-end;
 
         .menu {
+            .cancel-icon {
+                display: none;
+            }
+
             .menu-list {
                 display: flex;
             }
@@ -97,22 +111,55 @@
 
 @media screen and (max-width: 991.98px) {
     .header {
-
         .header-nav {
             .menu {
+                visibility: hidden;
                 position: fixed;
                 top: 0px;
                 left: 0px;
-                background-color: $primaryColor;
+                bottom: 0px;
+                padding-top: 50px;
+                background-color: white;
+                opacity: 0;
+                transform: translateX(-100%);
+                transition-property: opacity, transform;
+                transition: 0.4s ease-in-out;
+                box-shadow: 9px -1px 45px 0px rgba(216, 241, 203, 0.6);
+
+                .cancel-icon {
+                    position: absolute;
+                    display: initial;
+                    top: 25px;
+                    right: 25px;
+                    transform: translateX(-50%);
+                    cursor: pointer;
+                    font-size: 2.2rem;
+                    color: $primaryColor;
+                }
 
                 .menu-list {
                     display: block;
                     width: 300px;
+
+                    .menu-item {
+                        padding: 0 0 35px 40px;
+
+                        &.active {
+                            .menu-link {
+                                padding-bottom: 0;
+                                border: 0;
+                            }
+                        }
+                    }
                 }
             }
 
             .cart-icon {
                 padding: 0px;
+
+                span {
+                    right: -7px;
+                }
             }
         }
 
@@ -122,6 +169,23 @@
             cursor: pointer;
             font-size: 2.5rem;
             padding-left: 30px;
+        }
+
+        .toggle:checked {
+            ~.overlay {
+                visibility: visible;
+                opacity: 1;
+                z-index: 1;
+            }
+
+            ~.header-nav {
+                .menu {
+                    visibility: visible;
+                    transform: translateX(0%);
+                    opacity: 1;
+                    z-index: 2;
+                }
+            }
         }
     }
 }

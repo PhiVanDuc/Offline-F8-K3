@@ -15,6 +15,7 @@
         <header class="header">
             <div class="container">
                 <div class="row align-items-center">
+
                     <!-- First Col -->
                     <div class="col-lg-2 col-2">
                         <a href="#!" class="logo">
@@ -25,10 +26,15 @@
 
                     <!-- Second Col -->
                     <div class="col-lg-10 col-9">
+                        <input type="checkbox" id="toggle" class="toggle" hidden>
+                        <label for="toggle" class="overlay"></label>
                         <!-- Header-nav -->
                         <div class="header-nav">
                             <!-- Menu -->
                             <nav class="menu">
+                                <label for="toggle" class="cancel-icon">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </label>
                                 <ul class="menu-list">
                                     <li class="menu-item active">
                                         <a href="#!" class="menu-link">Trang chủ</a>
@@ -68,9 +74,9 @@
 
                     <!-- Third Col -->
                     <div class="col-1">
-                        <lable class="menu-toggle">
+                        <label for="toggle" class="menu-toggle">
                             <i class="fa-solid fa-bars-staggered"></i>
-                        </lable>
+                        </label>
                     </div>
                     <!-- End Third Col -->
                 </div>
