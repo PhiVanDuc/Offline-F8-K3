@@ -100,7 +100,19 @@
 
         .header-nav {
             .menu {
-                display: none;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                background-color: $primaryColor;
+
+                .menu-list {
+                    display: block;
+                    width: 300px;
+                }
+            }
+
+            .cart-icon {
+                padding: 0px;
             }
         }
 
@@ -109,7 +121,7 @@
             justify-content: flex-end;
             cursor: pointer;
             font-size: 2.5rem;
-            padding-left: 25px;
+            padding-left: 30px;
         }
     }
 }
