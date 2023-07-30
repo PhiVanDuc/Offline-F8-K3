@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="./Assets/CSS/styles.css">
     </head>
 
-    <body style="height: 5000px">
+    <body style="overflow-x: hidden;">
         <!-- Header -->
         <header class="header sticky">
             <div class="container">
@@ -88,7 +88,7 @@
         <main>
             <div class="container">
                 <!-- Hero -->
-                <div class="hero">
+                <section class="hero">
                     <div class="row align-items-center">
                         <!-- First Col -->
                         <div class="col-xl-6 col-lg-12 col-12 column-order-1">
@@ -109,7 +109,7 @@
                         </div>
                         <!-- End Second Col -->
                     </div>  
-                </div>
+                </section>
                 <!-- End Hero -->
 
                 <!-- Achievement -->
@@ -481,8 +481,161 @@
                     </div>
                 </div>
                 <!-- End Quality -->
+
+
+                <!-- Contact -->
+                <div class="contact">
+                    <div class="row align-items-center">
+                        <!-- 1 Col -->
+                        <div class="col-lg-6 col-12">
+                            <div class="wrap-contact-img">
+                                <img src="./Assets/Group-Image/images/contact-img.png" alt="" class="contact-img">
+                            </div>
+                        </div>
+                        <!-- End 1 Col -->
+
+                        <!-- 2 Col -->
+                        <div class="col-lg-6 col-12">
+                            <section class="contact-form">
+                                <h2 class="contact-heading">Bạn có bất kì thắc mắc nào.<br>Hãy để lại tin nhắn cho chúng tôi nhé!</h2>
+
+                                <!-- Contact-main-form -->
+                                <form class="contact-main-form" autocomplete="off">
+                                    <input type="text" class="name-input action-form" placeholder="Tên của bạn">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12 form-col">
+                                                <input type="email" class="email-input action-form" placeholder="Email">
+                                            </div>
+                                            <div class="col-lg-6 col-12 form-col">
+                                                <input type="text" class="phone-input action-form" placeholder="Số điện thoại">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea class="message-textarea action-form" placeholder="Nội dung ...."></textarea>
+                                    <div class="align-btn">
+                                        <button class="contact-btn" disabled>Gửi</button>
+                                    </div>
+                                </form>
+                                <!-- End Contact-main-form -->
+                            </section>
+                        </div>
+                        <!-- End 2 Col -->
+                    </div>
+                </div>
+                <!-- End Contact -->
             </div>
         </main>
         <!-- End Main -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-11 col-12">
+                        <!-- Footer top -->
+                        <div class="footer-top">
+                            <div class="row">
+                                <!-- 1 Col -->
+                                <div class="col-xl-3 col-12">
+                                    <div class="footer-brand">
+                                        <img src="./Assets/Group-Image/images/logo-footer.png" alt="">
+                                        <p class="footer-brand-desc"><span>GreenChop là bạn đồng hành</span> của người tiêu dùng</p>
+                                    </div>
+                                </div>
+                                <!-- End 1 Col -->
+    
+                                <!-- 2 Col -->
+                                <div class="col-xl-2 col-12">
+                                    <div class="footer-list">
+                                        <h4 class="footer-list-heading">Trang chủ</h4>
+                                        <p class="footer-list-item">
+                                            <a href="#!">Về GreenChop</a>
+                                        </p>
+                                        <p class="footer-list-item">
+                                            <a href="#!">Sản phẩm</a>
+                                        </p>
+                                        <p class="footer-list-item">
+                                            <a href="#!">Tin tức</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--  End 2 Col -->
+    
+                                <!-- 3 Col -->
+                                <div class="col-xl-4 col-12">
+                                    <div class="footer-list">
+                                        <h4 class="footer-list-heading">Hỗ trợ</h4>
+                                        <p class="footer-list-item">
+                                            <img src="./Assets/Group-Image/icons/alarm.svg" alt="">
+                                            <a href="#!">Đặt hàng trực tuyến (8h - 22h)</a>
+                                        </p>
+                                        <p class="footer-list-item">
+                                            <img src="./Assets/Group-Image/icons/phone_outline.svg" alt="">
+                                            <a href="#!">Sản phẩm</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--  End 3 Col -->
+
+                                <!-- 4 Col -->
+                                <div class="col-xl-3 col-12">
+                                    <div class="footer-list final-list">
+                                        <h4 class="footer-list-heading">Liên hệ</h4>
+                                        <p class="footer-list-item">
+                                            <img src="./Assets/Group-Image/icons/mail.svg" alt="">
+                                            <a href="#!">greenchopvn@gmail.com</a>
+                                        </p>
+                                        <p class="footer-list-item">
+                                            <img src="./Assets/Group-Image/icons/earth.svg" alt="">
+                                            <a href="#!">Greenchop.vn</a>
+                                        </p>
+                                        <p class="footer-list-item">
+                                            <img src="./Assets/Group-Image/icons/map.svg" alt="">
+                                            <a href="#!" class="interactive">428 Điện Biên Phủ, P11, Quận 10, TPHCM</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--  End 4 Col -->
+                            </div>
+                        </div>
+                        <!-- End Footer top -->
+
+                        <!-- footer-bottom -->
+                        <div class="footer-bottom">
+                            <div class="footer-bottom-line"></div>
+                            <div class="footer-bottom-list">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6 col-12 footer-bottom-col">
+                                        <div class="verify-icon">
+                                            <img src="./Assets/Group-Image/images/verify.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-12 footer-bottom-col flexbox justify-content-end">
+                                        <div class="social-media">
+                                            <a href="#!" class="social-youtube social-icon">
+                                                <img src="./Assets/Group-Image/icons/youtube.svg" alt="">
+                                            </a>
+                                            <a href="#!" class="social-facebook social-icon">
+                                                <img src="./Assets/Group-Image/icons/facebook.svg" alt="">
+                                            </a>
+                                            <a href="#!" class="social-insta social-icon">
+                                                <img src="./Assets/Group-Image/icons/instagram.svg" alt="">
+                                            </a>
+                                            <a href="#!" class="social-twitter social-icon">
+                                                <img src="./Assets/Group-Image/icons/twitter.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End footer-bottom -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
     </body>
 </html>
