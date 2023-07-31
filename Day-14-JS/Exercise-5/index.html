@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bài 5: Sắp xếp 3 số</title>
+    </head>
+    <body>
+        <script>
+            var a = 20;
+            var b = 15;
+            var c = 3;
+
+            if (a > b) {
+                [a, b] = [b, a];
+            }
+            if (b > c) {
+                [b, c] = [c, b];
+            }
+            if (a > b) {
+                [a, b] = [b, a];
+            }
+
+            console.log(a, b, c);
+        </script>
+    </body>
+</html>

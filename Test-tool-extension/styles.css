@@ -1,3 +1,36 @@
-p {
-  font-size: 30px;
+body {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-block {
+  display: flex;
+  width: 975px;
+  justify-content: space-between;
+}
+
+.news-block-img {
+  width: 460px;
+  height: 538px;
+  background-color: grey;
+  border-radius: 6.667px;
+}
+
+.news-block-content {
+  width: 425px;
+}
+
+.news > .news-block:nth-child(even) {
+  align-items: center;
+  margin-top: -50px;
+}
+
+.news > .news-block:nth-child(even) > .news-block-img {
+  order: 2;
+}
+
+.news > .news-block:nth-child(even) > .news-block-content {
+  order: 1;
 }
