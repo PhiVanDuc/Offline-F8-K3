@@ -1,0 +1,121 @@
+.duty {
+    margin-bottom: 100px;
+
+    >.container {
+        position: relative;
+        min-height: 498px;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        &::before {
+            width: 400px;
+            height: 400px;
+            background-color: $primaryColorLight2;
+            left: 0;
+            top: 16%;
+        }
+
+        &::after {
+            width: 220px;
+            height: 220px;
+            background-color: #FFD5BD;
+            left: 21%;
+            bottom: 0;
+        }
+    }
+
+    .duty-inner {
+        .duty-img {
+            background-image: url(/Assets/Group-Image/images/about5.jpg);
+            background-size: cover;
+            background-position: center;
+            border-radius: 6.667px;
+            width: 400px;
+            height: 365px;
+            box-shadow: -9.166666030883789px 25.833332061767578px 46.666664123535156px rgba(0, 0, 0, 0.15);
+        }
+
+        .duty-heading {
+            margin-bottom: 26px;
+            font-size: 3.2rem;
+            font-weight: 800;
+        }
+
+        .duty-desc {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            max-width: 394px;
+        }
+    }
+
+    .duty-col {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .duty-col:last-child {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+}
+
+// --------------------------------------------------------------------------------
+// Responsive
+// --------------------------------------------------------------------------------
+
+@media screen and (max-width: 1399.98px) {}
+
+@media screen and (max-width: 1199.98px) {}
+
+@media screen and (max-width: 991.98px) {
+    .duty {
+
+        >.container {
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+
+        .duty-inner {
+            .duty-img {
+                margin-bottom: 30px;
+            }
+
+            .duty-heading {
+                text-align: center;
+                font-size: 2.8rem;
+            }
+
+            .duty-desc {
+                text-align: justify;
+                padding: 30px;
+                background-color: $primaryColorLight;
+                border: 6.667px;
+            }
+        }
+
+        .duty-col {
+            display: flex;
+            justify-content: center;
+        }
+
+        .duty-col:last-child {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+    }
+}
+
+@media screen and (max-width: 767.98px) {}
+
+@media screen and (max-width: 575px) {}

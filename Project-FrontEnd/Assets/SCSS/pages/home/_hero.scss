@@ -45,7 +45,7 @@
             color: #216000;
             opacity: 0.15000000596046448;
             top: 50%;
-            right: -75px;
+            left: 280px;
             transform: translateY(-50%) rotate(90deg);
             width: 555px;
         }
@@ -79,6 +79,7 @@
             .hero-background__text {
                 font-size: 12rem;
                 width: 400px;
+                left: 200px;
             }
         }
     }

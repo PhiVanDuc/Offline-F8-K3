@@ -83,6 +83,8 @@
     }
 
     .news-btn {
+        display: inline-flex;
+        align-items: center;
         font-size: 2rem;
         font-weight: 700;
         background-color: transparent;
@@ -90,6 +92,17 @@
         border-radius: 6.667px;
         border: 1px solid $primaryColor;
         cursor: pointer;
+        transition-property: color, background-color;
+        transition: 0.3s linear;
+
+        i {
+            font-size: 2.3rem;
+        }
+
+        &:hover {
+            background-color: $primaryColor;
+            color: white;
+        }
     }
 }
 
