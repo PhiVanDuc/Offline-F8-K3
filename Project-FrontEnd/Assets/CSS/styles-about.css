@@ -620,7 +620,7 @@ ol {
   position: relative;
   display: flex;
   align-items: center;
-  background-image: url(/Assets/Group-Image/images/about4.png);
+  background-image: url(../../../Group-Image/images/about4.png);
   height: 392px;
   background-size: cover;
   background-position: center;
@@ -656,7 +656,7 @@ ol {
 .banner .banner-content::before, .banner .banner-content::after {
   content: "";
   position: absolute;
-  background-image: url(/Assets/Group-Image/icons/blockquote.png);
+  background-image: url(../../../Group-Image/icons/blockquote.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -736,7 +736,7 @@ ol {
   bottom: 0;
 }
 .duty .duty-inner .duty-img {
-  background-image: url(/Assets/Group-Image/images/about5.jpg);
+  background-image: url(../../../Group-Image/images/about5.jpg);
   background-size: cover;
   background-position: center;
   border-radius: 6.667px;
