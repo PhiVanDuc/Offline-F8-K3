@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    background-image: url(/Assets/Group-Image/images/about4.png);
+    background-image: url(../../../Group-Image/images/about4.png);
     height: 392px;
     background-size: cover;
     background-position: center;
@@ -42,7 +42,7 @@
         &::after {
             content: '';
             position: absolute;
-            background-image: url(/Assets/Group-Image/icons/blockquote.png);
+            background-image: url(../../../Group-Image/icons/blockquote.png);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
