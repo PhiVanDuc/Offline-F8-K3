@@ -17,7 +17,7 @@
             width: 400px;
             height: 400px;
             background-color: $primaryColorLight2;
-            left: 0;
+            left: 0px;
             top: 16%;
         }
 
@@ -32,9 +32,8 @@
 
     .duty-inner {
         .duty-img {
-            background-image: url(../../../Group-Image/images/about5.jpg);
-            background-size: cover;
-            background-position: center;
+            object-fit: cover;
+            object-position: center;
             border-radius: 6.667px;
             width: 400px;
             height: 365px;
@@ -72,7 +71,20 @@
 
 @media screen and (max-width: 1399.98px) {}
 
-@media screen and (max-width: 1199.98px) {}
+@media screen and (max-width: 1199.98px) {
+    .duty {
+        >.container {
+
+            &::before {
+                left: calc(0px + 15px);
+            }
+
+            &::after {
+                left: calc(21% + 15px);
+            }
+        }
+    }
+}
 
 @media screen and (max-width: 991.98px) {
     .duty {
