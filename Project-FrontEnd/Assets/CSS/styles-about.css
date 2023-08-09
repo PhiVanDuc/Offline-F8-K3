@@ -660,7 +660,7 @@ ol {
 .banner .banner-content::before, .banner .banner-content::after {
   content: "";
   position: absolute;
-  background-image: url(../../../Group-Image/icons/blockquote.png);
+  background-image: url(../Group-Image/icons/blockquote.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
