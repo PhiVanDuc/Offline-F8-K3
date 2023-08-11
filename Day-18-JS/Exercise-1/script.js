@@ -5,17 +5,17 @@ var wordsLength = words.length;
 var currentRedWord = 0;
 
 setInterval(function () {
-    var nextWord = '';
+    var newText = '';
 
     for (var i = 0; i < wordsLength; i++) {
         if (i === currentRedWord) {
-            nextWord += '<span class="red-word">' + words[i] + '</span> ';
+            newText += '<span class="red-word">' + words[i] + '</span> ';
         }
         else if (i !== currentRedWord) {
-            nextWord += words[i] + ' ';
+            newText += words[i] + ' ';
         }
     }
 
-    karaokeText.innerHTML = nextWord;
+    karaokeText.innerHTML = newText;
     currentRedWord = (currentRedWord + 1) % 25;
 }, 1000);
