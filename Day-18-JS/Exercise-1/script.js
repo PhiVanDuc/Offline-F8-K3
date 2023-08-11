@@ -17,5 +17,5 @@ setInterval(function () {
     }
 
     karaokeText.innerHTML = newText;
-    currentRedWord = (currentRedWord + 1) % 25;
+    currentRedWord = (currentRedWord + 1) % text.length;
 }, 1000);
