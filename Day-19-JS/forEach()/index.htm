@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>forEach</title>
+    </head>
+    <body>
+        <h1>Code lại vòng lặp forEach</h1>
+
+        <script>
+            var array = ['Javascript', 'PHP', 'Ruby'];
+
+            Array.prototype.myForEach = function(callback) {
+                var arr = this;
+
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr.hasOwnProperty(i)) {
+                        // Kiểm tra xem i có phải là thuộc tính hoặc phương thức gần nhất của arr hay không
+                        // Nếu đúng thì mới cho chạy
+                        callback(arr[i], i, arr);
+                    }
+                }
+            };
+
+            array.myForEach(function(element, index, array) {
+                console.log(element, index, array);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+/*
+    Vòng lặp for through
+    => Xác định số lần lặp đã biết trước
+*/
+
+// $number: 12;
+
+// @for $i from 1 through $number - 1 {
+//     // Chạy đi chạy lại $number lần
+//     .col-#{$number - 1} {
+//         --column-size: #{$i};
+//     }
+// }
+
+// $sizes: 40, 60, 80, 100;
+// $count: length($sizes);
+// $index: 0;
+
+// @each $size in $sizes {
+//     $index: $index + 1;
+//     .col-#{$size} {
+//         @if ($index == $count)
+//         {
+//             max-width: #{$size};
+//         }
+//         @else {
+//             width: #{$size};
+//         }
+//     }
+// }
+
+// $sizes: (small, 40, normal), (medium, 60, 400), (large, 80, 600);
+// $sizes: small 40 normal, medium 60 400, large 80 600;
+
+// @each $name, $size, $weight in $sizes {
+//     .col-#{$name} {
+//         width: #{$size}px;
+//         font-size: $weight;
+//     }
+// }
+
+// Có thể cho 2 value thì sẽ phải dùng vòng lặp lồng nhau
+$sizes: (
+    small: 40,
+    medium: 60,
+    large: 80,
+);
+
+@each $name, $size, $weight in $sizes {
+    .col-#{$name} {
+        width: #{$size}px;
+    }
+}

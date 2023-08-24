@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.songs {
+    width: 300px;
+    margin: 30px auto;
+    border: 1px solid red;
+    /* Tạo ra bộ đếm mới và đặt tên cho bộ đếm đó */
+    counter-reset: song-item;
+}
+
+.songs .item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    /* Bắt đầu đếm các phần tử có class là item */
+    counter-increment: song-item;
+}
+
+.songs .item::before {
+    /* Bắt đầu đếm */
+    content: counter(song-item);
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 30px;
+    border-radius: 50%;
+    color: white;
+    float: left;
+    margin-right: 5px;
+}
+
+/* 
+    Tạo bộ đếm CSS
+        1. Khởi tạo bộ đếm
+        2. Đếm
+        3. Gọi bộ đếm before, after (Thuộc tính content)
+*/
+
+.song .children {
+    counter-reset: song-children;
+}
+
+.children > .item {
+    counter-increment: song-children;
+    padding-left: 40px;  
+}
+
+.children > .item::before {
+    content: counter(song-item) '.' counter(song-children);
+}

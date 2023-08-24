@@ -1,0 +1,53 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: system-ui;
+}
+
+h2 {
+    display: none;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* Media query */
+/* Khi viết screen có nghĩ nó chỉ có tác dụng với màn hình */
+
+/* Breakpoint */
+/* 
+    Làm sao để biết bao nhiêu là máy tính, điện thoại, máy tính bảng
+    - mobile: 0 - 575px
+    - tablet: 576 - 991px
+    - Desktop/PC : > 992px
+*/
+
+/* Mobile and Tablet */
+/* @media screen and (max-width: 991px) {
+
+} */
+
+/* Mobile */
+@media screen and (max-width: 575px) {
+    .mobile {
+        display: initial;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 576px) and (max-width: 991px) {
+    .tablet {
+        display: initial;
+    }
+}
+
+/* PC */
+@media screen and (min-width: 992px) {
+    .desktop {
+        display: initial;
+    }
+}

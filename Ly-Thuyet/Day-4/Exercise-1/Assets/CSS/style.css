@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    width: 1100px;
+    background-color: rgb(51,68,85);
+    border-radius: 5px;
+}
+
+.container {
+    padding: 25px 0px 25px 35px;
+}
+
+.heading {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.heading > span {
+    color: rgb(255,165,0);
+}
+
+.desc {
+    color: white;
+    line-height: 1.5;
+    width: 600px;
+    margin-bottom: 12px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+}
+
+.input-email {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 40px;
+    width: 280px;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    color: rgb(71, 71, 71);
+    outline: none;
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 2px;
+    padding-left: 15px;
+}
+
+.input-email::placeholder {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(180, 180, 180);
+}
+
+.send-btn {
+    font-size: 16px;    
+    font-weight: 600;
+    color: rgb(57, 57, 57);
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(248,219,53);
+    padding: 11px 29px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+footer:hover .input-email::placeholder {
+    color: rgb(255,165,0);
+}
+footer:hover .input-email {
+    background-color: #ddd;
+}
+footer:hover .send-btn {
+    background-color: rgb(255,165,0);
+    color: white;
+}
+
+.input-email,
+.input-email::placeholder,
+.send-btn,
+footer:hover .send-btn,
+footer:hover .input-email,
+footer:hover .input-email::placeholder {
+    transition: .4s;
+}

@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swa");
+
+@font-face {
+    font-family: "Duc1";
+    src: url("./fonts/OpenSans_Condensed-Light.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Duc1";
+    src: url("./fonts/OpenSans_Condensed-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Duc1";
+    src: url("./fonts/OpenSans_Condensed-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Duc1";
+    src: url("./fonts/OpenSans_SemiCondensed-Bold.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Roboto", sans-serif;
+    src: url("./fonts/OpenSans_Condensed-SemiBold.ttf");
+    font-weight: 700;
+}
+
+body {
+    /* font-family: "Duc1", sans-serif;
+    font-size: 2rem;
+    font-weight: 500; */
+    font-family: 'Duc1', sans-serif;
+    font-weight: 600;
+    font-size: 3em;
+}
+
+h2 a {
+    text-decoration: underline overline line-through;
+    text-transform: capitalize;
+}
+
+div p {
+    letter-spacing: 3px;
+    word-spacing: 10px;
+    text-indent: 100px;
+    /* Dòng đầu tiên thụt đầu dòng */
+}
+
+.content {
+    word-wrap: break-word;
+    /* Làm cho một chữ liền mạch xuống dòng khi mà đến giới hạn của khung */
+}

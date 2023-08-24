@@ -1,0 +1,23 @@
+/*
+    Đây là comment
+    Cho CSS
+*/
+.content > h2 {
+    color: red;
+}
+
+.box > h2 {
+    color: green;
+}
+
+.menu ul > li > a {
+    color: red;
+}
+
+h2.title.first {
+    color: red;
+}
+
+h3.title.last {
+    color: green;
+}

@@ -1,0 +1,21 @@
+.box {
+    width: 200px;
+    height: 600px;
+    border: 1px solid red;
+    overflow: scroll;
+
+}
+
+/* 
+    Các thuộc tính của overflow
+    1. overflow
+    2. overflow-y
+    3. overflow-x
+
+    Các giá trị của các thuộc tính overflow
+    1. auto
+    2. scroll
+    3. hidden
+    4. visible
+*/
+

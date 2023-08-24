@@ -1,0 +1,102 @@
+/* 
+    Điều kiện kích hoạt flex
+    Để display: flex vào thẻ cha trực tiếp cho các item
+
+    Các thuộc tính trong nhóm flex container
+    - flex-direction: Chọn hướng cho trục chính (main axis)
+        + row : Đây là giá trị mặc định. Nếu ko khai báo direction thì là row.
+        + column : Chuyển trục main thành hàng dọc chứ không còn là hàng ngang nữa.
+        + row-reverse : Là đảo ngược các item. Từ cuối lên đầu và từ đầu xuống cuối.
+        + column-reverse : Tương tự.
+
+    - justify-content: Căn chỉnh các item hướng song song với trục chính. (main axis)
+        + flex-start : bắt đầu các item từ bên phải
+        + flex-end : Bắt đầu các item từ bên trái
+        + center : Căn tất cả ra giữa
+        + space-around : Item đầu và Item cuối sẽ có khoảng cách bằng 1/2 với khoảng cách giữa các item ở giữa
+        + space-between: Đầu với cuối của các item là sát sang hai bên và các khoảng cách là đều nhau
+        + space-evenly : Khoảng cách giữa các item là đều nhau
+
+    - align-items: Căn chỉnh các flex-item theo hướng vuông góc với trục main
+        + stretch: Nó là thuộc tính mặc định của align-item. Giúp cho các item full chiều dọc của container.
+        + flex-start: Giống justify-content mà đảo hướng.
+        + flex-end: Giống justify-content mà đảo hướng. 
+        + baseline: Nó căn giữa các item vào cái đường chữ.
+
+    - flex-wrap:
+        + nowrap : Không bẻ xuống dòng khi các flex-item vượt quá chiều ngang của thẻ cha.
+        + wrap : Bẻ xuống dòng khi các flex-item vượt quá chiều ngang của thẻ cha.
+        + wrap-reverse : Khi đã bẻ xuống dòng rồi thì nó sẽ đảo ngược.
+    
+    - align-content: Căn chỉnh hàng, cột theo hướng vuông góc với trục chính. Nhưng chỉ hoặt động khi có hai hàng hoặc hai cột.
+        + stretch
+        + start
+        + end
+        + space-between
+        + space-around
+        + space-evenly
+    
+    - gap: Tạo khoảng cách giữa các item. Đặt giá trị cho gap thì nó áp dụng cho cả hàng và cột tuy nhiên nó sẽ làm thay đổi giá trị cho các item
+    - row-gap: Tạo khoảng cách giữa các item theo hàng
+    - colomn-gap: Tạo khoảng cách giữa các item theo cột
+
+    Các thuộc tính trong nhóm flex item
+    - flex-grow: Dãn đều các item
+    => Số nguyên 0: Kích thước gốc, không giãn, Số nguyên 1: Giãn đều
+
+    - flex-shrink
+     + Giá trị mặc định là 1 => Có nghĩa tự động co lại
+     + Nếu không muốn tự động co lại thì để giá trị là 0
+
+    -flex-basis:
+        + Nếu là main-axis đang là row thì flex-basis sẽ thay cho width
+        + Nếu là main-axis đang là column thì flex-basis sẽ thay cho height
+        + flex-basis sẽ bị chặn bởi min-width và max-width nếu flex-direction là row
+        + flex-basis sẽ bị chặn bởi min-height và max-height nếu flex-direction là column
+    
+    - flex: là gộp cả 3 thuộc tính flex-grow flex-shrink flex-basis
+
+    - align-self
+
+    - order : Dùng để sắp xếp thứ tự của các flex-item
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 500px;
+    border: 3px solid red;
+    margin: 30px auto;
+}
+
+.box {
+    display: flex;
+    height: 300px;
+}
+
+.item {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: 1px solid white;
+    /* flex-basis: 200px;
+    max-width: 150px; */
+    flex: 0 1 100px;
+}
+
+.item:nth-child(1) {
+    order: 2;
+}
+.item:nth-child(2) {
+    order: 1;
+}
+.item:nth-child(3) {
+    order: 4
+}
+.item:nth-child(4) {
+    order: 3;
+}

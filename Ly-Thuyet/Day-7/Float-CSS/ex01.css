@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Dùng để chặn float ở một vị trí nào đó thay cho một thẻ cụ thể */
+.clearfix {
+    clear: both;
+}
+
+.box {
+    width: 300px;
+    margin: 30px auto 30px auto;
+    border: 1px solid red;
+    /* overflow: auto; */
+}
+
+/* Thuộc tính float */
+/* 
+    Các giá trị của float:
+        none
+        left
+        right
+*/
+
+/* Thuộc tính clear */
+/* 
+    Nó ngược lại với float
+    Các giá trị của clear:
+        left
+        right
+        both
+        none
+    Tại sao lại phải dùng clear?
+        Vì khi sử dụng float thì các thần tử đằng sau sẽ tự động trôi lên. Nếu ở phía trên hết chỗ trống thì các phần tử phía sau không thể trôi lên nữa.
+*/
+
+.col-1 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: white;
+    float: left;
+}
+
+.col-2 {
+    width: 100px;
+    height: 50px;
+    background-color: green;
+    color: white;
+    float: left;
+}
+
+/* Khi dùng float như vậy thì thẻ cha sẽ bị mất chiều cao */
+/* Các khắc phục là đặt overflow là auto cho thẻ cha (Không nên sử dụng) - Mà nên để clearfix ở cuối cùng của thẻ cha như sau. Vì là để html gọn nên ta sẽ sử dụng after */
+
+.box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Xóa ảnh hưởng của float cho text */
+/* Khi đã clear rồi thì các phần tử đằng sau sẽ không bị trôi lên nữa */
+/* .text {
+    clear: both;
+} */
+
+/* Begin Exercise */
+
+.exercise {
+    width: 600px;
+    border: 1px solid red;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.exercise::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: red;
+    float: left;
+    shape-outside: circle(50%);
+}
+
+/* End Exercise */

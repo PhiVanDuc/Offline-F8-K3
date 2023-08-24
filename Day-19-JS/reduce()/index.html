@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reduce</title>
+    </head>
+    <body>
+        <h1>Code lại phương thức Reduce</h1>
+
+        <script>
+            var arr = [1, 2, 3, 4];
+
+            // var test = arr.reduce(function (save, curr) {
+            //     return save + curr;
+            // });
+            // console.log(test);
+
+            Array.prototype.myReduce = function (callback, initialValue) {
+                var currentArr = this;
+                
+                if (Array.isArray(currentArr) && currentArr.length > 1) {
+                    var index;
+                    var result;
+
+                    if (initialValue === undefined) {
+                        initialValue = currentArr[0];
+                        index = 1;
+                    }
+                    else if (initialValue !== undefined || initialValue !== null || initialValue === currentArr[0]) {
+                        index = 0;
+                    }
+
+                    while(index < currentArr.length) {
+                        if (index === currentArr.length - 1) {
+                            result = callback(initialValue, currentArr[index], index, currentArr);
+                        }
+                        else {
+                            initialValue = callback(initialValue, currentArr[index], index, currentArr);
+                        }
+                        ++index;
+                    }
+
+                    return result;
+                }
+            }
+
+            var test = arr.myReduce(function (save, curr) {
+                console.log(save, curr);
+                return curr;
+            }, 0);
+            console.log(test);
+        </script>
+    </body>
+</html>

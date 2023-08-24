@@ -1,0 +1,76 @@
+/* 
+    Color:
+        Tên màu
+        rgb()
+        hsl()
+        hex
+
+    => Nên dùng color picker để tra ra các mã màu tương ứng (Nếu chỉ làm web)
+    Cài extension Colorpicker Eyedroper
+*/
+
+/* .content {
+    color: rgb(123,93,58);
+} */
+
+/* Sử dụng Opacity */
+
+/* .box {
+    color: rgba(255, 0, 0, 0.467);
+} */
+
+/* 
+    2 giá trị kế thừa
+        initial => Kế thừa từ thành phần cha trực tiếp
+        initial => Kế thừa mặc định từ trình duyệt
+*/
+
+/* body {
+    color: green;
+} */
+
+/* .content {
+    color: red;
+}
+
+.content p:hover {
+    color: initial;
+} */
+
+/* 
+    em: Lấy kích thước từ thẻ cha. Nếu thẻ cha ko có thì lấy ở thẻ ông nội. Nếu tất cả không có thì lấy kích thước của trình duyệt
+    Chú ý: 1em thì bằng đúng số px đc kết thừ
+        VD: thẻ cha: 16px => thẻ con 1em = 16px
+
+    rem: Kích thước ăn theo html. Nếu trình duyệt không có thì lấy theo trình duyệt
+*/
+
+/* html {
+    font-size: 18px;
+} */
+
+/* .content {
+    font-size: 20px;
+}
+
+.content > p {
+    font-size: 2em;
+}
+
+.box > p {
+    font-size: 1rem;
+} */ */
+
+html {
+    font-size: 20px;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 
+    Khi dùng line height : số nhưng ko có đơn vị như 1.5
+    Cách tính: nó lấy 1.5 nhân với số px font size của thẻ nó đang đứng
+*/

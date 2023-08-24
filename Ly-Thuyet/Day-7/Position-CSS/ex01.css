@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    margin: 30px auto;
+}
+
+.item {
+    background-color: green;
+    color: white;
+    width: 150px;
+    border: 1px solid white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* 
+    Thuộc tính position
+    Các giá trị của position
+        relative : Vị trí tuyệt đối
+        absolute : Vị trí tương đối
+        fixed : Vị trí cố định
+        static: vị trí mặc định, không có position
+*/
+
+/*
+    Các thuộc tính liên quan khi mà có position trừ static
+        top
+        left
+        right
+        bottom
+        z-index
+*/
+
+.item:nth-child(2) {
+    /* position: relative;
+    top: 30px;
+    left: 50px;
+    z-index: 1; */
+    position: absolute;
+    /* width: auto; */
+    left: 20px;
+    /* right: 40px; */
+    /* top: 20px; */
+    bottom: 20px;
+}
+
+.item:nth-child(3) {
+    /* position: relative; */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+/* Nếu để left và top theo phần trăm thì nó sẽ lấy chiều rộng và chiều cao của thẻ cha */
+/*
+    Nếu item 2 là position thì đồ ưu tiên sẽ cao hơn thằng item 3
+    Nếu item 3 cũng để position thì nó lại cao hơn 2 và nó sẽ nằm đè hơn 2
+    Nếu muốn item 2 cao hơn khi item 3 đã dùng position thì mình dùng z-index để cao hơn.
+*/
+
+/* 
+    Dùng position là absolute
+    Nếu thẻ cha nó không có position là relative thì nó sẽ nhận thẻ body là cha và căn theo body theo top, left, right, bottom
+*/
+
+/* 
+    Nếu để chiều rộng là auto thì khi set left = 0 và right bằng 40px thì thần tử sẽ bị kéo dãn ra và ngược lại
+*/
+
+/* 
+    position: fixed
+    Dùng để cố định lại một phần tử và phần tử đó nó sẽ cố định theo thẻ body
+*/

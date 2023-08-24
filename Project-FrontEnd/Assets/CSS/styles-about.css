@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -494,7 +494,7 @@ ol {
     font-size: 3.7rem;
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   .achievement .achievement-list .spc-col .achievement-block {
     padding: 50px 23px;
@@ -523,10 +523,11 @@ ol {
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
     padding-bottom: 0;
+    font-size: 1.4rem;
   }
   .achievement .achievement-list .spc-col .achievement-block {
     width: 100%;
-    padding: 30px;
+    padding: 45px 30px;
   }
 }
 @media screen and (max-width: 767.98px) {
@@ -541,6 +542,9 @@ ol {
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
     font-size: 1.6rem;
+  }
+  .achievement .achievement-list .spc-col .achievement-block {
+    padding: 30px;
   }
 }
 .introduce {

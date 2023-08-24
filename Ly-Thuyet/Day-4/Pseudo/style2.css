@@ -1,0 +1,62 @@
+/* 
+    :hover
+    :focus
+    :active
+    :disabled
+*/
+
+/* .title:hover {
+    color: red;
+}
+
+.title:active {
+    color: green;
+}
+
+input:focus {
+    background-color: red;
+}
+
+.play-btn {
+    text-decoration: none;
+}
+
+.play-btn:focus {
+    color: red;
+}
+
+.item:disabled {
+    background-color: #333;
+}
+
+.products h2:not(.active):not(.first) {
+    color: blue;
+} */
+
+/* .products .Item:last-of-type {
+    color: red;
+}
+
+.products .Item:last-child {
+    color: green;
+} */
+
+/* .post p:nth-of-type(2n+2) {
+    color: red;
+} */
+
+input {
+    display: none;
+}
+
+.red:checked ~ .content {
+    color: red;
+}
+
+.blue:checked ~ .content {
+    color: blue;
+}
+
+.green:checked ~ .content {
+    color: green;
+}

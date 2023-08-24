@@ -1,0 +1,12 @@
+.box {
+    height: 300px;
+    /* Có thể chuyển được nhiều màu cùng lúc */
+    /* 
+        Điểm dừng màu
+        nằm sau màu
+    */
+    background-color: aquamarine;
+    background-image: linear-gradient(to right top, red 50%, green 50%);
+}
+
+/* Lưu ý: khi sử dụng linear-gradient cần phải có thêm background-color vì có những trình duyệt không hỗ trợ linear-gradient */

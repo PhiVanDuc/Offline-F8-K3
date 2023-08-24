@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>every</title>
+    </head>
+    <body>
+        <h1>Code lại phương thức every</h1>
+
+        <script>
+            // Phương thức every dùng để cho ta biết rằng tất cả các phần tử trong mảng phải đúng với điều kiện bài toán thì nó mởi trả về true. Chỉ cần một phần tử sai thì nó sẽ trả về false
+            // Trả về true/ false
+
+            var courses = [
+                {
+                    name: 'Javascript',
+                    coint: 680,
+                    isFinish: true,
+                },
+                {
+                    name: 'PHP',
+                    coint: 860,
+                    isFinish: true,
+                },
+                {
+                    name: 'Ruby',
+                    coint: 980,
+                    isFinish: true,
+                }
+            ];
+
+            // Ví dụ kiểm tra xem tất cả các khóa học trên đã hoàn thành chưa
+            // var check = courses.every(function(element, index, array) {
+            //     return element.isFinish;
+            // });
+            // if (check === true) {
+            //     console.log('Tất cả các khóa học đã hoàn thành!');
+            // }
+            // else {
+            //     console.log('Còn khóa học chưa hoàn thành!');
+            // }
+
+
+            // Làm lại
+            Array.prototype.myEvery = function(callback) {
+                var currentArr = this;
+                if (Array.isArray(currentArr) && currentArr.length > 0) {
+                    var checkBoolen = true;
+
+                    for (var i = 0; i < currentArr.length; i++) {
+                        var result = callback(currentArr[i], i, currentArr);
+                        if (!result) {
+                            checkBoolen = false;
+                            break;
+                        }
+                    }
+
+                    return checkBoolen;
+                }
+            }
+
+            var check = courses.myEvery(function(element, index, array) {
+                return element.isFinish;
+            });
+            if (check === true) {
+                console.log('Tất cả các khóa học đã hoàn thành!');
+            }
+            else {
+                console.log('Còn khóa học chưa hoàn thành!');
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+/* 
+    Các giá trị lần lượt của box-shadow
+        x y blur spread shadow-color inset
+*/
+
+html {
+    font-family: sans-serif;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 200px;
+    background-color: orange;
+    box-shadow: 20px 20px 10px 50px red;
+    /* box-shadow: 20px 20px 5px black, 40px 40px 5px green; */
+    /* Sau mỗi dấu phẩy là một box-shadow */
+}
+
+/* 
+    Các giá trị lần lượt của text-shadow
+        x y blur shadow-color shadow-color-opacity
+*/
+
+.heading {
+    color: white;
+    text-shadow: 3px 3px 2px black;
+    margin-bottom: 200px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu a {
+    display: inline-block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.active a,
+a:hover {
+    text-shadow:
+        -0.3px -0.3px 0 black, 
+        0.3px 0.3px 0 black;
+}

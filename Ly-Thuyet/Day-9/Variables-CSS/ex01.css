@@ -1,0 +1,42 @@
+/* 
+    Biến - Variables
+
+    1. Biến toàn cục (global var)
+    2. Biến cục bộ (Local var)
+*/
+
+/* 
+    Khai báo biến toàn cục : Áp dụng cho toàn bộ các thẻ
+*/
+:root {
+    --primary-color: green;
+    --secondary-color: blue;
+    --font-family: "Roboto", sans-serif;
+}
+
+body {
+    color: var(--primary-color);
+}
+
+/* 
+    Khai báo biến cục bộ : Chỉ áp dụng cho chính thẻ đang đứng và các thẻ con của thẻ đó
+*/
+
+.box {
+    --border-color: red;
+    --font-style: italic;
+    border: 1px solid var(--border-color);
+}
+
+.box > .content {
+    font-style: var(--font-style);
+}
+
+/* 
+    Lưu ý:
+        Một biến cục bộ chúng ta có thể chuyển thành local var khi mà chúng ta gán lại một giá trị bất kì trong một phần tử nào đó mà không phải là :root 
+*/
+
+.box:hover {
+    --border-color: green;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>filter()</title>
+    </head>
+    <body>
+        <h1>Code lại phương thức filter</h1>
+
+        <script>
+            // Hàm filter giúp chúng ta lọc được những phần tử thỏa mãn điều kiện đặt ra của bài toán bằng cách trả về true.
+
+            var courses = [
+                {
+                    name: 'Javascript',
+                    coint: 680,
+                },
+                {
+                    name: 'PHP',
+                    coint: 860,
+                },
+                {
+                    name: 'Ruby',
+                    coint: 980,
+                }
+            ];
+
+            // Ví dụ hãy trả lại một mảng mà có số coin lớn hơn 700
+            // var newArr = courses.filter(function(element) {
+            //     return element.coint > 700;
+            // });
+            // console.log(newArr);
+            
+            // Viết lại
+            Array.prototype.myFilter = function(callback) {
+                var currentArr = this;
+                var newArr = [];
+
+                for (var i = 0; i < currentArr.length; i++) {
+                    if (callback(currentArr[i], i, currentArr)) {
+                        newArr.push(currentArr[i]);
+                    }
+                }
+
+                return newArr;
+            };
+
+            var newArr = courses.myFilter(function(element) {
+                if (element.coint > 700) {
+                    return true;
+                }
+            });
+            console.log(newArr);
+        </script>
+    </body>
+</html>

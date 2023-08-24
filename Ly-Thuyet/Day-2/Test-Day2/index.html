@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .first {
+        color: red;
+        border: 3px double red;
+      }
+
+      .last {
+        color: green;
+        text-align: right;
+      }
+
+      blockquote {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Note:
+        xss attack : Không tin tưởng bất kì thông tin của ng dùng nhập trước khi hiển thị lên giao diện.
+        html entities
+     -->
+
+    <!-- Begin first -->
+    <div class="first">
+      <h1>Khóa học Fullstack</h1>
+      <h2>Giảng viên: Hoàng An</h2>
+    </div>
+    <!-- End first -->
+
+    <!-- Begin last -->
+    <div class="last">
+      <h2>Sơn Đặng</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis soluta
+        corrupti dolorum autem quidem aperiam, culpa placeat deleniti neque est,
+        aliquid unde incidunt amet, quasi delectus sit velit nulla ad.
+      </p>
+    </div>
+    <!-- End last -->
+
+    <blockquote>
+      <p style="text-align: center">Học IT để có lương 1000$</p>
+    </blockquote>
+
+    <!-- Begin Test pre -->
+    <pre>
+        .div {
+            color: red;
+            font-size: 35px;
+            font-weight: 600;
+        }
+    </pre>
+
+    <pre>
+        const heading = document.querySelectorAll('.h1');
+        heading.forEach(function(element, index) {
+            console.log(element);
+        });
+    </pre>
+
+    <pre>
+        Vận dụng Html entities
+        &lt;h1&gt; Khóa học Fullstack &lt;/h1&gt;
+    </pre>
+    <!-- End Test pre -->
+
+    <h2>Phí Văn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Đức</h2>
+
+    <!-- Thẻ hr : Dùng để tạo ra một đường kẻ ngang -->
+    <hr />
+  </body>
+</html>

@@ -1,0 +1,26 @@
+/* .box {
+    border: 10px solid red;
+    padding: 30px;
+    margin: 30px;
+    width: 300px;
+    box-sizing: border-box;
+} */
+
+* {
+    box-sizing: border-box;
+}
+
+.products {
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 0;
+    text-align: center;
+}
+
+.products .product {
+    display: inline-block;
+    width: calc(100% / 3);
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid black;
+}

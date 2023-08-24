@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.switch {
+    display: block;
+    position: relative;
+    width: 70px;
+    height: 30px;
+    background: grey;
+    border-radius: 99px;
+    margin: 30px auto;
+    position: relative;
+}
+
+.switch .btn {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    transition: left 0.4s ease;
+    z-index: 1;
+}
+
+.switch .bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 99px;
+    transition: background 0.4s ease;
+}
+
+.switch input:checked + .btn {
+    left: calc(100% - 30px);
+}
+
+.switch input:checked ~ .bg {
+    background-color: blue;
+}

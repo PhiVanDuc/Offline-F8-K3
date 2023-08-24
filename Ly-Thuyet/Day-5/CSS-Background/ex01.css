@@ -1,0 +1,26 @@
+/* 
+    background-color
+    background-image
+    background-size
+    background-repeat
+    background-position
+    background-attachment
+    background
+*/
+
+body {
+    height: 100vh;
+    background-color: antiquewhite;
+    /* background-image: url("https://fastly.picsum.photos/id/634/500/300.jpg?hmac=7yLB7KrSQH_62Scgw7cC8hxcSea2J7pJNGpQ6SRaVME");
+    background-repeat: no-repeat;
+    background-position: none; */
+}
+
+/* .box {
+    background-color: aqua;
+} */
+
+.background {
+    height: 2000px;
+    background: red url("https://fastly.picsum.photos/id/1029/2000/1000.jpg?hmac=nZw2Trymw1VjVtaOW8AOrfTv7UwhOUXsBVUOIgf7dmI") no-repeat 0 0 / 500px 300px fixed;
+}

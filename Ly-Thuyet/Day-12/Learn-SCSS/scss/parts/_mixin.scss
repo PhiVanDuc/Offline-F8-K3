@@ -1,0 +1,56 @@
+// @mixin center ($width, $space: 0) {
+//     width: $width;
+//     margin: $space auto;
+// }
+
+@mixin padding-btn {
+    padding-bottom: 20px;
+}
+
+@mixin position ($type, $x, $y) {
+    position: absolute;
+    @if ($type == tl) {
+        top: $x;
+        left: $y;
+    }
+    @else if ($type == tr) {
+        top: $x;
+        right: $y;
+    }
+    @else if ($type == bl) {
+        bottom: $x;
+        left: $y;
+    }
+    @else if ($type == br) {
+        bottom: $x;
+        right: $y;
+    }
+    @else {
+        inset: 0;
+    }
+}
+
+@mixin center ($type) {
+    @if ($type == display) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @else if ($type == position) {
+        position: relative;
+        > * {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    @else if ($type == text) {
+        @include center(display);
+    }
+    @else if ($margin == margin) {
+        * {
+            margin: 0 auto;
+        }
+    }
+}

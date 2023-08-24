@@ -1,0 +1,23 @@
+/* opacity để làm mờ phần tử */
+/* .box:hover img {
+    opacity: .4;
+} */
+
+/* filter */
+.box:hover img {
+    filter: grayscale(0.5);
+    /* Các giá trị có thể là từ 1 - 0.5 hoặc là giá trị % */
+    filter: blur(5px);
+    /* Dùng để làm nhòe phần tử */
+    filter: grayscale(36%) sepia(6%) blur(1px) brightness(119%) saturate(80%);
+}
+
+.map iframe {
+    width: 100%;
+    height: 450px;
+    filter: grayscale(1);
+}
+
+h1:last-of-type {
+    color: green;
+}

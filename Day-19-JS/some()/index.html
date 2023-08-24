@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>some</title>
+    </head>
+    <body>
+        <h1>Code lại phương thức some()</h1>
+
+        <script>
+            // Phương thức some được dùng để cho chúng ta biết liệu trong mảng có tối thiểu một phần tử nào thỏa mãn điều kiện của bài toán hay không.
+            // Trả về true/ false
+            // Khi mà phát hiện một lần true thì hàm sẽ ngừng hoạt động và trả về true luôn
+            // Nếu tất cả đều là false thì sẽ trả về false
+
+            var courses = [
+                {
+                    name: 'Javascript',
+                    coint: 680,
+                    isFinish: false,
+                },
+                {
+                    name: 'PHP',
+                    coint: 860,
+                    isFinish: true,
+                },
+                {
+                    name: 'Ruby',
+                    coint: 980,
+                    isFinish: false,
+                }
+            ];
+
+            // Ví dụ cho bài toán. Kiểm tra xem trong hàm courses có khóa học nào đã hoàn thành chưa
+            // var check = courses.some(function (element) {
+            //     return element.isFinish;
+            // });
+            // if (check === true) {
+            //     console.log('Đã có khoa học hoàn thành!');
+            // }
+            // else {
+            //     console.log('Chưa có khoa học nào hoàn thành!');
+            // }
+
+
+            // Làm lại
+            Array.prototype.mySome = function (callback) {
+                var currentArr = this;
+                if (Array.isArray(currentArr)) {
+                    var checkBoolen = false;
+                    
+                    for (var i = 0; i < currentArr.length; i++) {
+                        var result = callback(currentArr[i], i, currentArr);
+                        if (result) {
+                            checkBoolen = true;
+                            break;
+                        }
+                    }
+
+                    return checkBoolen;
+                }
+                else {
+                    console.log('Đây không phải là một mảng!');
+                }
+            }
+
+            var check = courses.mySome(function (element) {
+                return element.isFinish;
+            });
+            if (check === true) {
+                console.log('Đã có khoa học hoàn thành!');
+            }
+            else {
+                console.log('Chưa có khoa học nào hoàn thành!');
+            }
+        </script>
+    </body>
+</html>

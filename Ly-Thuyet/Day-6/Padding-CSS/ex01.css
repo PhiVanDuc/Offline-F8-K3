@@ -1,0 +1,9 @@
+.box {
+    width: 400px;
+    border: 1px solid black;
+    /* padding: 20px 40px; */
+    /* Nếu dùng % thì nó theo width trực tiếp của thẻ cha */
+    padding-top: 50%;
+    /* padding top và bottom không có tác dụng với thẻ inline */
+    /* Nếu muốn padding top và bottom thì phải chuyển sang inline-block hoặc block */
+}

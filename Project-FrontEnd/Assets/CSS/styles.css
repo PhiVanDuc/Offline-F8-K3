@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -586,7 +586,7 @@ ol {
     font-size: 3.7rem;
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   .achievement .achievement-list .spc-col .achievement-block {
     padding: 50px 23px;
@@ -615,10 +615,11 @@ ol {
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
     padding-bottom: 0;
+    font-size: 1.4rem;
   }
   .achievement .achievement-list .spc-col .achievement-block {
     width: 100%;
-    padding: 30px;
+    padding: 45px 30px;
   }
 }
 @media screen and (max-width: 767.98px) {
@@ -633,6 +634,9 @@ ol {
   }
   .achievement .achievement-list .achievement-block .achievement-customer {
     font-size: 1.6rem;
+  }
+  .achievement .achievement-list .spc-col .achievement-block {
+    padding: 30px;
   }
 }
 .products {
@@ -733,6 +737,33 @@ ol {
   .products .product-block .product-btn {
     font-size: 1.6rem;
     padding: 10px 9px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .products .product-heading {
+    font-size: 2.5rem;
+  }
+  .products .product-block .product-bgr {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 80px;
+  }
+  .products .product-block .product-bgr img {
+    width: 110px;
+  }
+  .products .product-block .product-sub-heading {
+    font-size: 1.4rem;
+  }
+  .products .product-block .product-price,
+  .products .product-block .product-quantity {
+    font-size: 1.4rem;
+  }
+  .products .product-block .product-price span {
+    font-size: 1.5rem;
+  }
+  .products .product-block .product-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }
 .news {

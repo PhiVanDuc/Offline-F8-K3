@@ -1,0 +1,78 @@
+@import "parts/mixin";
+
+/*
+    Kế thừa trong SCSS, có 3 loại:
+    1. extend
+        @extend selector
+
+    2. placeholder
+        Định nghĩa placeholder
+        %tenPlaceholder {
+            thuoctinh1: value1;
+            thuoctinh2: value2;
+        }
+        @extend %tenPlaceholder
+        (Không nên có selector con bên trong placeholder)
+
+    3. mixin
+        3.1. mixin không có tham số
+            @mixin tenMixin {
+                // Nội dung mixin
+            }
+        3.2. mixin có tham số
+            @mixin tenMixin($thamso1, $thamso2, ...) {
+                // Nội dung mixin
+            }
+        
+        Gọi mixin
+        @include tenMixin
+        @include tenMixin(doiso1, doiso2, ...)
+*/
+
+%section-base {
+    padding: 30px 0;
+    border: 1px solid #ccc;
+}
+
+.posts {
+    background-color: gray;
+    @extend %section-base;
+}
+
+.products {
+    background-color: #ddd;
+    @extend %section-base;
+}
+
+// .menu {
+//     li {
+//         a {
+//             display: block;
+//             &.active {
+//                 color: green;
+//                 font-weight: 400;
+//             }
+
+//             &:hover {
+//                 @extend .active;
+//             }
+//         }
+//     }
+// }
+
+// .container {
+//     // @include center(1000px, 30px);
+//     @include padding-btn;
+//     background-color: gray;
+// }
+
+// .products {
+//     @include position(bl, 10px, 30px);
+// }
+
+.container {
+    @include center(text);
+    p {
+        width: 300px;
+    }
+}

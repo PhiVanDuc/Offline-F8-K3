@@ -1,0 +1,43 @@
+/* 
+    Transition làm chậm quá trình thay đổi giá trị của css (giá trị phải là số)
+        - transition-property: tenthuoctinh
+        - transition-duration: thoigian (s, ms) Đây là thời gian chuyển hiệu ứng
+        - transition-delay: thoigian (s, ms) Đây là thời gian đợi trước khi bắt đầu hiệu ứng
+        - transition-timing-function:
+            ease - Tốc độ chậm nhanh chậm
+            linear - Tốc độ đều
+            ease-in - Chậm nhanh
+            ease-out - Nhanh chậm
+            ease-in-out - Chậm nhanh chậm
+            cubic-bezier(0-1, 0-1, 0-1, 0-1) Chia tốc độ thành 4 giai đoạn (Lưu ý số càng bé tốc độ càng nhanh)
+        - transition: Đây là cách viết gộp
+            transition-property transition-duration transition-delay transition-timing-function
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.box {
+    border: 1px solid red;
+    padding: 15px;
+}
+
+.box h2 {
+    /* transition-property: padding-left, padding-top, color; */
+    transition-property: all;
+    /* Không nên sử dụng all vì khi load lần đầu trình duyệt sẽ kích hoạt tất cả các hiệu ứng */
+    transition-duration: 2s;
+    /* transition-delay: 2s; */
+    /* transition-timing-function: cubic-bezier(0.5, 0.1, 0.3, 1); */
+    transition-timing-function: ease-in-out;
+}
+
+.box h2:hover {
+    padding-left: 100px;
+    padding-top: 100px;
+    color: green;
+}

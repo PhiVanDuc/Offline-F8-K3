@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>map</title>
+    </head>
+    <body>
+        <h1>Code lại phương thức map</h1>
+
+        <script>
+            var array = [1, 2, 3, 4];
+
+            // var newArr = array.map(function (element, index, arr) {
+            //     return `<h3>${element}</h3>`;
+            // });
+            // console.log(newArr);
+
+            Array.prototype.myMap = function (callback) {
+                var currentArr = this;
+
+                if (Array.isArray(currentArr) && currentArr.length > 0) {
+                    var finalArr = [];
+
+                    for (var i = 0; i < currentArr.length; ++i) {
+                        var result = callback(currentArr[i], i, currentArr);
+                        finalArr[finalArr.length] = result;
+                    }
+
+                    return finalArr;
+                }
+            }
+
+            var newArr = array.myMap(function (element, index, arr) {
+                return `<h3>${element}</h3>`;
+            });
+            console.log(newArr);
+        </script>
+    </body>
+</html>

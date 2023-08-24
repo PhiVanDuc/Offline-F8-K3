@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Form</title>
+        <!-- Link -->
+        <link rel="stylesheet" href="./Assets/CSS/reset.css" />
+        <link rel="stylesheet" href="./Assets/CSS/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <section class="contact-form">
+            <h1 class="main-heading">CONTACT US</h1>
+
+            <div class="container">
+                <section class="info">
+                    <h2 class="info-heading">Contact Info</h2>
+
+                    <div class="info-item">
+                        <i
+                            class="fa-solid fa-location-dot info-icon"
+                            style="color: #a0a0a0"
+                        ></i>
+                        <p class="desc-contact">
+                            321 Awesome Street New York, NY 17022
+                        </p>
+                    </div>
+
+                    <div class="info-item">
+                        <i
+                            class="fa-regular fa-envelope info-icon"
+                            style="color: #a0a0a0"
+                        ></i>
+                        <p class="desc-contact">info@companyname.com</p>
+                    </div>
+
+                    <div class="info-item">
+                        <i
+                            class="fa-solid fa-phone info-icon"
+                            style="color: #a0a0a0"
+                        ></i>
+                        <p class="desc-contact">+1 800 123 1234</p>
+                    </div>
+                </section>
+
+                <!-- Begin form -->
+                <form autocomplete="off" spellcheck="false" class="form">
+                    <h2 class="form-heading">
+                        Having Any Query! Or Book an appointment
+                    </h2>
+
+                    <div class="wrap-control">
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Your Name"
+                        />
+                    </div>
+
+                    <div class="wrap-control">
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Your Email"
+                        />
+                    </div>
+
+                    <div class="wrap-control">
+                        <input
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            placeholder="Subject"
+                        />
+                    </div>
+
+                    <div class="wrap-control">
+                        <textarea
+                            name="message"
+                            id="message"
+                            placeholder="Message"
+                        ></textarea>
+                    </div>
+
+                    <button type="button">Send Message</button>
+                </form>
+                <!-- End form -->
+            </div>
+        </section>
+    </body>
+</html>

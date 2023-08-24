@@ -111,7 +111,7 @@
                 }
 
                 .achievement-customer {
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                 }
             }
 
@@ -154,13 +154,14 @@
 
                 .achievement-customer {
                     padding-bottom: 0;
+                    font-size: 1.4rem;
                 }
             }
 
             .spc-col {
                 .achievement-block {
                     width: 100%;
-                    padding: 30px
+                    padding: 45px 30px;
                 }
             }
         }
@@ -187,6 +188,12 @@
 
                 .achievement-customer {
                     font-size: 1.6rem;
+                }
+            }
+
+            .spc-col {
+                .achievement-block {
+                    padding: 30px;
                 }
             }
         }

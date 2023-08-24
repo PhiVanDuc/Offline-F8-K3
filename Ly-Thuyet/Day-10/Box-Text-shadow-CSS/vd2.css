@@ -1,0 +1,31 @@
+body {
+    font-family: system-ui;
+}
+
+/* 
+    filter: drop-shadow()
+    Nguyên lý hoạt động
+        Nó sẽ đổ bóng bao quang vào phần trong suốt của phần tử
+        Chính vì vậy phải cho background-color cho phần tử ko thì nó sẽ đổ vào chữ
+*/
+
+.chat {
+    position: relative;
+    margin: 20px;
+    padding: 16px;
+    /* background-color: orange; */
+    border-radius: 10px;
+    background-color: white;
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.chat::after {
+    content: '';
+    position: absolute;
+    border: 10px solid;
+    border-color: white transparent transparent transparent;
+    bottom: -18px;
+    right: 40px;
+}
+

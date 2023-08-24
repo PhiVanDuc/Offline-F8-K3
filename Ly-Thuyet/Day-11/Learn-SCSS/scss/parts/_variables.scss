@@ -1,0 +1,13 @@
+// Biến trong SCSS
+// => Đặt tên theo cú pháp con lạc đà (camelCase)
+// => Khai báo bên ngoài thì được gọi là khai báo toàn cục (global)
+
+$primaryColor: green;
+$secondaryColor: red;
+$headerBackgroundColor: grey;
+
+$copyrightSelector: ".copyright";
+$property: color;
+$size: 20;
+$selector1: col;
+$selector2: 2;

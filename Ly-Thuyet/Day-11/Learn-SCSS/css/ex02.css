@@ -1,0 +1,54 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: grey;
+}
+.header .header-inner {
+  padding: 10px 15px;
+}
+.header .header-inner .logo {
+  max-height: 150px;
+  overflow: hidden;
+}
+.header .header-inner .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.menu {
+  background-color: green;
+}
+.menu > ul > li.item {
+  flex: 1 0 auto;
+}
+.menu > ul > li.item > a {
+  display: block;
+  text-decoration: none;
+}
+.menu > ul > li.item > a:hover {
+  color: red;
+}
+.menu > ul > li.item:before {
+  content: "";
+}
+
+.footer {
+  padding: 20px 0;
+}
+.footer .copyright {
+  text-align: center;
+  color: grey;
+  font-size: 20%;
+}
+.footer .col-2 {
+  width: 50%;
+}
+
+/* Đây là comment css */
+
+/*# sourceMappingURL=ex02.css.map */

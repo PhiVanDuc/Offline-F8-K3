@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Internal CSS -->
+    <style>
+      div {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <form
+      action="https://api-gateway.fullstack.edu.vn/action_page.php"
+      method="post"
+    >
+      <div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Họ và tên"
+          minlength="3"
+          required
+        />
+      </div>
+
+      <div>
+        <input type="email" name="email" placeholder="E-mail" />
+      </div>
+
+      <div>
+        <button type="submit">Nộp</button>
+      </div>
+    </form> -->
+
+    <!-- Begin form -->
+    <form action="">
+      <div>
+        <label for="name">Họ tên</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Họ và tên ..."
+          value="Viết comment"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="E-mail"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="age">Tuổi</label>
+        <input
+          type="number"
+          name="age"
+          id="age"
+          placeholder="Tuổi"
+          min="18"
+          max="60"
+          step="0.1"
+        />
+      </div>
+
+      <div>
+        <label for="avatar">Avatar</label>
+        <input type="file" name="avatar" id="avatar" />
+      </div>
+
+      <div>
+        <label>Giới tính</label>
+        <label>
+          <input type="radio" name="gender" value="0" /> Không xác định
+        </label>
+        <label>
+          <input type="radio" name="gender" value="1" checked /> Nam
+        </label>
+        <label> <input type="radio" name="gender" value="2" /> Nữ </label>
+      </div>
+
+      <div>
+        <label>Nguồn</label>
+        <label>
+          <input type="checkbox" name="source" value="1" checked /> Facebook
+        </label>
+        <label>
+          <input type="checkbox" name="source" value="2" /> Instagram
+        </label>
+      </div>
+
+      <div>
+        <label for="pass">Mật khẩu</label>
+        <input
+          type="password"
+          name="pass"
+          id="pass"
+          placeholder="Mật khẩu ..."
+          required
+        />
+      </div>
+
+      <div>
+        <label for="provinces">Tỉnh/Thành phố</label>
+        <select name="provinces" id="provinces">
+          <option value="" selected hidden>-- Chọn Tỉnh/Thành phố --</option>
+          <optgroup label="Miền Bắc">
+            <option value="1">Hà Nội</option>
+            <option value="2">Hải Phòng</option>
+            <option value="3">Thái Bình</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div>
+        <textarea name="comment" id="comment" cols="100" rows="10"></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+      <button type="button">Button</button>
+      <button type="reset">Nhập lại</button>
+    </form>
+    <!-- End form -->
+
+    <!-- Học thẻ HTML5 -->
+    <!-- Xem trong trang f8 -->
+  </body>
+</html>

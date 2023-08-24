@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Table Reservation Form</title>
+        <!-- Link -->
+        <link rel="stylesheet" href="./Assets/CSS/reset.css" />
+        <link rel="stylesheet" href="./Assets/CSS/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <!-- Begin section -->
+        <section class="reservation">
+            <h2 class="heading-sec">RESERVATION</h2>
+            <!-- Begin form -->
+            <form action="" autocomplete="off">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Book your table</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    placeholder="NAME"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="EMAIL"
+                                />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="date"
+                                    id="date"
+                                    placeholder="DATE"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="time"
+                                    id="time"
+                                    placeholder="TIME"
+                                />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input
+                                    type="number"
+                                    name="people"
+                                    id="people"
+                                    placeholder="PEOPLE"
+                                />
+                            </td>
+                            <td>
+                                <button type="button" class="find-btn">
+                                    Find A Table
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <!-- End form -->
+        </section>
+        <!-- End section -->
+    </body>
+</html>

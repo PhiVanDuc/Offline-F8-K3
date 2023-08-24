@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --Large-heading: 'Alfa Slab One', cursive;
+    --Small-heading: 'Bebas Neue', sans-serif;
+    --Base-color: rgb(58,38,23);
+}
+
+html {
+    background-color: rgb(254,254,254);
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.reservation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading-sec {
+    font-family: var(--Small-heading);
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    color: var(--Base-color);
+}
+
+table {
+    width: 780px;
+}
+
+table th {
+    font-family: var(--Large-heading);
+    font-size: 60px;
+    color: var(--Base-color);
+    padding-bottom: 35px;
+}
+
+table td {
+    text-align: center;
+}
+
+input {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 95%;
+    padding: 20px 0px 20px 25px;
+    outline: none;
+    border: 2px solid rgb(205, 205, 205);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    font-size: 18px;
+
+}
+input::placeholder {
+    font-family: var(--Small-heading);
+    font-size: 25px;
+    color: var(--Base-color);
+    transform: translateY(8%);
+}
+
+.find-btn {
+    font-family: var(--Large-heading);
+    color: white;
+    font-size: 20px;
+    background-color: rgb(176,51,43);
+    border-radius: 5px;
+    padding: 19.5px 0px;
+    width: 95%;
+    border: none;
+    cursor: pointer;
+}

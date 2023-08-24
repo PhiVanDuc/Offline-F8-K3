@@ -140,4 +140,42 @@
     }
 }
 
-// @media screen and (max-width: 575px) {}
+@media screen and (max-width: 575px) {
+    .products {
+        .product-heading {
+            font-size: 2.5rem;
+        }
+
+        .product-block {
+            .product-bgr {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 80px;
+
+                img {
+                    width: 110px;
+                }
+            }
+
+            .product-sub-heading {
+                font-size: 1.4rem;
+            }
+
+            .product-price,
+            .product-quantity {
+                font-size: 1.4rem;
+            }
+
+            .product-price {
+                span {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .product-btn {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
+    }
+}

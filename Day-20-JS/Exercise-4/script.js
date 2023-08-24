@@ -21,30 +21,50 @@ var renderArr = [
     }
 ];
 
-const container = document.querySelector('.container');
-var displayArr = renderArr.map(function (element, index) {
-    if (index % 2 === 0) {
-        return `
-        <div class="block">
-            <img src="${element.image}" alt="">
-            <div class="block-content">
-                <h2>${element.heading}</h2>
-                <p>${element.desc}</p>
-            </div>
-        </div>
-        `;
-    }
-    else {
-        return `
-        <div class="block">
-            <div class="block-content">
-                <h2>${element.heading}</h2>
-                <p>${element.desc}</p>
-            </div>
-            <img src="${element.image}" alt="">
-        </div>
-        `;
-    }
-});
 
+
+// Cách 1:
+// const container = document.querySelector('.container');
+// var displayArr = renderArr.map(function (element, index) {
+//     if (index % 2 === 0) {
+//         return `
+//         <div class="block">
+//             <img src="${element.image}" alt="">
+//             <div class="block-content">
+//                 <h2>${element.heading}</h2>
+//                 <p>${element.desc}</p>
+//             </div>
+//         </div>
+//         `;
+//     }
+//     else {
+//         return `
+//         <div class="block">
+//             <div class="block-content">
+//                 <h2>${element.heading}</h2>
+//                 <p>${element.desc}</p>
+//             </div>
+//             <img src="${element.image}" alt="">
+//         </div>
+//         `;
+//     }
+// });
+
+// container.innerHTML = displayArr.join('');
+
+
+
+// Cách 2:
+var container = document.querySelector(".container");
+var displayArr = renderArr.map(function (element, index) {
+    return `
+    <div class="block ${index % 2 !== 0 ? 'bold-block' : ''}">
+        <img src="${element.image}" alt="">
+        <div class="block-content">
+            <h2>${element.heading}</h2>
+            <p>${element.desc}</p>
+        </div>
+    </div>
+    `;
+});
 container.innerHTML = displayArr.join('');

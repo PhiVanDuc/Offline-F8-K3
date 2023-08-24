@@ -1,0 +1,57 @@
+/*
+    Toán tử gán
+        $a: 1;
+
+    Toán tử lý luận:
+        and, or, not
+
+    Câu lệnh rẽ nhánh
+        @if (condition) {
+            Body
+        }
+
+        @if (condition) {
+            //Body true
+        }
+        @else {
+            //Body false
+        }
+
+        @if (condition) {
+            //body
+        }
+        @else if {
+            //body
+        }
+        @else {
+            //body else
+        }
+*/
+
+$a: 1;
+$b: 2;
+$c: $a + $b;
+$c: $c + 2;
+
+.test {
+    font-size: #{$c}em;
+}
+
+$number: 6;
+
+// @if($number % 2 != 0) {
+//     .col-small {
+//         font-size: #{$number * 2}px;
+//     }
+// }
+// @else {
+//     .col-small {
+//         font-size: #{$number * 5}px;
+//     }
+// }
+
+@if($number >= 2 and $number <= 10) {
+    .test {
+        font-size: #{$number * 10}px;
+    }
+}

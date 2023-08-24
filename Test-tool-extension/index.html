@@ -8,29 +8,50 @@
     </head>
 
     <body>
-        <section class="news">
-            <!-- Block - 1 -->
-            <article class="news-block block-one">
-                <div class="news-block-img"></div>
-                <div class="news-block-content">
-                    <h3 class="news-block-subheading">Tin nổi bật</h3>
-                    <h2 class="news-block-heading">Exerci tation ullamcer suscipitm zril delenit augue</h2>
-                    <p class="news-block-desc">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                </div>
-            </article>
-            <!-- End Block - 1 -->
+        <script>
+            let count = 0;
 
-            <!-- Block - 2 -->
-            <article class="news-block block-two">
-                <div class="news-block-img"></div>
-                <div class="news-block-content">
-                    <h3 class="news-block-subheading">Tin nổi bật</h3>
-                    <h2 class="news-block-heading">Exerci tation ullamcer suscipitm zril delenit augue</h2>
-                    <p class="news-block-desc">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                </div>
-            </article>
-            <!-- End Block - 2 -->
+            function cc(card) {
+                // Only change code below this line
+                let result;
+                const FIRST_INPUT = card;
+                card = [FIRST_INPUT];
+                
+                for (var i = 1; i < arguments.length; i++) {
+                    card.push(arguments[i]);
+                }
 
-        </section>
+                for (let i = 0; i < card.length; i++) {
+                    switch (card[i]) {
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                        ++count;
+                        break;
+                    case 10:
+                    case "J":
+                    case "Q":
+                    case "K":
+                    case "A":
+                        --count;
+                        break;
+                    }
+                }
+
+                if (count > 0) {
+                    result = " Bet";
+                }
+                else {
+                    result = " Hold";
+                }
+
+                return count + result;
+                // Only change code above this line
+            }
+
+            console.log(cc(2, 3, 4, 5, 6));
+        </script>
     </body>
 </html>

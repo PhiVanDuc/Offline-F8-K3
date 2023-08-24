@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.social {
+    width: 300px;
+    margin: 30px auto;
+    list-style: none;
+    border: 1px solid red;
+    padding: 10px;
+}
+
+.social li {
+    border-bottom: 1px solid #ccc;
+    line-height: 1.5;
+}
+
+.social li::before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    vertical-align: middle;
+    font-family: 'Font Awesome 6 Brands';
+}
+.social .facebook::before {
+    content: '\f39e';
+}
+.social .twitter::before {
+    content: '\f099';
+}
+.social .youtube::before {
+    content: '\f167';
+}

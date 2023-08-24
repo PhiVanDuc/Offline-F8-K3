@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    border: 1px solid black;
+}
+
+/* Trường hợp không phải là con của phần tử nào */
+.first {
+    margin-bottom: -10px;
+}
+
+.last {
+    margin-top: 30px;
+}
+
+/* Trường hợp phần tử con đẩy phần tử cha */
+
+.banner {
+    background-color: green;
+    color: white;
+    /* Các xử lý */
+    display: inline-block;
+    width: 100%;
+}
+
+.banner h1 {
+    margin-top: 20px;
+}

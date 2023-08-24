@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    width: 300px;
+    margin: 30px auto;
+    border: 1px solid red;
+}
+
+.box ul {
+    list-style-position: inside;
+    list-style-type: decimal-leading-zero;
+    /* Đây là kết hợp các thuộc tính lại làm một */
+    list-style: inside decimal-leading-zero;
+}
+
+.songs {
+    width: 300px;
+    margin: 30px auto;
+    border: 1px solid red;
+}
+
+/* Dùng display: list-style để chuyển từ block sang list */
+.songs > h2 {
+    display: list-item;
+    list-style: inside circle;
+}

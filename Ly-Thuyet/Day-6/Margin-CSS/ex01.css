@@ -1,0 +1,11 @@
+.box {
+    border: 1px solid red;
+    padding: 20px;
+    width: 400px;
+    /* margin */
+    margin: 10px 0px 0px 20px;
+    /* Nếu dùng đơn vị % thì vẫn giống như padding, lấy chiều ngang của thẻ cha trực tiếp */
+    /* Cách căn giữa với margin */
+    /* margin-left: auto và margin-right: auto */
+    /* Thuộc tính inline sẽ không đặt được margin top và bottom */
+}

@@ -1,0 +1,40 @@
+/* h2 ~ div p,
+h2 ~ p {
+    color: red;
+} */
+
+/*
+    p: đứng sau h2
+    p: phải ngang hàng với h2 có nghĩa là cùng thằng cha .box 
+*/
+
+/* 
+h2 + h2 {
+    color: red;
+} */
+
+/* .todos input:checked + span {
+    color:red;
+} */
+
+
+/* Attribute selector */
+/* a[target] {
+    color: red;
+} */
+
+/* a[href$=".jpg"] {
+    color: red;
+}
+
+[class^="item-"] {
+    color: red;
+} */
+
+/* * {
+    border: 1px solid red;
+} */
+
+.box > * {
+    border: 1px solid black;
+}

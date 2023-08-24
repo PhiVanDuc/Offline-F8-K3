@@ -1,0 +1,24 @@
+/* 
+    Display dùng để thay đổi chế độ hiển thị của các phần tử
+    Các giá trị của display
+        none
+        block : Chuyển thành dạng block
+        inline : Chuyển thành dạng inline
+        inline-block : Chuyển thành dạng block, tuy nhiên vẫn mang một số đặc tính tốt của inline
+    
+    Thuộc tính display sẽ có rất nhiều các giá trị phức tạp như:
+        list-item
+        flex
+        grid
+        table
+        ...
+
+        Lưu ý rằng:
+            inline không thể xét with - height, Không thể để pading top - bottom, margin top - bottom
+*/
+
+.box {
+    width: 200px;
+    padding: 5px 10px;
+    border: 1px solid red;
+}

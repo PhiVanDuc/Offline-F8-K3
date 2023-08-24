@@ -1,0 +1,20 @@
+.image {
+    width: 200px;
+    min-height: 100vh;
+    border: 1px solid black;
+}
+
+/* Max-width và min-width sẽ chặn đầu và chặn đuôi. Tương tự với height */
+/* 
+    => Các thuộc tính liên quan đến kích thước
+    width
+    height
+    max-width
+    max-height
+    min-width
+    min-height
+*/
+
+.img-1 {
+    max-width: 100%;
+}

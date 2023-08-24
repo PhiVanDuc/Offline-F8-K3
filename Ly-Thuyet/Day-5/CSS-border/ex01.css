@@ -1,0 +1,26 @@
+.box {
+    width: 200px;
+    border-left-width: 3px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+
+    border-left-style: solid;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+
+    border-left-color: red;
+    border-top-color: green;
+    border-right-color: blue;
+    border-bottom-color: blueviolet;
+}
+
+/* border-style: none | solid | dashed | dotted | double */
+/* 
+    border cũng chia làm 4 hướng
+    border right
+    border top
+    border left
+    border bottom
+*/

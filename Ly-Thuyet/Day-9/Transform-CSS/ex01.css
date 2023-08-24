@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    border: 1px solid red;
+    padding: 30px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    margin: 0 auto;
+    transition: 0.4s ease;
+    transition-property: transform scale;
+}
+
+/* 
+    Transform : Giúp thay đổi hình dạng của element
+        + Xoay
+        + Phóng to, thu nhỏ
+        + Di chuyển
+        + Nghiêng
+*/
+
+/*
+    1. Xoay
+    transform:
+        rotate(deg)
+        rotateX(deg) Quay theo trục x
+        rotateY(deg) Quay theo trục y
+
+    Có thể viết ra thành thuộc tính riêng như:
+    rotate: 180deg;
+*/
+
+.container:hover .box {
+    /* transform: rotate(45deg); */
+    /* rotate: 45deg; */
+    /* transform: rotateX(360deg); */
+    /* transform: rotateY(360deg); */
+    scale: 1.2 1.2;
+}
+
+/* 
+    2. Phóng to
+    transform:
+        scale(1.5) Đây là đặt giá trị gấp 1.5 lần cho cả trục X và trục Y
+        scaleX() Là trục X
+        scaleY() là trục Y
+    
+    Có thể viết ra thàn một thuộc tính riêng:
+        scale: 0.9 1.2;
+*/
+
+.container:hover .box {
+    /* scale: 1.2 1.2; */
+    transform: rotate(45deg) scale(1.2);
+}
+
+/* 
+    3. Nghiêng
+    transform:
+        skew(deg) Đây là xoay theo trục x
+        skew(-deg) Đây là xoay theo trục y
+        skew(deg, deg) Đây là xoay theo trục x và y
+        skewX()
+        skewY()
+    
+    skew không tách ra thành thuộc tính riêng
+*/
+
+.container:hover .box {
+    /* scale: 1.2 1.2; */
+    transform: skew(30deg);
+}
+
+/* 
+    4. Di chuyển
+    transform:
+        translate(100px) Đây là theo trục X
+        translate(100px, 100px) Đây là theo trục X và Y
+        translateX() Đây là theo trục X
+        translateY()
+    
+    skew không tách ra thành thuộc tính riêng
+
+    Sự khác nhau giữa position: relative và transform: translate
+        + Khác nhau là khi đặt giá trị %
+            Khi đặt giá trị % ở position: relative thì nó sẽ căn theo kích thước của thằng cha trực tiếp
+            Nhưng đối với transform: translate thì nó sẽ căn theo diện tích chiều ngang hoặc chiều dọc của chính nó
+*/
+
+.container:hover .box {
+    transform: translate(100px, 100px);
+    transform-origin: 50% 0;
+    scale: 1 0;
+}
+
+/* 
+    transform-origin: 50% 0;
+    kết hợp với scale: 1 0;
+*/
+
+.box {
+}
