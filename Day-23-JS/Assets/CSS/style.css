@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    font-size: 1.6rem;
+}
+
+button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Login */
+
+.login {
+    font-size: 2rem;
+    font-weight: 500;
+    color: gray;
+}
+
+/* End Login */
+
+
+/* Forms */
+
+.container {
+    visibility: hidden;
+    opacity: 0;
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    transition-property: opacity, visibility;
+    transition: 0.3s linear;
+}
+.container.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.forms {
+    background-color: white;
+    z-index: 1;
+    border-radius: 0px 0px 3px 3px;
+}
+
+/* End Forms */
+
+
+/* Login-form */
+
+.regis-form,
+.login-form {
+    display: none;
+    width: 460px;
+    padding: 0px 40px 30px 40px;
+}
+.regis-form.active,
+.login-form.active {
+    display: block;
+}
+
+.login-form .method {
+    font-size: 1.4rem;
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 16px;
+}
+
+.login-form .btn-social-media {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.login-form .btn-facebook,
+.login-form .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    height: 45px;
+    background-color: #e2e8f0;
+    color: #333;
+    border-radius: 5px;
+}
+
+.login-form .btn-facebook > img {
+    width: 26px;
+    height: auto;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+.login-form .btn-google > img {
+    width: 30px;
+    height: auto;
+    margin-right: 2px;
+}
+
+.login-form .line {
+    position: relative;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.login-form .line span {
+    padding: 0px 20px;
+    background-color: white;
+}
+
+.login-form .line span::before {
+    content: '';
+    position: absolute;
+    border-top: 1px solid #eee;
+    width: 100%;
+    height: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.error-regis,
+.error-login {
+    display: none;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #ef4444;
+    margin-bottom: 16px;
+    line-height: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.label {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    line-height: 1.2;
+    color: #1a1a1a;
+}
+
+.input {
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ccc;
+    color: #333;
+    outline: none;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 1.4rem;
+    line-height: 22px;
+}
+
+.form-group.invalid .input {
+    border-color: #ef4444;
+}
+
+.error-msg {
+    display: none;
+    margin-top: 8px;
+    font-style: italic;
+    color: #ef4444;
+    font-size: 1.4rem;
+}
+
+.forget-pass {
+    text-align: right;
+}
+.forget-pass > button {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+    color: gray;
+    font-style: italic;
+}
+
+.action-btn > button {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    background-color: #1a7900;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 20px;
+    color: white;
+}
+
+/* End Login-form */
+
+
+/* Tabs-Form */
+
+.tabs-form {
+    font-size: 0;
+}
+
+.tabs-form .tab {
+    width: 50%;
+    height: 56px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 24px;
+    color: #999;
+    background-color: #eee;
+}
+
+.tabs-form .tab.active {
+    background-color: white;
+    color: #333;
+}
+
+.tabs-form .tab-login {
+    border-top-left-radius: 3px;
+}
+.tabs-form .tab-regis {
+    border-top-right-radius: 3px;
+}
+
+/* End Tabs-Form */
+
+
+/* Regis-form */
+
+.regis-form .recommend {
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    padding-top: 24px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.regis-form .policy {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.regis-form .policy > a {
+    color: #2361ff;
+}
+
+/* End Regis-form */
+
+
+.overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+    cursor: pointer;
+    transition-property: opacity, visibility;
+    transition: 0.3s linear;
+}
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
