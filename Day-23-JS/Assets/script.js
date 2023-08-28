@@ -58,6 +58,8 @@ overlay.onclick = function () {
     container.classList.remove('active');
 
     reset(input, formGroup);
+    errorLogin.innerHTML = '';
+    errorLogin.style.display = 'none';
 }
 
 
@@ -79,6 +81,8 @@ tabLogin.onclick = function () {
     });
 
     reset(inputLogin, formGroupLogin);
+    errorLogin.innerHTML = '';
+    errorLogin.style.display = 'none';
 }
 
 
