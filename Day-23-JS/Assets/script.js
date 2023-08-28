@@ -2,21 +2,20 @@ let login = document.querySelector('.login');
 let overlay = document.querySelector('.overlay');
 let container = document.querySelector('.container');
 
-let tabLogin = document.querySelector('.tabs-form > .tab-login');
-let loginForm = document.querySelector('.forms .login-form');
-let tabRegis = document.querySelector('.tabs-form > .tab-regis');
-let regisForm = document.querySelector('.forms .regis-form');
+let loginForm = document.querySelector('.login-form');
+let tabLogin = document.querySelector('.tabs-form .tab-login');
+let regisForm = document.querySelector('.regis-form');
+let tabRegis = document.querySelector('.tabs-form .tab-regis');
 
 let input = document.querySelectorAll('.input');
 let formGroup = document.querySelectorAll('.form-group');
-let loginInput = document.querySelectorAll('.login-form .input');
-let loginFormGroup = document.querySelectorAll('.login-form .form-group');
-let regisInput = document.querySelectorAll('.regis-form .input');
-let regisFormGroup = document.querySelectorAll('.regis-form .form-group');
+let inputLogin = document.querySelectorAll('.login-form .input');
+let formGroupLogin = document.querySelectorAll('.login-form .form-group');
+let inputRegis = document.querySelectorAll('.regis-form .input');
+let formGroupRegis = document.querySelectorAll('.regis-form .form-group');
 
 let btnLogin = document.querySelector('.login-form .btn-login');
-let btnRegis = document.querySelector('.regis-form .btn-regis');
-
+let errorLogin = document.querySelector('.login-form .error-login');
 
 
 function reset(setInput, setFormGroup) {
@@ -33,103 +32,94 @@ function reset(setInput, setFormGroup) {
 }
 
 
-login.addEventListener("click", function () {
+login.onclick = function () {
     overlay.classList.add('active');
     container.classList.add('active');
-    tabLogin.classList.add('active');
     loginForm.classList.add('active');
-    tabRegis.classList.remove('active');
+    tabLogin.classList.add('active');
     regisForm.classList.remove('active');
+    tabRegis.classList.remove('active');
 
-    if (tabLogin.classList.contains('active')) {
-        Validator({
-            form: '.login-form',
-            rules: [
-                Validator.isEmail('.input-email'),
-                Validator.minLength('.input-password', 6),
-            ],
-        });
-    }
-});
+    Validator({
+        form: '.login-form',
+        errorSelector: '.error-msg',
+        rules: [
+            Validator.isRequired('.input-email'),
+            Validator.isEmail('.input-email'),
+            Validator.isRequired('.input-password'),
+            Validator.minMaxLength('.input-password', 6, 20),
+        ]
+    });
+}
 
-overlay.addEventListener("click", function () {
+
+overlay.onclick = function () {
     overlay.classList.remove('active');
     container.classList.remove('active');
 
     reset(input, formGroup);
-    document.querySelector('.login-form .error-login').style.display = 'none';
-    document.querySelector('.regis-form .error-regis').style.display = 'none';
-});
+}
 
-tabLogin.addEventListener("click", function () {
-    tabLogin.classList.add('active');
+
+tabLogin.onclick = function () {
     loginForm.classList.add('active');
-    tabRegis.classList.remove('active');
+    tabLogin.classList.add('active');
     regisForm.classList.remove('active');
+    tabRegis.classList.remove('active');
 
     Validator({
         form: '.login-form',
+        errorSelector: '.error-msg',
         rules: [
+            Validator.isRequired('.input-email'),
             Validator.isEmail('.input-email'),
-            Validator.minLength('.input-password', 6),
-        ],
+            Validator.isRequired('.input-password'),
+            Validator.minMaxLength('.input-password', 6, 20),
+        ]
     });
 
-    reset(loginInput, loginFormGroup);
-    document.querySelector('.regis-form .error-regis').style.display = 'none';
-});
+    reset(inputLogin, formGroupLogin);
+}
 
-tabRegis.addEventListener("click", function () {
-    tabLogin.classList.remove('active');
-    loginForm.classList.remove('active');
-    tabRegis.classList.add('active');
+
+tabRegis.onclick = function () {
     regisForm.classList.add('active');
+    tabRegis.classList.add('active');
+    loginForm.classList.remove('active');
+    tabLogin.classList.remove('active');
 
     Validator({
         form: '.regis-form',
+        errorSelector: '.error-msg',
         rules: [
             Validator.isRequired('.input-name'),
+            Validator.minMaxLength('.input-name', 6, 30),
+            Validator.isRequired('.input-email'),
             Validator.isEmail('.input-email'),
-            Validator.minLength('.input-password', 6),
-        ],
+            Validator.isRequired('.input-password'),
+            Validator.minMaxLength('.input-password', 6, 20),
+        ]
     });
 
-    reset(regisInput, regisFormGroup);
-    document.querySelector('.login-form .error-login').style.display = 'none';
-});
+    reset(inputRegis, formGroupRegis);
+}
 
 
-btnLogin.addEventListener("click", function () {
+btnLogin.onclick = function () {
     let check = true;
-    loginInput.forEach(function (element) {
-        if (element.value === '') {
+
+    for (let i = 0; i < inputLogin.length; i++) {
+        if (inputLogin[i].value === '') {
             check = false;
         }
-    });
+    }
 
-    if (!check) {
-        document.querySelector('.login-form .error-login').innerHTML = 'Vui lòng nhập đủ thông tin';
-        document.querySelector('.login-form .error-login').style.display = 'inline-block';
+    if (check === true) {
+        errorLogin.innerHTML = 'Account not existed.';
+        errorLogin.style.display = 'inline-block';
     }
     else {
-        document.querySelector('.login-form .error-login').innerHTML = 'Account not existed.';
+        errorLogin.innerHTML = '';
+        errorLogin.style.display = 'none';
     }
-});
-
-
-btnRegis.addEventListener("click", function () {
-    let check = true;
-    regisInput.forEach(function (element) {
-        if (element.value === '') {
-            check = false;
-        }
-    });
-
-    if (!check) {
-        document.querySelector('.regis-form .error-regis').innerHTML = 'Vui lòng nhập đủ thông tin';
-        document.querySelector('.regis-form .error-regis').style.display = 'inline-block';
-    }
-    else {
-        document.querySelector('.regis-form .error-regis').style.display = 'none';
-    }
-});
+}

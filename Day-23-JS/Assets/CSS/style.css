@@ -187,7 +187,15 @@ button {
 
 .forget-pass {
     text-align: right;
+    margin-bottom: 16px;
 }
+
+.forget-pass a {
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    font-style: italic;
+}
+
 .forget-pass > button {
     margin-bottom: 16px;
     font-size: 1.4rem;
