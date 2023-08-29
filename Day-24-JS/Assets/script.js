@@ -49,8 +49,8 @@ container.addEventListener("click", function (e) {
     }
     // Nếu e.target là một element có class = svg-1 (Nó là icon chỉnh sửa)
     else if (element.getAttribute("class") === 'svg-1') {
-        let saveTask = element.closest('.container').querySelector('.task').innerHTML;
-        element.closest('.container').querySelector('.' + nameTodoItem).outerHTML = `<form class="todo-form">
+        let saveTask = element.closest('.' + nameTodoItem).querySelector('.task').innerHTML;
+        element.closest('.' + nameTodoItem).outerHTML = `<form class="todo-form">
             <input type="text" placeholder="Edit task">
             <button type="button">Add Task</button>
         </form>`;
