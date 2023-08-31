@@ -104,10 +104,13 @@ button {
     line-height: 1.5;
 }
 
-.todo-item svg {
-    width: auto;
-    height: 16px;
-    margin-left: 12px;
+.todo-item .todo-item-icon {
+    font-size: 0;
 }
 
+.todo-item img {
+    width: auto;
+    height: 18px;
+    margin-left: 12px;
+}
 /* End Todo-item */
