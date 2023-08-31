@@ -33,11 +33,13 @@ function todoForm(element, remove, add, taskText) {
 }
 
 buttonAdd.addEventListener("click", function () {
-    let insert = document.createElement("div");
-    insert.setAttribute("class", "todo-item");
-    insert.innerHTML = todoItem(inputAdd.value);
-    container.appendChild(insert);
-    inputAdd.value = '';
+    if (inputAdd.value) {
+        let insert = document.createElement("div");
+        insert.setAttribute("class", "todo-item");
+        insert.innerHTML = todoItem(inputAdd.value);
+        container.appendChild(insert);
+        inputAdd.value = '';
+    }
 });
 
 
@@ -66,7 +68,10 @@ container.addEventListener("click", function (e) {
         selectElement.closest(".todo-item").remove();
     }
     else if (selectElement.getAttribute("class") === "edit-icon") {
+        let checkDone = false;
         let currentParent = selectElement.closest(".todo-item");
+        currentParent.querySelector(".task").style.opacity !== '' ? checkDone = true : checkDone = false;
+
         currentParent = todoForm(currentParent, "todo-item", "todo-form", currentParent.querySelector(".task").innerHTML);
 
         let buttonEdit = currentParent.querySelector("button");
@@ -75,6 +80,11 @@ container.addEventListener("click", function (e) {
         buttonEdit.addEventListener("click", function () {
             currentParent = todoItem(null, currentParent, "todo-form", "todo-item");
             currentParent.innerHTML = todoItem(inputEdit.value);
+
+            if (checkDone) {
+                currentParent.querySelector(".task").style.textDecoration = 'line-through';
+                currentParent.querySelector(".task").style.opacity = '0.6';
+            }
         });
 
         inputEdit.addEventListener("keypress", function (e) {
