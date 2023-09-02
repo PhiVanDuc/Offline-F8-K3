@@ -1,0 +1,108 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	position: relative;
+	margin: 50px 50px 0px 50px;
+	aspect-ratio: 16 / 6;
+}
+
+.carousel {
+	overflow-x: hidden;
+	border-radius: 10px;
+	height: 100%;
+}
+
+.carousel-inner {
+	white-space: nowrap;
+	width: max-content;
+	height: 100%;
+	font-size: 0;
+	transition: translate 0.4s ease;
+}
+
+.carousel-inner img {
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.carousel-btn i {
+	width:50px;
+	height:50px;
+	line-height:50px;
+	border-radius: 99px;
+	background-color: rgba(215, 164, 141, 0.3);
+	text-align: center;
+	font-size: 18px;
+	color: rgb(227, 157, 127);
+}
+
+.carousel-btn span {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	padding: 5px;
+	background-color: white;
+	border-radius: 99px;
+}
+
+.carousel-btn .prev {
+	left: 0;
+	translate: -50% -50%;
+}
+
+.carousel-btn .next {
+	right: 0;
+	translate: 50% -50%;
+}
+
+.carousel-dots {
+	position: absolute;
+	left: 50%;
+	translate: -50%;
+	bottom: 20px;
+}
+
+.carousel-dots .dot {
+	display: inline-block;
+	padding: 4px;
+	background-color: white;
+	margin-right: 15px;
+	border-radius: 99px;
+	cursor: pointer;
+	transition: padding-right 0.4s linear;
+}
+
+.carousel-dots .dot.active {
+	padding-right: 25px;
+}
+
+.carousel-dots .dot:last-child {
+	margin-right: 0;
+}
+
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+	.container {
+		position: relative;
+		margin: 20px 20px 0px 20px;
+		aspect-ratio: 16 / 9;
+	}
+
+	.carousel-btn i {
+		width:30px;
+		height:30px;
+		line-height:30px;
+		font-size: 14px;
+	}
+
+	.carousel-dots {
+		bottom: 10px;
+	}
+
+	.carousel-dots .dot {
+		padding: 3px;
+	}
+}
