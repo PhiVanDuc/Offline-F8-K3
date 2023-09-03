@@ -1,87 +1,131 @@
 let carousel = document.querySelector(".carousel");
-let carouselInner = carousel.querySelector(".carousel .carousel-inner");
-let carouselDots = carousel.querySelector(".carousel .carousel-dots");
+let carouselInner = carousel.querySelector(".carousel-inner");
+let imgs = carouselInner.querySelectorAll("img");
+let carouselDots = carousel.querySelector(".carousel-dots");
 let btnPrev = carousel.querySelector(".prev");
 let btnNext = carousel.querySelector(".next");
-let images = carouselInner.querySelectorAll("img");
-let widthCarousel;
-let widthCarouselInner;
 
 
-// Cập nhật kích cỡ ảnh vừa với carousel
-function fitImage() {
-    widthCarousel = carousel.offsetWidth;
-    images.forEach(function (element) {
-        element.style.width = widthCarousel + "px";
-    });
-    widthCarouselInner = widthCarousel * images.length;
-}
-fitImage();
-document.body.onresize = function () {
-    fitImage();
-}
-
-
-// Tạo ra số lượng dấu chấm bằng với số lượng của ảnh
-let numberDot = 0;
-while (numberDot < images.length) {
-    ++numberDot;
-    let dot = document.createElement('span');
-    dot.setAttribute("class", "dot");
+// Tạo ra các Dot bằng với số lượng ảnh
+let quantity = 0;
+while (quantity < imgs.length) {
+    let dot = document.createElement("span");
+    dot.classList.add("dot");
     carouselDots.appendChild(dot);
+    quantity++;
 }
 
 
+// Xây dựng chức năng nút bấm Next và Prev và Dots
 let showing = 0;
-let dots = carouselDots.querySelectorAll(".dot");
+let widthImg = carousel.clientWidth;
+let totalWidth = widthImg * imgs.length;
 
-
-// Gán active vào dấu chấm đầu tiên
-dots[showing].classList.add("active");
-
-
-// Xử lý logic bấm nút Prev và Next
-let autoRun = setInterval(function () {
-    btnNext.click();
-}, 5000);
-
-
-function reloadSlider() {
-    let distanceLeft = images[showing].offsetLeft;
-    carouselInner.style.translate = -distanceLeft + "px";
-
-    let currentActiveDot = carouselDots.querySelector(".dot.active");
-    currentActiveDot.classList.remove("active");
-    dots[showing].classList.add("active");
-    clearInterval(autoRun);
-    autoRun = setInterval(function () {
-        btnNext.click();
-    }, 3000);
+document.body.onresize = function () {
+    widthImg = carousel.clientWidth;
+    totalWidth = widthImg * imgs.length;
 }
 
+function reloadSlide() {
+    let distanceEdgeLeft = imgs[showing].offsetLeft;
+    carousel.scrollLeft = distanceEdgeLeft;
+
+    let currentDotActive = carouselDots.querySelector(".active");
+    currentDotActive.classList.remove("active");
+    dots[showing].classList.add("active");
+}
 
 btnNext.addEventListener("click", function () {
-    if (showing + 1 > images.length - 1)
+    if (showing + 1 > imgs.length - 1)
         showing = 0;
     else
-        ++showing;
-    reloadSlider();
+        showing++;
+    reloadSlide();
 });
-
 
 btnPrev.addEventListener("click", function () {
     if (showing === 0)
-        showing = images.length - 1;
+        showing = imgs.length - 1;
     else
         --showing;
-    reloadSlider();
+    reloadSlide();
 });
 
-
-// Xây dựng chức năng ấn vào dot và chuyển đến ảnh tương ứng
+let dots = carouselDots.querySelectorAll(".dot");
+dots[showing].classList.add("active");
 dots.forEach(function (element, index) {
     element.addEventListener("click", function () {
         showing = index;
-        reloadSlider();
+        reloadSlide();
     });
 });
+
+
+// Xây dựng chức năng tự động chạy
+let autoPlay = setInterval(function () {
+    btnNext.click();
+}, 5000);
+
+carousel.addEventListener("mouseover", function () {
+    clearInterval(autoPlay);
+});
+carousel.addEventListener("mouseleave", function () {
+    autoPlay = setInterval(function () {
+        btnNext.click();
+    }, 5000);
+})
+
+
+// Xây dựng chức năng kéo thả
+let beginPress = false;
+let isPressing = false;
+let transferPoint = widthImg * 0.1;
+let prevPageX, prevScrollLeft, positionDiff;
+
+function swipe() {
+    positionDiff = Math.abs(positionDiff);
+
+    if (carousel.scrollLeft >= prevScrollLeft) {
+        if (positionDiff > transferPoint) {
+            btnNext.click();
+        }
+        else {
+            carousel.scrollLeft -= positionDiff;
+        }
+    }
+    else if (carousel.scrollLeft < prevScrollLeft) {
+        if (positionDiff > transferPoint) {
+            btnPrev.click();
+        }
+        else {
+            carousel.scrollLeft += positionDiff;
+        }
+    }
+}
+
+function handleMouseDown(e) {
+    beginPress = true;
+    prevPageX = e.clientX;
+    prevScrollLeft = carousel.scrollLeft;
+}
+
+function handleMouseMove(e) {
+    if (beginPress) {
+        carousel.classList.add("dragging");
+        positionDiff = e.clientX - prevPageX;
+        carousel.scrollLeft = prevScrollLeft - positionDiff;
+        isPressing = true;
+    }
+}
+
+function handleMouseUp() {
+    beginPress = false;
+    carousel.classList.remove("dragging");
+    if (!isPressing) return;
+    isPressing = false;
+    swipe();
+}
+
+carousel.addEventListener("mousedown", handleMouseDown);
+carousel.addEventListener("mousemove", handleMouseMove);
+document.addEventListener("mouseup", handleMouseUp);

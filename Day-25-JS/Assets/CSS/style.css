@@ -5,24 +5,28 @@
 .container {
 	position: relative;
 	margin: 50px 50px 0px 50px;
-	aspect-ratio: 16 / 6;
 }
 
 .carousel {
+	border-radius: 15px;
 	overflow-x: hidden;
-	border-radius: 10px;
-	height: 100%;
+	aspect-ratio: 16 / 9;
+	scroll-behavior: auto;
+	scroll-behavior: smooth;
+}
+.carousel.dragging {
+	cursor: grab;
+	scroll-behavior: auto;
 }
 
 .carousel-inner {
 	white-space: nowrap;
-	width: max-content;
 	height: 100%;
 	font-size: 0;
-	transition: translate 0.4s ease;
 }
 
 .carousel-inner img {
+	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	object-position: center;
@@ -40,8 +44,8 @@
 }
 
 .carousel-btn span {
-	cursor: pointer;
 	position: absolute;
+	cursor: pointer;
 	top: 50%;
 	padding: 5px;
 	background-color: white;
@@ -52,7 +56,6 @@
 	left: 0;
 	translate: -50% -50%;
 }
-
 .carousel-btn .next {
 	right: 0;
 	translate: 50% -50%;
@@ -67,7 +70,7 @@
 
 .carousel-dots .dot {
 	display: inline-block;
-	padding: 4px;
+	padding: 5px;
 	background-color: white;
 	margin-right: 15px;
 	border-radius: 99px;
@@ -84,25 +87,47 @@
 }
 
 
-@media screen and (min-width: 300px) and (max-width: 500px) {
+.wrapper {
+	position: relative;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+.wrapper .content {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 50px;
+}
+
+@media screen and (max-width: 700px) {
 	.container {
-		position: relative;
 		margin: 20px 20px 0px 20px;
-		aspect-ratio: 16 / 9;
+	}
+
+	.carousel {
+		aspect-ratio: 1 / 1;
 	}
 
 	.carousel-btn i {
-		width:30px;
-		height:30px;
-		line-height:30px;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
 		font-size: 14px;
+	}
+	
+	.carousel-btn span {
+		padding: 3px;
 	}
 
 	.carousel-dots {
-		bottom: 10px;
-	}
+		bottom: 15px;
+	}	
 
 	.carousel-dots .dot {
 		padding: 3px;
+		margin-right: 10px;
 	}
 }
