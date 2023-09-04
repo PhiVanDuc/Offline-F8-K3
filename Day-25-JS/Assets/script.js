@@ -16,6 +16,12 @@ while (quantity < imgs.length) {
 }
 
 
+// Xây dựng chức năng tự động chạy
+let autoPlay = setInterval(function () {
+    btnNext.click();
+}, 5000);
+
+
 // Xây dựng chức năng nút bấm Next và Prev và Dots
 let showing = 0;
 let widthImg = carousel.clientWidth;
@@ -33,6 +39,11 @@ function reloadSlide() {
     let currentDotActive = carouselDots.querySelector(".active");
     currentDotActive.classList.remove("active");
     dots[showing].classList.add("active");
+
+    clearInterval(autoPlay);
+    autoPlay = setInterval(function () {
+        btnNext.click();
+    }, 5000);
 }
 
 btnNext.addEventListener("click", function () {
@@ -61,21 +72,6 @@ dots.forEach(function (element, index) {
 });
 
 
-// Xây dựng chức năng tự động chạy
-let autoPlay = setInterval(function () {
-    btnNext.click();
-}, 5000);
-
-carousel.addEventListener("mouseover", function () {
-    clearInterval(autoPlay);
-});
-carousel.addEventListener("mouseleave", function () {
-    autoPlay = setInterval(function () {
-        btnNext.click();
-    }, 5000);
-})
-
-
 // Xây dựng chức năng kéo thả
 let beginPress = false;
 let isPressing = false;
@@ -85,13 +81,14 @@ let prevPageX, prevScrollLeft, positionDiff;
 function swipe() {
     positionDiff = Math.abs(positionDiff);
 
-    if (carousel.scrollLeft >= prevScrollLeft) {
+    if (carousel.scrollLeft > prevScrollLeft) {
         if (positionDiff > transferPoint) {
             btnNext.click();
         }
         else {
             carousel.scrollLeft -= positionDiff;
         }
+        console.log("right");
     }
     else if (carousel.scrollLeft < prevScrollLeft) {
         if (positionDiff > transferPoint) {
@@ -100,6 +97,7 @@ function swipe() {
         else {
             carousel.scrollLeft += positionDiff;
         }
+        console.log("left");
     }
 }
 
@@ -107,6 +105,7 @@ function handleMouseDown(e) {
     beginPress = true;
     prevPageX = e.clientX;
     prevScrollLeft = carousel.scrollLeft;
+    clearInterval(autoPlay);
 }
 
 function handleMouseMove(e) {
@@ -121,6 +120,9 @@ function handleMouseMove(e) {
 function handleMouseUp() {
     beginPress = false;
     carousel.classList.remove("dragging");
+    autoPlay = setInterval(function () {
+        btnNext.click();
+    }, 5000);
     if (!isPressing) return;
     isPressing = false;
     swipe();
