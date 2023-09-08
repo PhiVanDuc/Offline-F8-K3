@@ -139,9 +139,9 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-top: 85px;
 }
 .header .container .header-content .heading-icon .main-heading {
-  margin-top: 85px;
   font-size: 7rem;
   max-width: 721px;
 }
@@ -393,14 +393,23 @@ li {
   }
 }
 @media screen and (max-width: 575px) {
+  .header {
+    height: 450px;
+  }
   .header .container .header-content {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   .header .container .header-content .name-icon .name-owner {
     font-size: 1.8rem;
   }
   .header .container .header-content .name-icon .bars-icon {
     font-size: 2.6rem;
+  }
+  .header .container .header-content .heading-icon {
+    margin-top: 50px;
+  }
+  .header .container .header-content .heading-icon .main-heading {
+    font-size: 3rem;
   }
 }
 main {

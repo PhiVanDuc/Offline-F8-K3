@@ -1,3 +1,4 @@
+let html = document.documentElement;
 let header = document.querySelector(".header");
 let carousel = header.querySelector(".carousel");
 let carouselOverflow = carousel.querySelector(".carousel-overflow");
@@ -45,3 +46,11 @@ listDot.forEach(function (element, index) {
         changeImg = setInterval(autoPlay, 10000);
     });
 });
+
+
+
+
+let btnDown = header.querySelector(".btn-down");
+btnDown.addEventListener("click", function () {
+    html.scrollTop = header.clientHeight + 50;
+}) 

@@ -78,9 +78,9 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
+                margin-top: 85px;
 
                 .main-heading {
-                    margin-top: 85px;
                     font-size: 7rem;
                     max-width: 721px;
                 }
@@ -420,9 +420,11 @@
 
 @media screen and (max-width: 575px) {
     .header {
+        height: 450px;
+
         .container {
             .header-content {
-                margin-bottom: 50px;
+                margin-bottom: 40px;
 
                 .name-icon {
                     .name-owner {
@@ -431,6 +433,14 @@
 
                     .bars-icon {
                         font-size: 2.6rem;
+                    }
+                }
+
+                .heading-icon {
+                    margin-top: 50px;
+
+                    .main-heading {
+                        font-size: 3rem;
                     }
                 }
             }
