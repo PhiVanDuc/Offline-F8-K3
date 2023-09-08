@@ -1,0 +1,44 @@
+.fixed-contact {
+    position: fixed;
+    left: 40px;
+    bottom: 60px;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border: 2px solid $skin;
+        border-radius: 99px;
+
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .contact-facebook {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .fixed-contact {
+        left: 20px;
+        bottom: 40px;
+
+        a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid $skin;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}

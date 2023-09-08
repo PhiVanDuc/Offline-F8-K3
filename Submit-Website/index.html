@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Submit And Save Process</title>
+        <!-- link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./Assets/CSS/grid-system.css">
+        <link rel="stylesheet" href="./Assets/CSS/styles.css">
+        <script src="./Assets/Javascript/homeJS.js" defer></script>
+    </head>
+
+    <body style="height: 10000px; scroll-behavior: smooth;">
+        <header class="header">
+            <div class="carousel">
+                <div class="overlay"></div>
+                <div class="carousel-overflow">
+                    <div class="carousel-inner">
+                        <img src="./Assets/Images/Pictures/Hero-img.jpg" alt="">
+                        <img src="./Assets/Images/Pictures/Hero-img-2.jpg" alt="">
+                        <img src="./Assets/Images/Pictures/Hero-img-4.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="header-content">
+                    <div class="name-icon">
+                        <p class="name-owner">Fullname: Phi Van Duc</p>
+                        <label for="toggle" class="bars-icon">
+                            <i class="fa-solid fa-bars-staggered"></i>
+                        </label>
+                    </div>
+                    <div class="heading-icon">
+                        <h1 class="main-heading">Where to save assignments and projects</h1>
+                        <span class="btn-down"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                <div class="dots"></div>
+            </div>
+
+            <input type="checkbox" id="toggle" class="toggle" hidden>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">Assignments</a>
+                        <ul class="subnav-list">
+                            <li class="subnav-item">
+                                <a href="#!" class="subnav-link">HTML</a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="#!" class="subnav-link">CSS - SCSS</a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="#!" class="subnav-link">Javascript</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">Projects</a>
+                        <ul class="subnav-list">
+                            <li class="subnav-item">
+                                <a href="#!" class="subnav-link">Frontend - Projects</a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="#!" class="subnav-link">Fullstack - Projects</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <label for="toggle" class="btn-cancel-navbar">Cancel</label>
+            </nav>
+            <label class="overlay-navbar" for="toggle"></label>
+        </header>
+
+        <main>
+            <div class="fixed-contact">
+                <a href="#!" class="contact-facebook">
+                    <img src="./Assets/Images/Icons/Facebook-icon.png" alt="">
+                </a>
+                <a href="#!" class="contact-zalo">
+                    <img src="./Assets/Images/Icons/Zalo-icon.png" alt="">
+                </a>
+            </div>
+
+            <nav class="anchor">
+                <div class="container">
+                    <ul class="anchor-list">
+                        <li class="anchor-item">
+                            <a href="#!" class="anchor-link">#About</a>
+                        </li>
+                        <li class="anchor-item">
+                            <a href="#!" class="anchor-link">#Assignments</a>
+                        </li>
+                        <li class="anchor-item">
+                            <a href="#!" class="anchor-link">#Projects</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </main>
+    </body>
+</html>
