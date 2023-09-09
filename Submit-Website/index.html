@@ -11,7 +11,7 @@
         <script src="./Assets/Javascript/homeJS.js" defer></script>
     </head>
 
-    <body style="height: 10000px; scroll-behavior: smooth;">
+    <body style="scroll-behavior: smooth;">
         <header class="header">
             <div class="carousel">
                 <div class="overlay"></div>
@@ -87,21 +87,69 @@
                 </a>
             </div>
 
-            <nav class="anchor">
+            <section class="general">
                 <div class="container">
-                    <ul class="anchor-list">
-                        <li class="anchor-item">
-                            <a href="#!" class="anchor-link">#About</a>
-                        </li>
-                        <li class="anchor-item">
-                            <a href="#!" class="anchor-link">#Assignments</a>
-                        </li>
-                        <li class="anchor-item">
-                            <a href="#!" class="anchor-link">#Projects</a>
-                        </li>
-                    </ul>
+                    <div class="row flexbox justify-content-center">
+                        <div class="col-lg-10 col-12">
+                            <h2 class="general-heading">
+                                Home
+                                <i class="fa-solid fa-leaf"></i>
+                            </h2>
+
+                            <div class="general-list-wrap">
+                                <div class="first-overlay"></div>
+                                <ul class="general-list">
+                                    <li class="general-item">
+                                        <img src="./Assets/Images/Pictures/Assignment-item.jpg" alt="">
+                                        <div class="border-item"></div>
+                                        <div class="overlay"></div>
+                                        <div class="general-item-wrap">
+                                            <h3 class="general-item-heading">Latest Assignment</h3>
+                                            <a href="#!" class="btn-checkout">Checkout</a>
+                                        </div>
+                                    </li>
+    
+                                    <li class="general-item">
+                                        <img src="./Assets/Images/Pictures/Project-item.jpg" alt="">
+                                        <div class="border-item"></div>
+                                        <div class="overlay"></div>
+                                        <div class="general-item-wrap">
+                                            <h3 class="general-item-heading">Latest Projects</h3>
+                                            <a href="#!" class="btn-checkout">Checkout</a>
+                                        </div>
+                                    </li>
+    
+                                    <li class="general-item">
+                                        <img src="./Assets/Images/Pictures/Github-item.jpg" alt="">
+                                        <div class="border-item"></div>
+                                        <div class="overlay"></div>
+                                        <div class="general-item-wrap">
+                                            <h3 class="general-item-heading">Github Account</h3>
+                                            <a href="#!" class="btn-checkout">Checkout</a>
+                                        </div>
+                                    </li>
+    
+                                    <li class="general-item">
+                                        <img src="./Assets/Images/Pictures/F8-item.jpg" alt="">
+                                        <div class="border-item"></div>
+                                        <div class="overlay"></div>
+                                        <div class="general-item-wrap">
+                                            <h3 class="general-item-heading">F8 - Technology education center</h3>
+                                            <a href="#!" class="btn-checkout">Checkout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="last-overlay still"></div> 
+                            </div>
+
+                            <div class="general-btn">
+                                <span class="prev-btn"><i class="fa-solid fa-chevron-left"></i></span>
+                                <span class="next-btn"><i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
+            </section>
         </main>
     </body>
 </html>

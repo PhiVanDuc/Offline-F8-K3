@@ -9,8 +9,5 @@
 @import 'Layouts/header';
 
 // Import Pages
-@import 'Pages/Home/anchor-tags';
-@import 'Pages/Home/list-about';
-@import 'Pages/Home/list-assignments';
-@import 'Pages/Home/list-projects';
-@import 'Pages/Home/fixed-components.scss';
+@import 'Pages/Home/general';
+@import 'Pages/Home/fixed-components';

@@ -50,7 +50,41 @@ listDot.forEach(function (element, index) {
 
 
 
+
 let btnDown = header.querySelector(".btn-down");
 btnDown.addEventListener("click", function () {
-    html.scrollTop = header.clientHeight + 50;
-}) 
+    html.scrollTop = header.clientHeight;
+})
+
+
+
+
+let general = document.querySelector(".general");
+let generalList = general.querySelector(".general-list");
+let prevBtn = general.querySelector(".prev-btn");
+let nextBtn = general.querySelector(".next-btn");
+
+let isDrag = false;
+generalList.addEventListener("mousedown", function () {
+    isDrag = true;
+    generalList.classList.add("dragging");
+});
+
+document.addEventListener("mousemove", function (e) {
+    if (isDrag) {
+        generalList.scrollLeft -= e.movementX;
+    }
+});
+
+document.addEventListener("mouseup", function () {
+    isDrag = false;
+    generalList.classList.remove("dragging");
+});
+
+prevBtn.addEventListener("click", function () {
+    generalList.scrollLeft -= 150;
+});
+
+nextBtn.addEventListener("click", function () {
+    generalList.scrollLeft += 150;
+});
