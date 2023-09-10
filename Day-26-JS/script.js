@@ -1,4 +1,5 @@
 // Lấy các Element
+// const html = document.documentElement;
 const progressBar = document.querySelector(".progress-bar");
 const progress = progressBar.querySelector(".progress");
 const progressSpan = progress.querySelector(".progress span");
@@ -48,10 +49,8 @@ document.addEventListener("mousemove", function (e) {
 
 document.addEventListener("mouseup", function (e) {
     isDrag = false;
-    if (e.target.matches(".progress-bar") || e.target.matches(".progress") || e.target.matches(".progress span")) {
-        if (percent) {
-            audio.currentTime = audio.duration * (percent / 100);
-        }
+    if (percent) {
+        audio.currentTime = audio.duration * (percent / 100);
     }
 });
 
