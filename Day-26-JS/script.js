@@ -3,7 +3,6 @@ const progressBar = document.querySelector(".progress-bar");
 const progress = progressBar.querySelector(".progress");
 const progressSpan = progress.querySelector(".progress span");
 const hoverTime = progressBar.querySelector(".hover-time");
-console.log(hoverTime);
 
 // Thực hiện các sự kiện
 let progressBarWidth = progressBar.clientWidth;
@@ -17,9 +16,7 @@ window.addEventListener("resize", function () {
 function handleDrag(value) {
     percent = (value / progressBarWidth) * 100;
 
-    if (percent < 0)
-        percent = 0;
-    else if (percent > 100)
+    if (percent > 100)
         percent = 100;
 
     progress.style.width = `${percent}%`;
@@ -111,6 +108,7 @@ progressBar.addEventListener("mousemove", function (e) {
     let value = (e.offsetX / progressBarWidth) * 100;
     hoverTime.style.left = value + "%";
     hoverTimeText.innerText = getTime(audio.duration * (value / 100));
+
     progressSpan.addEventListener("mousemove", function () {
         hoverTime.style.display = "";
     })
