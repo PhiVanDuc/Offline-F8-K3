@@ -1,31 +1,28 @@
 // Lấy các Element
-// const html = document.documentElement;
 const progressBar = document.querySelector(".progress-bar");
 const progress = progressBar.querySelector(".progress");
 const progressSpan = progress.querySelector(".progress span");
+const hoverTime = progressBar.querySelector(".hover-time");
+console.log(hoverTime);
 
 // Thực hiện các sự kiện
-let progressBarWidth;
+let progressBarWidth = progressBar.clientWidth;
 let isDrag = false;
 let percent;
 
-function handleDrag(value) {
+window.addEventListener("resize", function () {
     progressBarWidth = progressBar.clientWidth;
+})
+
+function handleDrag(value) {
     percent = (value / progressBarWidth) * 100;
+
     if (percent < 0)
         percent = 0;
     else if (percent > 100)
         percent = 100;
 
     progress.style.width = `${percent}%`;
-}
-
-function debounce(func, delay) {
-    let timeoutId;
-    return function () {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(func, delay);
-    };
 }
 
 progressBar.addEventListener("mousedown", function (e) {
@@ -47,11 +44,11 @@ document.addEventListener("mousemove", function (e) {
     }
 });
 
-document.addEventListener("mouseup", function (e) {
-    isDrag = false;
-    if (percent) {
+document.addEventListener("mouseup", function () {
+    if (isDrag && percent) {
         audio.currentTime = audio.duration * (percent / 100);
     }
+    isDrag = false;
 });
 
 // Phát nhạc
@@ -94,4 +91,27 @@ audio.addEventListener("timeupdate", function (e) {
         audio.currentTime = 0;
         audio.play();
     }
+});
+
+// Hiện thời gian khi hover vào progress-bar
+progressBar.addEventListener("mouseover", function () {
+    if (hoverTime.style.display === "") {
+        hoverTime.style.display = "block";
+    }
+});
+
+progressBar.addEventListener("mouseleave", function () {
+    if (hoverTime.style.display === "block") {
+        hoverTime.style.display = "";
+    }
+});
+
+const hoverTimeText = hoverTime.querySelector("p");
+progressBar.addEventListener("mousemove", function (e) {
+    let value = (e.offsetX / progressBarWidth) * 100;
+    hoverTime.style.left = value + "%";
+    hoverTimeText.innerText = getTime(audio.duration * (value / 100));
+    progressSpan.addEventListener("mousemove", function () {
+        hoverTime.style.display = "";
+    })
 });
