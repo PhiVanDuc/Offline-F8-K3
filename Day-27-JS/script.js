@@ -244,8 +244,15 @@ editBtn.addEventListener("click", function (e) {
                 localStorage.setItem("cart", JSON.stringify(arrCartProduct));
                 listInputCart = cartListTable.querySelectorAll(".input-cart");
                 i = 0;
+                if (!listInputCart.length) {
+                    localStorage.clear();
+                    arrCartProduct = [];
+                    cartListTable.innerHTML = '';
+                    editBtn.innerHTML = ``;
+                    cartListTable.previousElementSibling.style.display = "block";
+                }
             }
-            if (listInputCart[i].value > 0) {
+            else if (listInputCart[i].value > 0) {
                 arrCartProduct[i].quantity = listInputCart[i].value;
                 arrCartProduct[i].perTotal = +arrCartProduct[i].price * +listInputCart[i].value;
                 getParentElement(listInputCart[i], 1).nextElementSibling.innerHTML = arrCartProduct[i].perTotal;
@@ -253,12 +260,14 @@ editBtn.addEventListener("click", function (e) {
             }
         }
 
+
         rowCartTotal.children[1].innerText = 0;
         rowCartTotal.children[2].innerText = 0;
         for (let i = 0; i < arrCartProduct.length; i++) {
             rowCartTotal.children[1].innerText = +rowCartTotal.children[1].innerText + +arrCartProduct[i].quantity;
             rowCartTotal.children[2].innerText = +rowCartTotal.children[2].innerText + +arrCartProduct[i].perTotal;
         }
+
     }
     else if (target.classList.contains("delete-cart-btn")) {
         localStorage.clear();
