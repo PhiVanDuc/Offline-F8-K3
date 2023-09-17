@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Play Music</title>
+        <!-- Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="player">
+                <div class="play-btn">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <div class="play-inner">
+                    <span class="running-time">00:00</span>
+                    <div class="progress-bar">
+                        <div class="hover-time">
+                            <p>00:00</p>
+                        </div>
+                        <div class="progress">
+                            <span></span>
+                        </div>
+                    </div>
+                    <span class="duration-time">00:00</span>
+                </div>
+            </div>
+
+            <div class="karaoke-btn">
+                <button>Hát karaoke</button>
+            </div>
+        </div>
+
+        <div class="karaoke show">
+            <div class="karaoke-heading">
+                <h1>Karaoke</h1>
+                <a href="#!" class="close-btn"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+            <div class="karaoke-lyric">
+                <h2 class="name-song"></h1>
+                <p class="first-lyric"></p>
+                <p class="second-lyric"></p>
+            </div>
+        </div>
+
+        <script src="./JS/data.js"></script>
+        <script src="./JS/script.js" defer></script>
+    </body>
+</html>

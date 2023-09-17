@@ -1,0 +1,201 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    width: 100%;
+}
+
+.container {
+    width: 80%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.play-btn {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.play-inner {
+    display: flex;
+    align-items: center;
+}
+
+.running-time,
+.duration-time {
+    font-size: 18px;
+    user-select: none;
+}
+
+.running-time {
+    margin-right: 20px;
+}
+.duration-time {
+    margin-left: 20px;
+}
+
+.progress-bar {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    background-color: grey;
+    position: relative;
+    border-radius: 99px;
+    cursor: pointer;
+}
+
+.hover-time {
+    --hover-time-height: 40px;
+    display: none;
+    position: absolute;
+    text-align: center;
+    left: 0%;
+    top: -15px;
+    width: 50px;
+    height: var(--hover-time-height);
+    line-height: var(--hover-time-height);
+    background-color: black;
+    opacity: 0.5;
+    translate: -50% -100%;
+    user-select: none;
+}
+
+.hover-time::before {
+    content: "";
+    position: absolute;
+    border: 5px solid;
+    border-color: black transparent transparent transparent;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 100%;
+}
+
+.hover-time p {
+    color: white;
+}
+
+.progress-bar .progress {
+    position: absolute;
+    background-color: red;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    border-radius: 99px;
+}
+
+.progress-bar .progress span {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    padding: 15px;
+    background-color: blueviolet;
+    border-radius: 50%;
+    translate: 50% -50%;
+}
+
+.karaoke-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.karaoke-btn button {
+    appearance: none;
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.karaoke {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(30%);
+    width: 1200px;
+    max-width: 100%;
+    height: 300px;
+    max-height: 100%;
+    overflow: hidden;
+    margin: 100px 15px 15px 15px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 10px;
+    transition-property: opacity, visibility, transform;
+    transition: 0.8s ease;
+}
+.karaoke.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.karaoke .karaoke-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+}
+
+.karaoke .karaoke-heading h1 {
+    line-height: 0.9;
+}
+
+.karaoke .karaoke-heading .close-btn {
+    display: inline-block;
+    color: blueviolet;
+    width: 35px;
+    height: 35px;
+    border-radius: 99px;
+    background-color: white;
+    text-align: center;
+    line-height: 35px;
+    font-size: 20px;
+}
+
+.karaoke-lyric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.karaoke h2,
+.karaoke p {
+    text-align: center;
+}
+
+.karaoke .name-song {
+    font-size: 50px;
+    letter-spacing: 0.5px;
+}
+
+.karaoke p {
+    font-size: 40px;
+    font-weight: 500;
+}
+.karaoke .first-lyric {
+    margin-bottom: 15px;
+}
