@@ -32,7 +32,6 @@ function displayHoverTime(currentWidth) {
     hoverTimeText.innerText = getTime(audio.duration * (value / 100));
 }
 
-
 // Hàm lấy ra Element parent
 function getParent(element, level = 1) {
     while (level > 0) {
@@ -121,7 +120,7 @@ audio.addEventListener("timeupdate", function (e) {
 });
 
 // Hiện thời gian khi hover, di chuyển trong progressBar
-function hide() {
+function hide(e) {
     hoverTime.style.display = "";
 }
 
