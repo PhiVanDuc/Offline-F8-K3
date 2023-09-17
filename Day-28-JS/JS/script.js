@@ -121,6 +121,10 @@ audio.addEventListener("timeupdate", function (e) {
 });
 
 // Hiện thời gian khi hover, di chuyển trong progressBar
+function hide() {
+    hoverTime.style.display = "";
+}
+
 progressBar.addEventListener("mouseover", function () {
     if (hoverTime.style.display === "") {
         hoverTime.style.display = "block";
@@ -135,27 +139,29 @@ progressBar.addEventListener("mouseleave", function () {
 
 progressBar.addEventListener("mousemove", function (e) {
     displayHoverTime(e.offsetX);
+
+    progressSpan.addEventListener("mousemove", hide);
+    progressSpan.addEventListener("mouseenter", hide);
+    progressSpan.addEventListener("mouseleave", hide);
 });
 
-progressSpan.addEventListener("mousemove", function (e) {
+progress.addEventListener("mouseover", function (e) {
     displayHoverTime(e.offsetX);
 });
 
 
-
 // --------------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------------
-
 
 
 const karaokeBtn = document.querySelector(".karaoke-btn button");
 const karaoke = document.querySelector(".karaoke");
 const closeBtn = karaoke.querySelector(".close-btn");
 const karaokeLyric = karaoke.querySelector(".karaoke-lyric");
-const nameSong = karaokeLyric.querySelector("name-song");
-const firstLyric = karaokeLyric.querySelector("first-lyric");
-const secondLyric = karaokeLyric.querySelector("second-lyric");
+const nameSong = karaokeLyric.querySelector(".name-song");
+const firstLyric = karaokeLyric.querySelector(".first-lyric");
+const secondLyric = karaokeLyric.querySelector(".second-lyric");
 
 // Hiển thị và ẩn bảng lyric karaoke
 karaokeBtn.addEventListener("click", function () {
@@ -166,26 +172,14 @@ closeBtn.addEventListener("click", function () {
         karaoke.classList.remove("show");
 });
 
-// Đối tượng lyric
-// key data
-// key sentences
-// Mảng
-// Phần tử
-// Đối tượng
-// key word
-// Chứa mảng
-// Các phần tử là thời gian start, end của từng từ (Từng từ trong một đoạn lyric)
-
-
 // Lấy ra mảng chứa các đoạn lyric trong bài hát
-const sentences = lyric.data.sentences;
-let newSentences = [];
+let sentences = lyric.data.sentences;
 
-
-// Trước khi xử lý, cần ghép các từ trong một câu lại
+// Trước khi xử lý, cần ghép các từ trong một câu lại với nhau
 // Lấy beginTime và endTime của câu đó
 // Đưa cả 3 vào một object
-// Đưa object đó vào một mảng mới
+// Đưa object đó vào một mảng mới là newSentences
+let newSentences = [];
 for (let i = 0; i < sentences.length; i++) {
     let wordArray = sentences[i].words;
     let string = "";
@@ -194,16 +188,39 @@ for (let i = 0; i < sentences.length; i++) {
             string += wordArray[j].data;
             newSentences.push({
                 sentence: string,
-                beginTime: wordArray[0].startTime,
-                endTime: wordArray[wordArray.length - 1].endTime
+                beginTime: (wordArray[0].startTime / 1000),
+                endTime: (wordArray[wordArray.length - 1].endTime / 1000)
             });
             break;
         }
-        string = string + wordArray[j].data + " ";
+        string += wordArray[j].data + " ";
     }
 }
 
-
-// Giờ chúng ta làm việc với mảng mới
-// Đó là mảng newSentences -> Giải phóng mảng cũ
+// Giờ chúng ta làm việc với mảng newSentences
+// Giải phóng mảng sentences
+// Bắt đầu phát nhạc (Sự kiện timeupdate)
+// Kiểm tra thời gian nằm trong khoảng từ bắt đầu đến kết thúc thì hiển thị
 sentences = [];
+console.log(newSentences);
+audio.addEventListener("timeupdate", function () {
+    let runningTime = audio.currentTime;
+    let tempArr = [];
+    for (let i = 0; i < newSentences.length; i += 2) {
+        if (runningTime >= newSentences[i].beginTime && runningTime <= newSentences[i + 1].endTime) {
+            tempArr.push(newSentences[i]);
+            tempArr.push(newSentences[i + 1]);
+        }
+    }
+
+    if (tempArr.length > 0) {
+        nameSong.innerHTML = ``;
+        firstLyric.innerText = tempArr[0].sentence;
+        secondLyric.innerText = tempArr[1].sentence;
+    }
+    else {
+        firstLyric.innerText = "";
+        secondLyric.innerText = "";
+        nameSong.innerHTML = `Thay Doi<br>Ca sĩ: Thịnh Suy`;
+    }
+});

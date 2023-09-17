@@ -124,7 +124,8 @@ body {
 }
 
 .karaoke {
-    position: relative;
+    position: fixed;
+    bottom: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -136,17 +137,18 @@ body {
     height: 300px;
     max-height: 100%;
     overflow: hidden;
-    margin: 100px 15px 15px 15px;
     background-color: blueviolet;
     color: white;
     border-radius: 10px;
     transition-property: opacity, visibility, transform;
     transition: 0.8s ease;
+    z-index: -9999;
 }
 .karaoke.show {
     visibility: visible;
     opacity: 1;
     transform: translateY(0%);
+    z-index: 9999;
 }
 
 .karaoke .karaoke-heading {
