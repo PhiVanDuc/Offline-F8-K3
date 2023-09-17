@@ -3,23 +3,34 @@ const progressBar = document.querySelector(".progress-bar");
 const progress = progressBar.querySelector(".progress");
 const progressSpan = progress.querySelector(".progress span");
 const hoverTime = progressBar.querySelector(".hover-time");
+const hoverTimeText = hoverTime.querySelector("p");
 
 // Thực hiện các sự kiện
 let progressBarWidth = progressBar.clientWidth;
 let isDrag = false;
 let percent;
 
+
 window.addEventListener("resize", function () {
     progressBarWidth = progressBar.clientWidth;
 })
 
+// Hàm cập nhật độ dài của thanh progress (thanh màu đỏ) tính theo %
 function handleDrag(value) {
     percent = (value / progressBarWidth) * 100;
-
     if (percent > 100)
         percent = 100;
-
+    if (percent < 0)
+        percent = 0;
     progress.style.width = `${percent}%`;
+}
+
+// Hàm để cập nhật lại left, thời gian của box khi hover, move bên trong thanh progressBar
+function displayHoverTime(currentWidth) {
+    let value;
+    value = (currentWidth / progressBarWidth) * 100;
+    hoverTime.style.left = value + "%";
+    hoverTimeText.innerText = getTime(audio.duration * (value / 100));
 }
 
 progressBar.addEventListener("mousedown", function (e) {
@@ -38,17 +49,23 @@ document.addEventListener("mousemove", function (e) {
     if (isDrag) {
         let moving = e.clientX - progressBar.offsetLeft;
         handleDrag(moving);
+        if (moving >= 0 && moving <= progressBarWidth) {
+            hoverTime.style.display = "block";
+            displayHoverTime(moving);
+        }
+        else
+            hoverTime.style.display = "none";
     }
 });
 
 document.addEventListener("mouseup", function () {
-    if (isDrag && percent) {
+    if (isDrag && (percent || percent === 0)) {
         audio.currentTime = audio.duration * (percent / 100);
     }
     isDrag = false;
 });
 
-// Phát nhạc
+// Bắt đầu phát nhạc
 const playBtn = document.querySelector(".play-btn");
 const runningTime = progressBar.previousElementSibling;
 const durationTime = progressBar.nextElementSibling;
@@ -83,10 +100,11 @@ audio.addEventListener("timeupdate", function (e) {
         progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
     }
 
-    if (progress.style.width === "100%") {
-        progress.style.width = "0%";
+    if (audio.currentTime === audio.duration) {
+        progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
         audio.currentTime = 0;
-        audio.play();
+        playBtn.innerHTML = playIcon;
+        audio.pause();
     }
 });
 
@@ -103,11 +121,8 @@ progressBar.addEventListener("mouseleave", function () {
     }
 });
 
-const hoverTimeText = hoverTime.querySelector("p");
 progressBar.addEventListener("mousemove", function (e) {
-    let value = (e.offsetX / progressBarWidth) * 100;
-    hoverTime.style.left = value + "%";
-    hoverTimeText.innerText = getTime(audio.duration * (value / 100));
+    displayHoverTime(e.offsetX);
 
     progressSpan.addEventListener("mousemove", function () {
         hoverTime.style.display = "";
