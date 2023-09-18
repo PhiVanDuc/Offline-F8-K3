@@ -120,33 +120,32 @@ audio.addEventListener("timeupdate", function (e) {
 });
 
 // Hiện thời gian khi hover, di chuyển trong progressBar
-function hide(e) {
-    hoverTime.style.display = "";
+
+function hide() {
+    hoverTime.style.display = "none";
 }
 
 progressBar.addEventListener("mouseover", function () {
-    if (hoverTime.style.display === "") {
-        hoverTime.style.display = "block";
-    }
-});
-
-progressBar.addEventListener("mouseleave", function () {
-    if (hoverTime.style.display === "block") {
-        hoverTime.style.display = "";
-    }
+    hoverTime.style.display = "block";
 });
 
 progressBar.addEventListener("mousemove", function (e) {
     displayHoverTime(e.offsetX);
 
-    progressSpan.addEventListener("mousemove", hide);
+    progressSpan.addEventListener("mouseover", hide);
     progressSpan.addEventListener("mouseenter", hide);
+    progressSpan.addEventListener("mousemove", hide);
     progressSpan.addEventListener("mouseleave", hide);
+});
+
+progressBar.addEventListener("mouseleave", function () {
+    hoverTime.style.display = "none";
 });
 
 progress.addEventListener("mouseover", function (e) {
     displayHoverTime(e.offsetX);
 });
+
 
 
 // --------------------------------------------------------------------------------------------------------------------------
@@ -201,21 +200,27 @@ for (let i = 0; i < sentences.length; i++) {
 // Bắt đầu phát nhạc (Sự kiện timeupdate)
 // Kiểm tra thời gian nằm trong khoảng từ bắt đầu đến kết thúc thì hiển thị
 sentences = [];
-console.log(newSentences);
 audio.addEventListener("timeupdate", function () {
     let runningTime = audio.currentTime;
     let tempArr = [];
     for (let i = 0; i < newSentences.length; i += 2) {
-        if (runningTime >= newSentences[i].beginTime && runningTime <= newSentences[i + 1].endTime) {
-            tempArr.push(newSentences[i]);
-            tempArr.push(newSentences[i + 1]);
+        if (newSentences[i + 1]) {
+            if (audio.currentTime >= newSentences[i].beginTime && audio.currentTime <= newSentences[i + 1].endTime)
+                tempArr.push(newSentences[i].sentence, newSentences[i + 1].sentence);
+        }
+        else if (!newSentences[i + 1]) {
+            if (audio.currentTime >= newSentences[i].beginTime && audio.currentTime <= newSentences[i].endTime)
+                tempArr.push(newSentences[i].sentence);
         }
     }
 
     if (tempArr.length > 0) {
         nameSong.innerHTML = ``;
-        firstLyric.innerText = tempArr[0].sentence;
-        secondLyric.innerText = tempArr[1].sentence;
+        firstLyric.innerText = tempArr[0];
+        if (tempArr[1])
+            secondLyric.innerText = tempArr[1];
+        else
+            secondLyric.innerText = "";
     }
     else {
         firstLyric.innerText = "";
@@ -223,3 +228,4 @@ audio.addEventListener("timeupdate", function () {
         nameSong.innerHTML = `Thay Doi<br>Ca sĩ: Thịnh Suy`;
     }
 });
+console.log(newSentences);
