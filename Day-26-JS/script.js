@@ -10,7 +10,6 @@ let progressBarWidth = progressBar.clientWidth;
 let isDrag = false;
 let percent;
 
-
 window.addEventListener("resize", function () {
     progressBarWidth = progressBar.clientWidth;
 })

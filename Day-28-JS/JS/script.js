@@ -205,11 +205,11 @@ audio.addEventListener("timeupdate", function () {
     let tempArr = [];
     for (let i = 0; i < newSentences.length; i += 2) {
         if (newSentences[i + 1]) {
-            if (audio.currentTime >= newSentences[i].beginTime && audio.currentTime <= newSentences[i + 1].endTime)
+            if (runningTime >= newSentences[i].beginTime && runningTime <= newSentences[i + 1].endTime)
                 tempArr.push(newSentences[i].sentence, newSentences[i + 1].sentence);
         }
         else if (!newSentences[i + 1]) {
-            if (audio.currentTime >= newSentences[i].beginTime && audio.currentTime <= newSentences[i].endTime)
+            if (runningTime >= newSentences[i].beginTime && runningTime <= newSentences[i].endTime)
                 tempArr.push(newSentences[i].sentence);
         }
     }
@@ -228,4 +228,3 @@ audio.addEventListener("timeupdate", function () {
         nameSong.innerHTML = `Thay Doi<br>Ca sĩ: Thịnh Suy`;
     }
 });
-console.log(newSentences);
