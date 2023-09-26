@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #03bdf0;
+    color: white;
+}
+
+h2 {
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.time-count {
+    width: 55px;
+    height: 55px;
+    background-color: #ff9100;
+    text-align: center;
+    line-height: 55px;
+    border-radius: 99px;
+    margin-bottom: 25px;
+}
+
+.time-count span,
+.btn-get-link {
+    font-family: system-ui, sans-serif;
+}
+
+.time-count span {
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+}
+
+.btn-get-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 12px 24px;
+    border: 1px solid white;
+    border-radius: 99px;
+    background-color: rgb(185, 185, 185);
+    cursor: no-drop;
+    transition: background-color 0.4s linear;
+}
