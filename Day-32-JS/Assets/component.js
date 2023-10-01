@@ -12,15 +12,12 @@ function render(content, element) {
 
 class F8 {
     constructor() { }
-
     static component(name, object) {
         customElements.define(name, class extends HTMLElement {
             constructor() { super(); }
 
             connectedCallback() {
-                if (name === "header-component") {
-                    render(object.template, headerComponent);
-                }
+                if (name === "header-component") render(object.template, headerComponent);
                 else if (name === "counter-app") {
                     Object.keys(object).forEach((key) => {
                         window[key] = object[key];
@@ -37,19 +34,22 @@ class F8 {
                     render(objectTemplate, counterApp);
 
                     let btns = counterApp.querySelectorAll("button");
-                    counterApp.addEventListener("click", function (event) {
-                        const btn = event.target;
-                        if (btn.innerText === "-" || btn.innerText === "+") {
-                            if (btn.innerText === "-") {
-                                --objectData["count"];
+                    btns.forEach((btn) => {
+                        btn.addEventListener("click", function () {
+                            if (btn.innerText === '-' || btn.innerText === '+') {
+                                if (btn.innerText === '-') --objectData["count"];
+                                else ++objectData["count"];
+                                counterApp.querySelector("h2").innerText = `Đã đếm: ${objectData["count"]} lần`;
                             }
-                            else if (btn.innerText === "+") {
-                                ++objectData["count"];
-                            }
-                            objectTemplate = objectTemplate.replace(/(?<=\s)-?\d+(?=\s)/g, objectData["count"]);
-                            render(objectTemplate, counterApp);
-                            btns = counterApp.querySelectorAll("button");
-                        }
+                        });
+                    });
+
+                    btns[btns.length - 1].addEventListener("dblclick", function () {
+                        const elementTitle = counterApp.querySelector("h1")
+                        elementTitle.classList.toggle("change");
+                        if (elementTitle.classList.contains("change")) objectData["title"] = "Title changed";
+                        else objectData["title"] = "Counter App";
+                        elementTitle.innerText = objectData["title"];
                     });
                 }
             }

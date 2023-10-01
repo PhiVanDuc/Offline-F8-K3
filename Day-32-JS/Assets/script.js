@@ -10,5 +10,6 @@ F8.component("counter-app", {
         <h2>Đã đếm: {{ count }} lần</h2>
         <button>-</button>
         <button>+</button>
+        <button>double click to change title</button>
     `,
 });
