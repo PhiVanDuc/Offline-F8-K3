@@ -4,11 +4,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Voice search</title>
+
+        <style>
+            body {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .speech-btn {
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .in-process {
+                display: none;
+                border: 1px solid green;
+                border-radius: 10px;
+                padding: 15px 0px;
+                margin: 0px 100px;
+            }
+        </style>
     </head>
 
     <body>
         <h1>Bạn muốn làm gì? Hãy nói cho F8 biết</h1>
         <button type="button" class="speech-btn">Bấm vào đây để nói</button>
+        <p class="state"></p>
+        <p class="in-process"></p>
         <script src="./script.js"></script>
     </body>
 </html>
