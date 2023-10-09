@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    font-size: 1.6rem;
+}
+
+button {
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.todos-app {
+    width: 736px;
+    max-width: 100%;
+}
+
+.todos-app > .heading {
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.todos-app > .heading > span {
+    background-image: linear-gradient(to right,#60a5fa, #059669);
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text; 
+}
+
+.todos-app > .form-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+input {
+    width: 84%;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.7rem;
+    color: rgb(88, 88, 88);
+}
+
+input::placeholder {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.7rem;
+    color: rgb(133, 133, 133);
+}
+
+.form-search > .input-search:focus {
+    border-color: rgb(71, 141, 217);
+}
+
+.form-search > .add-todos-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 10px 15px;
+    background-color: rgb(4 120 87);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    min-width: 108.14px;
+}
+
+.todos-app .task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn{
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.todos-app .task .delete-btn{
+    background-color: #BE123C;
+}
+.todos-app .task .edit-btn {
+    background-color: #1D4ED8;
+}
+.todos-app .task .complete-btn {
+    background-color: #9CA3AF;
+}
+.todos-app .task.completed .complete-btn {
+    background-color: rgb(4, 120, 87);
+}
+
+.complete-btn > svg,
+.edit-btn > svg,
+.delete-btn > svg {
+    width: 18px;
+    height: 18px;
+}
+
+.completed-task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: white;
+    background-color: #9CA3AF;
+    margin-bottom: 10px;
+    min-width: 196.719px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s linear;
+}
+
+.completed-task-btn svg {
+    width: 16px;
+    height: 16px;
+    transform: rotate(-90deg);
+    transition: all 0.3s linear;
+}
+
+.completed-task-btn.checked {
+    background-color: #047857;
+}
+.completed-task-btn.checked svg {
+    transform: rotate(0deg);
+}
+.completed-task-btn.checked:focus {
+    outline: 4px solid #27b28a7b;
+}
+
+.list-completed-tasks {
+    display: none;
+}
+
+.form-save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+}
+
+.form-save .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.form-save .box {
+    position: relative;
+    width: 448px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.form-save .box > .wrap-input {
+    padding: 24px;
+}
+
+.form-save .box .input-save {
+    width: 100%;
+}
+
+.form-save .box .group-btn {
+    text-align: center;
+    padding: 16px;
+    border-top: 1px solid #ccc;
+}
+
+.form-save .box .group-btn .cancel-btn,
+.form-save .box .group-btn .save-btn {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+.form-save .box .group-btn .save-btn {
+    background-color: #059669;
+    margin-right: 30px;
+}
+
+.form-save .box .group-btn .cancel-btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #9e9e9e;
+}
