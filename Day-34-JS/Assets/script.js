@@ -150,7 +150,11 @@ async function deleteTaskInfo(id, taskBar) {
         const response = await fetch(`${serverApi}/tasks/${id}`, {
             method: "DELETE",
         });
+
         taskBar.remove();
+        if (taskBar.classList.contains("completed")) {
+            quantityCompletedTasks.innerText = listCompletedTasks.childElementCount;
+        }
     }
     catch (e) {
         alert(e);
@@ -256,38 +260,3 @@ todosApp.addEventListener("click", function (infoEvent) {
         taskBar = undefined;
     }
 });
-
-
-// if (target.classList.contains("delete-btn")) {
-//     const idTask = taskBar.dataset.index;
-//     deleteTaskInfo(idTask, taskBar);
-// }
-// else if (target.classList.contains("complete-btn")) {
-//     if (!taskBar.classList.contains("completed")) {
-//         const idTask = taskBar.dataset.index;
-//         updateTaskCompleted(idTask, {
-//             completed: true,
-//         }, taskBar);
-//     }
-//     else if (taskBar.classList.contains("completed")) {
-//         const idTask = taskBar.dataset.index;
-//         updateTaskCompleted(idTask, {
-//             completed: false,
-//         }, taskBar);
-//     }
-// }
-// else if (target.classList.contains("edit-btn")) {
-//     renderFormSave();
-//     console.log(taskBar);
-//     // inputSave.value = taskBar.querySelector(".name-task").innerText;
-//     // formSave.querySelectorAll("button").forEach((button) => {
-//     //     button.addEventListener("click", function () {
-//     //         if (button.classList.contains("cancel-btn")) todosApp.lastElementChild.remove();
-//     //         else if (button.classList.contains("save-btn")) {
-//     //             const idTask = taskBar.dataset.index;
-//     //             updateTaskName(idTask, { nameTask: inputSave.value }, taskBar, inputSave);
-//     //             todosApp.lastElementChild.remove();
-//     //         }
-//     //     });
-//     // });
-// }
