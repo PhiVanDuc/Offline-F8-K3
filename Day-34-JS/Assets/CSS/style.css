@@ -30,20 +30,20 @@ button {
     max-width: 100%;
 }
 
-.todos-app > .heading {
+.todos-app>.heading {
     font-size: 3.6rem;
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
 }
 
-.todos-app > .heading > span {
-    background-image: linear-gradient(to right,#60a5fa, #059669);
-    -webkit-text-fill-color: transparent; 
-    -webkit-background-clip: text; 
+.todos-app>.heading>span {
+    background-image: linear-gradient(to right, #60a5fa, #059669);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
-.todos-app > .form-search {
+.todos-app>.form-search {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,11 +68,11 @@ input::placeholder {
     color: rgb(133, 133, 133);
 }
 
-.form-search > .input-search:focus {
+.form-search>.input-search:focus {
     border-color: rgb(71, 141, 217);
 }
 
-.form-search > .add-todos-btn {
+.form-search>.add-todos-btn {
     font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
     font-weight: 500;
@@ -92,37 +92,41 @@ input::placeholder {
     justify-content: space-between;
     padding: 16px;
     border-radius: 5px;
-    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
-    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
     margin-bottom: 10px;
 }
 
 .complete-btn,
 .edit-btn,
-.delete-btn{
+.delete-btn {
     padding: 8px 10px;
     border-radius: 5px;
 }
 
-.todos-app .task .delete-btn{
+.todos-app .task .delete-btn {
     background-color: #BE123C;
 }
+
 .todos-app .task .edit-btn {
     background-color: #1D4ED8;
 }
+
 .todos-app .task .complete-btn {
     background-color: #9CA3AF;
 }
+
 .todos-app .task.completed .complete-btn {
     background-color: rgb(4, 120, 87);
 }
 
-.complete-btn > svg,
-.edit-btn > svg,
-.delete-btn > svg {
+.complete-btn>i,
+.edit-btn>i,
+.delete-btn>i {
     width: 18px;
     height: 18px;
+    color: white;
 }
 
 .completed-task-btn {
@@ -151,9 +155,11 @@ input::placeholder {
 .completed-task-btn.checked {
     background-color: #047857;
 }
+
 .completed-task-btn.checked svg {
     transform: rotate(0deg);
 }
+
 .completed-task-btn.checked:focus {
     outline: 4px solid #27b28a7b;
 }
@@ -184,7 +190,7 @@ input::placeholder {
     border-radius: 8px;
 }
 
-.form-save .box > .wrap-input {
+.form-save .box>.wrap-input {
     padding: 24px;
 }
 
