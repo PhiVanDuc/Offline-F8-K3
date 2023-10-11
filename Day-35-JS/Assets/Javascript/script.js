@@ -1,7 +1,6 @@
 import { fetchApi } from "../Modules/fetch.js";
 
-let page = 1;
-let limit = 4;
+let limit = 8;
 const rowElement = document.querySelector(".news > .row");
 
 function render(news) {
@@ -28,27 +27,19 @@ function updateNews() {
         const queryString = new URLSearchParams(query).toString();
         const { data: news } = await fetchApi.get('/paginate?' + queryString);
         render(news);
-        page++;
-
-        if (news.length === 0) {
-            page = 1;
-            getNews({
-                _page: page,
-                _limit: limit,
-            });
-        }
 
         document.querySelector("#loader").style.display = "none";
         if (rowElement.querySelector(".load")) rowElement.querySelector(".load").remove();
     }
     getNews({
-        _page: page,
+        _page: 1,
         _limit: limit,
     });
 }
 updateNews();
 
-window.addEventListener("scrollend", function () {
+
+window.addEventListener("scroll", function () {
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         const load = document.createElement("p");
         load.classList.add("load");
