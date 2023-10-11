@@ -53,6 +53,7 @@ window.addEventListener("scrollend", function () {
         const load = document.createElement("p");
         load.classList.add("load");
         load.innerHTML = "Loading...";
+        load.style.fontSize = "17px";
         rowElement.appendChild(load);
         updateNews();
     }
