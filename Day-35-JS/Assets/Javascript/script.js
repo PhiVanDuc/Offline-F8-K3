@@ -1,7 +1,8 @@
 import { fetchApi } from "../Modules/fetch.js";
-
-let limit = 8;
 const rowElement = document.querySelector(".news > .row");
+const loadingFooter = document.querySelector(".loading-footer");
+let isLoading = false;
+loadingFooter.style.display = "none";
 
 function render(news) {
     const stripHtml = (html) => html.replace(/<([^>]+)>/gi, "");
@@ -21,31 +22,30 @@ function render(news) {
     rowElement.innerHTML += newsHtml;
 }
 
-
 function updateNews() {
+    if (isLoading) return;
+
     const getNews = async function (query = {}) {
         const queryString = new URLSearchParams(query).toString();
         const { data: news } = await fetchApi.get('/paginate?' + queryString);
+        isLoading = false;
         render(news);
 
         document.querySelector("#loader").style.display = "none";
-        if (rowElement.querySelector(".load")) rowElement.querySelector(".load").remove();
     }
     getNews({
         _page: 1,
-        _limit: limit,
+        _limit: 8,
     });
 }
 updateNews();
 
 
+
 window.addEventListener("scroll", function () {
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        const load = document.createElement("p");
-        load.classList.add("load");
-        load.innerHTML = "Loading...";
-        load.style.fontSize = "17px";
-        rowElement.appendChild(load);
+        loadingFooter.style.display = "block";
         updateNews();
+        isLoading = true;
     }
 });
