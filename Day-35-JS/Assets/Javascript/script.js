@@ -1,8 +1,8 @@
 import { fetchApi } from "../Modules/fetch.js";
 const rowElement = document.querySelector(".news > .row");
 const loadingFooter = document.querySelector(".loading-footer");
-let isLoading = false;
 loadingFooter.style.display = "none";
+let isLoading = false;
 
 function render(news) {
     const stripHtml = (html) => html.replace(/<([^>]+)>/gi, "");
@@ -24,6 +24,7 @@ function render(news) {
 
 function updateNews() {
     if (isLoading) return;
+    isLoading = true;
 
     const getNews = async function (query = {}) {
         const queryString = new URLSearchParams(query).toString();
@@ -40,12 +41,9 @@ function updateNews() {
 }
 updateNews();
 
-
-
 window.addEventListener("scroll", function () {
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         loadingFooter.style.display = "block";
         updateNews();
-        isLoading = true;
     }
 });
