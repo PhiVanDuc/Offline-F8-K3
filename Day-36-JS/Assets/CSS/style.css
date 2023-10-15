@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-family: system-ui, sans-serif;
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+/* quizizz */
+.quizizz {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../Image/neom-t3dlLOhdEzs-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+    position: fixed;
+    background-color: rgba(24, 25, 27, 0.2);
+    inset: 0;
+    z-index: 1;
+}
+
+.btn-start {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+}
+
+.btn-start button {
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 20px 50px;
+    cursor: pointer;
+}
+
+.countdown {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+}
+
+.countdown .background-countdown {
+    width: 100%;
+    background-color: rgb(9, 9, 9);
+    text-align: center;
+}
+
+.countdown span {
+    display: inline-block;
+    font-size: 2.8rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: white;
+    padding: 15px 0px;
+    transform: scale(0);
+    transition: transform 0.5s linear;
+}
+
+/* Container */
+
+.container {
+    position: relative;
+    z-index: 3;
+    transform: translateX(-110%);
+    padding-top: 5px;
+    margin: 0px 20px;
+    transition: transform 0.5s linear;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    border-radius: 99px;
+    background-color: rgb(74, 63, 55);
+    margin-bottom: 5px;
+}
+
+.progress-bar .progress {
+    width: 100%;
+    height: 100%;
+    border-radius: 99px;
+    background-color: rgb(220, 141, 56);
+}
+
+.calc-point {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calc-point .number-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(140, 140, 140);
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.calc-point .number-question p {
+    color: white;
+    line-height: 1;
+}
+
+.calc-point .number-question p span:first-child {
+    font-size: 1.8rem;
+}
+
+.calc-point .strike-bar {
+    position: relative;
+    width: 300px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    color: white;
+}
+
+.calc-point .strike-bar .strike {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.calc-point .strike-bar .strike-progress {
+    width: 0%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgb(238, 183, 81);
+}
+
+
+.calc-point .strike-bar .strike-line-left,
+.calc-point .strike-bar .strike-line-right {
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    translate: -50% -50%;
+    width: 2px;
+    height: 50%;
+    border-radius: 99px;
+}
+
+.calc-point .strike-bar .strike-line-left {
+    left: calc(100% / 3);
+}
+.calc-point .strike-bar .strike-line-right {
+    left: calc((100% / 3)*2);
+}
+
+.question .heading-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.question .heading-question h2 {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.question .heading-question p {
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+.question .answers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.question .answers .answer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 24%;
+    height: 350px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s linear;
+    padding: 0px 10px;
+}
+
+.question .answers .answer:hover {
+    background-color: rgba(24, 160, 190, 0.5);
+}
+
+.result {
+    display: none;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 2rem;
+    color: white;
+    font-weight: 500;
+}
+
+.result.correct {
+    background-color: #14A44D;
+}
+
+.result.incorrect {
+    background-color: #DC4C64;
+}
