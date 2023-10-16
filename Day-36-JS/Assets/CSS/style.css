@@ -105,7 +105,13 @@ body {
 .calc-point {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
+}
+
+.calc-point .wrap {
+    display: flex;
+    align-items: center;
 }
 
 .calc-point .number-question {
@@ -150,6 +156,7 @@ body {
     height: 100%;
     border-radius: 5px;
     background-color: rgb(238, 183, 81);
+    transition: width 0.4s linear;
 }
 
 
@@ -171,6 +178,15 @@ body {
     left: calc((100% / 3)*2);
 }
 
+.calc-point .total-point {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    background-color: rgb(140, 140, 140);
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
 .question .heading-question {
     display: flex;
     align-items: center;
@@ -178,7 +194,7 @@ body {
     flex-direction: column;
     height: 400px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     margin-bottom: 20px;
 }
@@ -201,6 +217,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .question .answers .answer {
@@ -211,7 +228,7 @@ body {
     width: 24%;
     height: 350px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s linear;
@@ -239,4 +256,99 @@ body {
 
 .result.incorrect {
     background-color: #DC4C64;
+}
+
+/* statistical */
+.statistical {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    max-width: 100%;
+    height: 100%;
+    margin: 0px auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 3;
+    padding: 0px 15px;
+    color: white;
+    text-align: center;
+}
+
+.statistical .accuracy {
+    width: 100%;
+    padding: 35px 15px;
+    border-radius: 10px;
+    background-color: rgb(0,0,0);
+    margin-bottom: 20px;
+}
+
+.statistical .accuracy h4 {
+    margin-bottom: 15px;
+}
+
+.statistical .accuracy-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 99px;
+    background-color: #DC4C64;
+}
+
+.statistical .accuracy-bar .percent-correct {
+    position: relative;
+    width: 0%;
+    height: 100%;
+    border-radius: 99px;
+    background-color: #14A44D;
+}
+
+.statistical .accuracy-bar .percent-correct .percent {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+}
+
+.statistical .info {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    margin-bottom: 15px;
+}
+
+.statistical .info .box {
+    width: 48%;
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px 0px;
+}
+
+.statistical .info .box p {
+    color: rgb(197, 197, 197);
+    font-weight: 500;
+}
+
+.statistical .info .box .number {
+    color: white;
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+}
+
+.btn-play-again {
+    font-family: system-ui, sans-serif;
+    width: 100%;
+    padding: 15px;
+    font-size: 2rem;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background-color: rgb(136,84,192);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
