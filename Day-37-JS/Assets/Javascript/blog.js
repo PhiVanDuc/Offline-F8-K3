@@ -3,6 +3,7 @@ import { requestRefresh } from "./token.js";
 
 
 const root = document.querySelector(".root");
+let pages = 1;
 
 
 const blog = {
@@ -68,7 +69,9 @@ const blog = {
 
             this.getProfile();
             this.eventLogout();
-            this.getBlogs();
+            this.getBlogs(pages);
+            this.addBlog();
+            this.loadMoreBlogs();
         }
     },
 
@@ -268,9 +271,17 @@ const blog = {
         const { data, response } = await client.get("/users/profile");
         if (response.ok) {
             profileName.innerText = data.data.name;
-
         }
-        else return;
+        else {
+            const newToken = requestRefresh(refreshToken);
+            if (newToken) {
+                localStorage.setItem("login_tokens", JSON.stringify(newToken));
+                // this.render();
+            }
+            else {
+                this.handleLogout();
+            }
+        }
     },
 
     eventLogout: function () {
@@ -286,9 +297,8 @@ const blog = {
         this.render();
     },
 
-    getBlogs: async function () {
-        const { data: blogs, response } = await client.get("/blogs");
-        console.log(blogs);
+    getBlogs: async function (pages) {
+        const { data: blogs, response } = await client.get(`/blogs?page=${pages}`);
 
         if (response.ok) {
             const posts = root.querySelector(".posts");
@@ -296,33 +306,86 @@ const blog = {
                 return blog;
             });
 
-            console.log(listBlog);
-
             listBlog.forEach((blog) => {
-                const dateAndTime = blog.timeUp;
-                const date = dateAndTime.slice(0, 10);
-                const time = dateAndTime.slice(11, 19);
+                const { date, time } = this.handleTime(blog.timeUp);
 
                 posts.innerHTML += `
-                <div class="post-block">
-                    <div class="post-content-wrap">
-                        <p class="username">User: <span>${blog.userId.name}</span></p>
-                        <h4 class="post-block-title">Title: ${blog.title}</h4>
-                        <p class="post-block-content">Content: ${blog.content}</p>
-                    </div>
+                    <div class="post-block">
+                        <div class="post-content-wrap">
+                            <p class="username">User: <span>${blog.userId.name}</span></p>
+                            <h4 class="post-block-title">Title: ${blog.title}</h4>
+                            <p class="post-block-content">Content: ${blog.content}</p>
+                        </div>
 
-                    <div class="post-time-wrap">
-                        <p class="post-date">${date}</p>
-                        <p class="post-time">${time}</p>
-                        <p></p>
+                        <div class="post-time-wrap">
+                            <p class="post-date">${date}</p>
+                            <p class="post-time">${time}</p>
+                            <p></p>
+                        </div>
                     </div>
-                </div>
-                `;
+                    `;
             });
         }
         else {
             console.log("=(");
         }
+    },
+
+    addBlog: function () {
+        const formPost = root.querySelector(".form-post");
+
+        const stripHtml = (html) => html.replace(/<([^>]+)>/gi, "");
+        formPost.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const titleElement = formPost.querySelector(".input-title");
+            const contentElement = formPost.querySelector(".textarea-content");
+            const posts = root.querySelector(".posts");
+
+            const { data, response } = await client.post("/blogs", {
+                title: stripHtml(titleElement.value),
+                content: stripHtml(contentElement.value),
+            });
+            console.log(data);
+
+            if (response.ok) {
+                const { date, time } = this.handleTime(data.data.timeUp);
+
+                const postBlock = document.createElement("div");
+                postBlock.classList.add("post-block");
+                postBlock.innerHTML = `
+                <div class="post-content-wrap">
+                    <p class="username">User: <span>${data.data.userId.name}</span></p>
+                    <h4 class="post-block-title">Title: ${data.data.title}</h4>
+                    <p class="post-block-content">Content: ${data.data.content}</p>
+                </div>
+
+                <div class="post-time-wrap">
+                    <p class="post-date">${date}</p>
+                    <p class="post-time">${time}</p>
+                    <p></p>
+                </div>
+                `;
+
+                posts.prepend(postBlock);
+            }
+        });
+    },
+
+    handleTime: function (string) {
+        const dateAndTime = string;
+        const date = dateAndTime.slice(0, 10);
+        const time = dateAndTime.slice(11, 19);
+
+        return { date, time };
+    },
+
+    loadMoreBlogs: function () {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+                this.getBlogs(pages);
+                ++pages;
+            }
+        });
     },
 
     addLoading: function (btnElement) {

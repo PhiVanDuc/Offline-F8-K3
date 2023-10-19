@@ -28,3 +28,10 @@
     padding-bottom: 0;
     margin-bottom: 0;
 }
+
+.post-date,
+.post-time {
+    width: 140px;
+    max-width: 100%;
+    text-align: right;
+}
