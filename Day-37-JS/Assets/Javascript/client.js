@@ -1,14 +1,13 @@
 import { config } from "./config.js";
 
-
 const { SERVER_API } = config;
 
 
 export const client = {
     token: null,
 
-    setToken: function (token) {
-        this.token = token;
+    setToken: function (tk) {
+        this.token = tk;
     },
 
     send: async function (url, method = "GET", body = null) {

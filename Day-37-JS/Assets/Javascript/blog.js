@@ -41,11 +41,34 @@ const blog = {
                     <li>Chào bạn: <b class="name">Unknown Person</b></li>
                     <li><a href="#!" class="logout">Đăng xuất</a></li>
                 </ul>
+
+                <form class="form-post">
+                    <h3 class="post-heading mb-3 mt-4">Đăng bài viết mới</h3>
+                    <div class="form-group mb-3">
+                        <label for="" class="label-title mb-2">Tiêu đề:</label>
+                        <input type="text" class="input-title form-control" placeholder="Title">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="" class="label-content mb-2">Nội dung:</label>
+                        <textarea class="textarea-content form-control" style="resize: none; height: 150px;" placeholder="Content"></textarea>
+                    </div>
+
+                    <div class="btn-post">
+                        <button class="btn btn-primary">Đăng bài</button>
+                    </div>
+                </form>
+
+                <hr />
+
+                <h3 class="posts-heading mb-4">Các bài viết</h3>
+                <div class="posts"></div>
             </div>
             `;
 
             this.getProfile();
             this.eventLogout();
+            this.getBlogs();
         }
     },
 
@@ -203,11 +226,13 @@ const blog = {
         const formLogin = root.querySelector(".form-login");
         const msg = root.querySelector(".msg");
 
+        const emailElement = formLogin.querySelector(".input-email");
+        const passwordElement = formLogin.querySelector(".input-password");
+        emailElement.value = "phivanduc@gmail.com";
+        passwordElement.value = "phivanduc";
+
         formLogin.addEventListener("submit", (e) => {
             e.preventDefault();
-
-            const emailElement = formLogin.querySelector(".input-email");
-            const passwordElement = formLogin.querySelector(".input-password");
             const email = emailElement.value;
             const password = passwordElement.value;
 
@@ -240,20 +265,12 @@ const blog = {
         const { accessToken, refreshToken } = loginTokens;
         client.setToken(accessToken);
 
-        const { response, data: token } = await client.get("/users/profile");
+        const { data, response } = await client.get("/users/profile");
         if (response.ok) {
-            profileName.innerText = token.data.name;
+            profileName.innerText = data.data.name;
+
         }
-        else {
-            const newAccessToken = requestRefresh(refreshToken);
-            if (!newAccessToken) {
-                this.handleLogout();
-            }
-            else {
-                localStorage.setItem("login_tokens", JSON.stringify(newToken));
-                this.render();
-            }
-        }
+        else return;
     },
 
     eventLogout: function () {
@@ -265,10 +282,46 @@ const blog = {
     },
 
     handleLogout: async function () {
-        const { response } = await client.post("/auth/logout");
+        localStorage.removeItem("login_tokens");
+        this.render();
+    },
+
+    getBlogs: async function () {
+        const { data: blogs, response } = await client.get("/blogs");
+        console.log(blogs);
+
         if (response.ok) {
-            localStorage.removeItem("login_tokens");
-            this.render();
+            const posts = root.querySelector(".posts");
+            const listBlog = blogs.data.map((blog) => {
+                return blog;
+            });
+
+            console.log(listBlog);
+
+            listBlog.forEach((blog) => {
+                const dateAndTime = blog.timeUp;
+                const date = dateAndTime.slice(0, 10);
+                const time = dateAndTime.slice(11, 19);
+
+                posts.innerHTML += `
+                <div class="post-block">
+                    <div class="post-content-wrap">
+                        <p class="username">User: <span>${blog.userId.name}</span></p>
+                        <h4 class="post-block-title">Title: ${blog.title}</h4>
+                        <p class="post-block-content">Content: ${blog.content}</p>
+                    </div>
+
+                    <div class="post-time-wrap">
+                        <p class="post-date">${date}</p>
+                        <p class="post-time">${time}</p>
+                        <p></p>
+                    </div>
+                </div>
+                `;
+            });
+        }
+        else {
+            console.log("=(");
         }
     },
 
