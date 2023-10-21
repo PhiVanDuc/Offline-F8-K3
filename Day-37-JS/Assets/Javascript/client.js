@@ -1,5 +1,6 @@
 import { config } from "./config.js";
 
+
 const { SERVER_API } = config;
 
 
@@ -11,21 +12,18 @@ export const client = {
     },
 
     send: async function (url, method = "GET", body = null) {
-        url = `${SERVER_API}${url}`;
         const headers = {
             "Content-Type": "application/json",
         };
-
         if (this.token) headers.Authorization = `Bearer ${this.token}`;
 
         const option = {
-            method: method,
-            headers: headers,
+            method,
+            headers,
         }
-
         if (body) option.body = JSON.stringify(body);
 
-        const response = await fetch(url, option);
+        const response = await fetch(`${SERVER_API}${url}`, option);
         const data = await response.json();
         return { response: response, data: data };
     },

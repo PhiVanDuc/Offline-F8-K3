@@ -3,7 +3,9 @@ import { requestRefresh } from "./token.js";
 
 
 const root = document.querySelector(".root");
-let pages = 1;
+let pages = 1   ;
+let loadingFlag = false;
+let done = false;
 
 
 const blog = {
@@ -64,14 +66,18 @@ const blog = {
 
                 <h3 class="posts-heading mb-4">Các bài viết</h3>
                 <div class="posts"></div>
+                <p class="text-loading text-center fw-bold fs-2">Loading ...</p>
             </div>
             `;
 
+            const textLoading = root.querySelector(".text-loading");
+            textLoading.style.display = "none";
+
             this.getProfile();
             this.eventLogout();
-            this.getBlogs(pages);
-            this.addBlog();
+            this.getBlogs();
             this.loadMoreBlogs();
+            this.addBlog();
         }
     },
 
@@ -262,25 +268,27 @@ const blog = {
     },
 
     getProfile: async function () {
-        const profileName = root.querySelector(".name");
-        let loginTokens = localStorage.getItem('login_tokens');
-        loginTokens = JSON.parse(loginTokens);
-        const { accessToken, refreshToken } = loginTokens;
-        client.setToken(accessToken);
+        const nameProfile = root.querySelector(".name");
 
-        const { data, response } = await client.get("/users/profile");
-        if (response.ok) {
-            profileName.innerText = data.data.name;
-        }
-        else {
-            const newToken = requestRefresh(refreshToken);
-            if (newToken) {
-                localStorage.setItem("login_tokens", JSON.stringify(newToken));
-                // this.render();
+        // Take old Tokens
+        let oldTokens = localStorage.getItem("login_tokens");
+        oldTokens = JSON.parse(oldTokens);
+        const { accessToken, refreshToken } = oldTokens;
+        client.setToken(accessToken);
+        
+        const { response, data } = await client.get("/users/profile");
+        if (!response.ok) { 
+            const newTokens = await requestRefresh(refreshToken);
+            if (newTokens) {
+                localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.data.token));
+                this.render();
             }
             else {
                 this.handleLogout();
             }
+        }
+        else {
+            nameProfile.innerText = data.data.name;
         }
     },
 
@@ -293,42 +301,63 @@ const blog = {
     },
 
     handleLogout: async function () {
-        localStorage.removeItem("login_tokens");
+        if (localStorage.getItem("login_tokens")) localStorage.removeItem("login_tokens");
         this.render();
     },
 
-    getBlogs: async function (pages) {
-        const { data: blogs, response } = await client.get(`/blogs?page=${pages}`);
+    getBlogs: async function() {
+        if (loadingFlag) return;
+        loadingFlag = true;
+
+        const textLoading = root.querySelector(".text-loading");
+        textLoading.style.display = "none";
+        const posts = root.querySelector(".posts");
+        const { response, data: infoBlogs } = await client.get(`/blogs?page=${pages}`);
+        loadingFlag = false;
 
         if (response.ok) {
-            const posts = root.querySelector(".posts");
-            const listBlog = blogs.data.map((blog) => {
-                return blog;
-            });
+            if (!infoBlogs.data) {
+                done = true;
+                textLoading.style.display = "block";
+                textLoading.innerText = "Hết bài.";
+                return;
+            }
 
-            listBlog.forEach((blog) => {
-                const { date, time } = this.handleTime(blog.timeUp);
-
+            infoBlogs.data.forEach((blog) => {
+                if (!blog.createdAt) return;
+                const dataTime = blog.createdAt;
+                const date = dataTime.slice(0, 10);
+                const time = dataTime.slice(11, 19);
+    
                 posts.innerHTML += `
-                    <div class="post-block">
-                        <div class="post-content-wrap">
-                            <p class="username">User: <span>${blog.userId.name}</span></p>
-                            <h4 class="post-block-title">Title: ${blog.title}</h4>
-                            <p class="post-block-content">Content: ${blog.content}</p>
-                        </div>
-
-                        <div class="post-time-wrap">
-                            <p class="post-date">${date}</p>
-                            <p class="post-time">${time}</p>
-                            <p></p>
-                        </div>
+                <div class="post-block">
+                    <div class="post-content-wrap">
+                        <p class="username">User: <span>${blog.userId.name}</span></p>
+                        <h4 class="post-block-title">Title: ${blog.title}</h4>
+                        <p class="post-block-content">Content: ${blog.content}</p>
                     </div>
-                    `;
+    
+                    <div class="post-time-wrap">
+                        <p class="post-date">${date}</p>
+                        <p class="post-time">${time}</p>
+                        <p></p>
+                    </div>
+                </div>
+                `;
             });
+            pages++;
         }
-        else {
-            console.log("=(");
-        }
+    },
+
+    loadMoreBlogs: function() {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+                const textLoading = root.querySelector(".text-loading");
+                textLoading.style.display = "block";
+                if (done) return;
+                this.getBlogs();
+            }
+        });
     },
 
     addBlog: function () {
@@ -341,51 +370,68 @@ const blog = {
             const contentElement = formPost.querySelector(".textarea-content");
             const posts = root.querySelector(".posts");
 
+            let loginTokens = localStorage.getItem("login_tokens");
+            loginTokens = JSON.parse(loginTokens);
+            const { accessToken, refreshToken } = loginTokens;
+            client.setToken(accessToken);
+
             const { data, response } = await client.post("/blogs", {
                 title: stripHtml(titleElement.value),
                 content: stripHtml(contentElement.value),
             });
-            console.log(data);
 
             if (response.ok) {
-                const { date, time } = this.handleTime(data.data.timeUp);
+                this.add(data, posts);
+            }
+            else {
+                const newTokens = await requestRefresh(refreshToken);
+                if (newTokens) {
+                    localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.data.token));
+                    console.log("Refresh lại Token");
+                    loginTokens = localStorage.getItem("login_tokens");
+                    loginTokens = JSON.parse(loginTokens);
+                    const { accessToken } = loginTokens;
+                    client.setToken(accessToken);
 
-                const postBlock = document.createElement("div");
-                postBlock.classList.add("post-block");
-                postBlock.innerHTML = `
-                <div class="post-content-wrap">
-                    <p class="username">User: <span>${data.data.userId.name}</span></p>
-                    <h4 class="post-block-title">Title: ${data.data.title}</h4>
-                    <p class="post-block-content">Content: ${data.data.content}</p>
-                </div>
+                    const { data } = await client.post("/blogs", {
+                        title: stripHtml(titleElement.value),
+                        content: stripHtml(contentElement.value),
+                    });
 
-                <div class="post-time-wrap">
-                    <p class="post-date">${date}</p>
-                    <p class="post-time">${time}</p>
-                    <p></p>
-                </div>
-                `;
-
-                posts.prepend(postBlock);
+                    this.add(data, posts);
+                }
+                else {
+                    console.log("Refresh Token hết hạn");
+                    this.handleLogout();
+                }
             }
         });
     },
 
-    handleTime: function (string) {
-        const dateAndTime = string;
-        const date = dateAndTime.slice(0, 10);
-        const time = dateAndTime.slice(11, 19);
+    add: function(mainData, postsElement) {
+        console.log("Thành công!");
+        if (!mainData.data.createdAt) return;
+        const dataTime = mainData.data.createdAt;
+        const date = dataTime.slice(0, 10);
+        const time = dataTime.slice(11, 19);
 
-        return { date, time };
-    },
+        const postBlock = document.createElement("div");
+        postBlock.classList.add("post-block");
+        postBlock.innerHTML = `
+        <div class="post-content-wrap">
+            <p class="username">User: <span>${mainData.data.userId.name}</span></p>
+            <h4 class="post-block-title">Title: ${mainData.data.title}</h4>
+            <p class="post-block-content">Content: ${mainData.data.content}</p>
+        </div>
 
-    loadMoreBlogs: function () {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-                this.getBlogs(pages);
-                ++pages;
-            }
-        });
+        <div class="post-time-wrap">
+            <p class="post-date">${date}</p>
+            <p class="post-time">${time}</p>
+            <p></p>
+        </div>
+        `;
+
+        postsElement.prepend(postBlock);
     },
 
     addLoading: function (btnElement) {
