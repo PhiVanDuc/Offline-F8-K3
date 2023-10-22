@@ -3,7 +3,7 @@ import { requestRefresh } from "./token.js";
 
 
 const root = document.querySelector(".root");
-let pages = 17;
+let pages = 1;
 let loadingFlag = false;
 let done = false;
 
@@ -280,7 +280,7 @@ const blog = {
         if (!response.ok) { 
             const newTokens = await requestRefresh(refreshToken);
             if (newTokens) {
-                localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.data.token));
+                localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
                 this.render();
             }
             else {
@@ -333,10 +333,10 @@ const blog = {
                         <p class="post-block-content">Content: ${blog.content}</p>
                     </div>
     
-                    <div class="post-time-wrap">
+                    <div class="post-time-wrap text-end">
                         <p class="post-date">${date}</p>
                         <p class="post-time">${time}</p>
-                        <p></p>
+                        <p class="post-time-passed">Đã đăng: ${this.calcTimePassed(date, time)}</p>
                     </div>
                 </div>
                 `;
@@ -379,6 +379,30 @@ const blog = {
         return { date, time };
     },
 
+    calcTimePassed: function (prevDate, prevTime) {
+        const objectDate = new Date();
+        const currentSecond = objectDate.getSeconds().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        const currentMinute = objectDate.getMinutes().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        const currentHour = objectDate.getHours().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        const currentDate = objectDate.getDate().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        const currentMonth = objectDate.getMonth().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        let currentYear = objectDate.getFullYear().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        currentYear = currentYear.slice(0, 1) + currentYear.slice(2);
+
+        prevTime = prevTime.slice(0, 8);
+        const seprateTime = prevTime.split(":");
+        const seprateDate = prevDate.split("/");
+
+        if (+currentDate === +seprateDate[1] && +currentMonth + 1 === +seprateDate[0] && +currentYear === +seprateDate[2]) {
+            if (+currentSecond >= +seprateTime[2] && +currentMinute === +seprateTime[1] && +currentHour === +seprateTime[0]) return "Vừa xong.";
+            else if (+currentMinute > +seprateTime[1] && +currentHour === +seprateTime[0]) return +currentMinute - +seprateTime[1] + " phút.";
+            else if (+currentHour > +seprateTime[0]) return +currentHour - +seprateTime[0] + " tiếng.";
+        }
+        else if (+currentDate > +seprateDate[1] && +currentMonth + 1 === +seprateDate[0] && +currentYear === +seprateDate[2]) return +currentDate - +seprateDate[1] + " ngày.";
+        else if (+currentMonth + 1 > +seprateDate[0] && +currentYear === +seprateDate[2]) return (+currentMonth + 1) - (+seprateDate[0]) + " tháng.";
+        else if (+currentYear >= +seprateDate[2]) return +currentYear - +seprateDate[2] + " năm.";
+    },
+
     loadMoreBlogs: function() {
         window.addEventListener("scroll", () => {
             if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
@@ -416,7 +440,7 @@ const blog = {
             else {
                 const newTokens = await requestRefresh(refreshToken);
                 if (newTokens) {
-                    localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.data.token));
+                    localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
                     console.log("Refresh lại Token");
                     loginTokens = localStorage.getItem("login_tokens");
                     loginTokens = JSON.parse(loginTokens);
