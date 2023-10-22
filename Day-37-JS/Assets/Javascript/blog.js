@@ -3,7 +3,7 @@ import { requestRefresh } from "./token.js";
 
 
 const root = document.querySelector(".root");
-let pages = 1   ;
+let pages = 17;
 let loadingFlag = false;
 let done = false;
 
@@ -309,25 +309,21 @@ const blog = {
         if (loadingFlag) return;
         loadingFlag = true;
 
-        const textLoading = root.querySelector(".text-loading");
-        textLoading.style.display = "none";
         const posts = root.querySelector(".posts");
+        const textLoading = root.querySelector(".text-loading");
         const { response, data: infoBlogs } = await client.get(`/blogs?page=${pages}`);
         loadingFlag = false;
+        textLoading.style.display = "none";
 
         if (response.ok) {
-            if (!infoBlogs.data) {
+            if (!infoBlogs.data[0].userId) {
+                textLoading.innerText = "Hết bài viết!";
                 done = true;
-                textLoading.style.display = "block";
-                textLoading.innerText = "Hết bài.";
                 return;
             }
-
             infoBlogs.data.forEach((blog) => {
                 if (!blog.createdAt) return;
-                const dataTime = blog.createdAt;
-                const date = dataTime.slice(0, 10);
-                const time = dataTime.slice(11, 19);
+                const { date, time } = this.getDateAndTime(blog.createdAt);
     
                 posts.innerHTML += `
                 <div class="post-block">
@@ -347,6 +343,40 @@ const blog = {
             });
             pages++;
         }
+    },
+
+    getDateAndTime: function(data) {
+        if (!data) return;
+        const stringDate = new Date(data);
+        const option = {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: false,
+            timeZone: "Asia/Ho_Chi_Minh"
+        };
+
+        const formattedStringDate = stringDate.toLocaleString("en-US", option);
+        let { date, time } = formattedStringDate;
+        let amOrPm;
+        date = formattedStringDate.slice(0, 10);
+        time = formattedStringDate.slice(12);
+
+        if (+time.slice(0, 2) === 24) {
+            time = "0" + time.slice(2);
+        }
+
+        if (+time.match(/^([^:]+)/)[1] >= 0 && +time.match(/^([^:]+)/)[1] <=9) amOrPm = "Sáng";
+        else if ((+time.match(/^([^:]+)/)[1] >= 10 && +time.match(/^([^:]+)/)[1] <= 11)) amOrPm = "Trưa";
+        else if (+time.match(/^([^:]+)/)[1] >= 12 && +time.match(/^([^:]+)/)[1] <= 17) amOrPm = "Chiều";
+        else if (+time.match(/^([^:]+)/)[1] >= 18 && +time.match(/^([^:]+)/)[1] <= 21) amOrPm = "Tối";
+        else amOrPm = "Đêm";
+        time = time.trim() + " " + amOrPm;
+
+        return { date, time };
     },
 
     loadMoreBlogs: function() {
@@ -401,7 +431,6 @@ const blog = {
                     this.add(data, posts);
                 }
                 else {
-                    console.log("Refresh Token hết hạn");
                     this.handleLogout();
                 }
             }
@@ -409,11 +438,8 @@ const blog = {
     },
 
     add: function(mainData, postsElement) {
-        console.log("Thành công!");
         if (!mainData.data.createdAt) return;
-        const dataTime = mainData.data.createdAt;
-        const date = dataTime.slice(0, 10);
-        const time = dataTime.slice(11, 19);
+        const { date, time } = this.getDateAndTime(mainData.data.createdAt);
 
         const postBlock = document.createElement("div");
         postBlock.classList.add("post-block");
