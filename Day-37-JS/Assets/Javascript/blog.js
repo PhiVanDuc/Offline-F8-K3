@@ -291,10 +291,10 @@ const blog = {
             const newTokens = await requestRefresh(refreshToken);
             if (newTokens) {
                 localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
-                this.render();
+                // this.render();
             }
             else {
-                this.handleLogout();
+                // this.handleLogout();
             }
         }
         else {
@@ -495,6 +495,25 @@ const blog = {
     },
 
     renderCalendar: function() {
+        let date = new Date();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        let day, current, calendarIcons;
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+
         const inputCalendarElement = root.querySelector("input.input-calendar");
         const formGroup = inputCalendarElement.parentElement;
 
@@ -504,7 +523,10 @@ const blog = {
                 calendarContainer.classList.add("calendar-container");
                 calendarContainer.innerHTML = `
                 <header class="calendar-header">
-                    <p class="calendar-current-date"></p>
+                    <p class="calendar-current-date">
+                        <span class="calendar-current-date-month"></span>
+                        <span class="calendar-current-date-year"></span>
+                    </p>
                     <div class="calendar-navigation">
                         <i class="calendar-icon calendar-prev fa-solid fa-chevron-left"></i>
                         <i class="calendar-icon calendar-next fa-solid fa-chevron-right"></i>
@@ -525,106 +547,116 @@ const blog = {
                 </div>
                 `;
                 formGroup.appendChild(calendarContainer);
-                this.loadCalendar();
+
+                day = document.querySelector(".calendar-dates");
+                current = document.querySelector(".calendar-current-date");
+                calendarIcons = document.querySelectorAll(".calendar-icon");
+
+                function createCalendar() {
+                    let firstDay = new Date(year, month, 1).getDay();
+                    let lastDate = new Date(year, month + 1, 0).getDate();
+                    let lastDay = new Date(year, month, lastDate).getDay();
+                    let monthLastDate = new Date(year, month, 0).getDate();
+                    let storage = "";
+
+                    for (let i = firstDay; i > 0; i--) {
+                        storage += `<li class="inactive prev-month"}>${monthLastDate - i + 1}</li>`;
+                    }
+                    
+                    for (let i = 1; i <= lastDate; i++) {
+                        let isToday = i=== date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "active" : "";
+                        storage += `<li class="${isToday}">${i}</li>`; 
+                    }
+
+                    for (let i = lastDay; i < 6; i++) {
+                        storage += `<li class="inactive">${i - lastDay + 1}</li>`;
+                    }
+
+                    current.children[0].innerText = `${months[month]}`;
+                    current.children[1].innerText = `${year}`;
+                    day.innerHTML = storage;
+                }
+                createCalendar();
+
+                function chooseDate() {
+                    let dates = day.querySelectorAll("li");
+
+                    dates.forEach((date) => {
+                        date.addEventListener("click", function() {
+                            for(let i = 0; i < dates.length; i++) {
+                                if (dates[i].classList.contains("choose")) {
+                                    dates[i].classList.remove("choose");
+                                    break;
+                                }
+                            }
+                            this.classList.add("choose");
+                        });
+                    });
+                }
+                chooseDate();
+
+                calendarIcons.forEach((icon) => {
+                    icon.addEventListener("click" ,() => {
+                        if (icon.classList.contains("calendar-prev")) {
+                            month -= 1;
+                            if (month < new Date().getMonth() && year <= new Date().getFullYear()) month += 1;
+                        } else month += 1;
+
+                        if (month < 0 || month > 11) {
+                            date = new Date(year, month, new Date().getDate());
+                            year = date.getFullYear();
+                            month = date.getMonth();
+                        }
+                        else {
+                            date = new Date();
+                        }
+                        createCalendar();
+                        chooseDate();
+                    });
+                });
             }
         });
 
         document.addEventListener("click", (e) => {
-            if (root.querySelector(".calendar-container")) {
-                if (e.target.closest(".calendar-container") || e.target.classList.contains("input-calendar")) {
-                    return;
-                }
-                else {
-                    console.log("remove");
-                    formGroup.lastElementChild.remove();   
-                }
-            }
-        });
-    },
+            if (e.target.closest(".calendar-container")) {
+                if (e.target.closest(".calendar-dates")) {
+                    const calendarContainer = root.querySelector(".calendar-container");
+                    const activeDate = calendarContainer.querySelector(".active");
+                    let chooseDate = calendarContainer.querySelector(".choose");
+                    let chooseMonth = month + 1;
+                    let chooseYear = year;
 
-    loadCalendar: function() {
-        let date = new Date();
-        let month = date.getMonth();
-        let year = date.getFullYear();
-        const day = document.querySelector(".calendar-dates");
-        const current = document.querySelector(".calendar-current-date");
-        const calendarIcons = document.querySelectorAll(".calendar-icon");
-        const months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ];
-
-        function createCalendar() {
-            let firstDay = new Date(year, month, 1).getDay();
-            let lastDate = new Date(year, month + 1, 0).getDate();
-            let lastDay = new Date(year, month, lastDate).getDay();
-            let monthLastDate = new Date(year, month, 0).getDate();
-            let storage = "";
-
-            for (let i = firstDay; i > 0; i--) {
-                storage += `<li class="inactive"}>${monthLastDate - i + 1}</li>`;
-            }
-            
-            for (let i = 1; i <= lastDate; i++) {
-                let isToday = i=== date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "active" : "";
-                storage += `<li class="${isToday}">${i}</li>`; 
-            }
-
-            for (let i = lastDay; i < 6; i++) {
-                storage += `<li class="inactive">${i - lastDay + 1}</li>`;
-            }
-
-            current.innerText = `${months[month]} ${year}`;
-            day.innerHTML = storage;
-        }
-        createCalendar();
-
-        function chooseDate() {
-            let dates = day.querySelectorAll("li");
-
-            dates.forEach((date) => {
-                date.addEventListener("click", function() {
-                    for(let i = 0; i < dates.length; i++) {
-                        if (dates[i].classList.contains("choose")) {
-                            dates[i].classList.remove("choose");
-                            break;
+                    if (chooseDate) {
+                        if (activeDate) {
+                            if (chooseDate.classList.contains("inactive")) {
+                                chooseMonth++;
+                                if (chooseMonth > 12) {
+                                    chooseMonth = 0;
+                                    chooseYear++;
+                                }
+                            }
+                            else if (chooseDate.classList.contains("prev-month") || +chooseDate.innerText < +activeDate.innerText) chooseDate = activeDate;
                         }
+                        else if (!activeDate) {
+                            if (chooseDate.classList.contains("prev-month")) chooseMonth--;
+                            else if (chooseDate.classList.contains("inactive")) {
+                                chooseMonth++;
+                                if (chooseMonth > 12) chooseMonth = 1;
+                            }
+                        }
+
+                        inputCalendarElement.value = `${chooseMonth}/${chooseDate.innerText}/${chooseYear}`;
+                        formGroup.lastElementChild.remove();
                     }
-                    this.classList.add("choose");
-                });
-            });
-        }
-        chooseDate();
-
-        calendarIcons.forEach((icon) => {
-            icon.addEventListener("click" ,() => {
-                month = icon.classList.contains("calendar-prev") ? month - 1 : month + 1;
-
-                if (month < 0 || month > 11) {
-                    date = new Date(year, month, new Date().getDate());
-                    year = date.getFullYear();
-                    month = date.getMonth();
                 }
-                else {
-                    date = new Date();
+            }
+            else if ( e.target.classList.contains("input-calendar")) return;
+            else {
+                if (formGroup.lastElementChild.classList.contains("calendar-container")) {
+                    formGroup.lastElementChild.remove();
                 }
-                createCalendar();
-            });
+            } 
         });
-    },
-
-    chooseCalendar: function() {
-        
     },
 
     addLoading: function (btnElement) {
