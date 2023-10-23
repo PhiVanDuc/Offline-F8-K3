@@ -47,13 +47,19 @@ const blog = {
 
                 <form class="form-post">
                     <h3 class="post-heading mb-3 mt-4">Đăng bài viết mới</h3>
-                    <div class="form-group mb-3">
-                        <label for="" class="label-title mb-2">Tiêu đề:</label>
-                        <input type="text" class="input-title form-control" placeholder="Title">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="form-group mb-3 col-6">
+                            <label class="label-title mb-2">Tiêu đề:</label>
+                            <input type="text" class="input-title form-control" placeholder="Title">
+                        </div>
+                        <div class="form-group form-group-calendar mb-3 col-6">
+                            <label class="label-calendar mb-2">Ngày đăng:</label>
+                            <input class="input-calendar form-control" placeholder="MM/DD/YYYY">
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="" class="label-content mb-2">Nội dung:</label>
+                        <label class="label-content mb-2">Nội dung:</label>
                         <textarea class="textarea-content form-control" style="resize: none; height: 150px;" placeholder="Content"></textarea>
                     </div>
 
@@ -78,6 +84,7 @@ const blog = {
             this.getBlogs();
             this.loadMoreBlogs();
             this.addBlog();
+            this.renderCalendar();
         }
     },
 
@@ -103,12 +110,12 @@ const blog = {
                     <div class="row justify-content-center">
                         <div class="col-7">
                             <div class="form-group mb-4">
-                                <label for="" class="label-email mb-1">Nhập email:</label>
+                                <label class="label-email mb-1">Nhập email:</label>
                                 <input type="email" class="input-email form-control" placeholder="Email...">
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="" class="label-password mb-1">Nhập password:</label>
+                                <label class="label-password mb-1">Nhập password:</label>
                                 <input type="password" class="input-password form-control" placeholder="Password...">
                             </div>
 
@@ -154,17 +161,17 @@ const blog = {
                     <div class="row justify-content-center">
                         <div class="col-7">
                             <div class="form-group mb-4">
-                                <label for="" class="label-name mb-1">Nhập tên:</label>
+                                <label class="label-name mb-1">Nhập tên:</label>
                                 <input type="text" class="input-name form-control" placeholder="Name...">
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="" class="label-email mb-1">Nhập email:</label>
+                                <label class="label-email mb-1">Nhập email:</label>
                                 <input type="email" class="input-email form-control" placeholder="Email...">
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="" class="label-password mb-1">Nhập password:</label>
+                                <label class="label-password mb-1">Nhập password:</label>
                                 <input type="password" class="input-password form-control" placeholder="Password...">
                             </div>
 
@@ -270,8 +277,11 @@ const blog = {
     getProfile: async function () {
         const nameProfile = root.querySelector(".name");
 
-        // Take old Tokens
         let oldTokens = localStorage.getItem("login_tokens");
+        if (!oldTokens) {
+            this.handleLogout();
+            return;
+        }
         oldTokens = JSON.parse(oldTokens);
         const { accessToken, refreshToken } = oldTokens;
         client.setToken(accessToken);
@@ -407,7 +417,7 @@ const blog = {
         window.addEventListener("scroll", () => {
             if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
                 const textLoading = root.querySelector(".text-loading");
-                textLoading.style.display = "block";
+                if (textLoading) textLoading.style.display = "block";
                 if (done) return;
                 this.getBlogs();
             }
@@ -482,6 +492,139 @@ const blog = {
         `;
 
         postsElement.prepend(postBlock);
+    },
+
+    renderCalendar: function() {
+        const inputCalendarElement = root.querySelector("input.input-calendar");
+        const formGroup = inputCalendarElement.parentElement;
+
+        inputCalendarElement.addEventListener("click", () => {
+            if (!formGroup.lastElementChild.classList.contains("calendar-container")) {
+                const calendarContainer = document.createElement("div");
+                calendarContainer.classList.add("calendar-container");
+                calendarContainer.innerHTML = `
+                <header class="calendar-header">
+                    <p class="calendar-current-date"></p>
+                    <div class="calendar-navigation">
+                        <i class="calendar-icon calendar-prev fa-solid fa-chevron-left"></i>
+                        <i class="calendar-icon calendar-next fa-solid fa-chevron-right"></i>
+                    </div>
+                </header>
+        
+                <div class="calendar-body">
+                    <ul class="calendar-weekdays">
+                        <li>Sun</li>    
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="calendar-dates"></ul>
+                </div>
+                `;
+                formGroup.appendChild(calendarContainer);
+                this.loadCalendar();
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (root.querySelector(".calendar-container")) {
+                if (e.target.closest(".calendar-container") || e.target.classList.contains("input-calendar")) {
+                    return;
+                }
+                else {
+                    console.log("remove");
+                    formGroup.lastElementChild.remove();   
+                }
+            }
+        });
+    },
+
+    loadCalendar: function() {
+        let date = new Date();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        const day = document.querySelector(".calendar-dates");
+        const current = document.querySelector(".calendar-current-date");
+        const calendarIcons = document.querySelectorAll(".calendar-icon");
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+
+        function createCalendar() {
+            let firstDay = new Date(year, month, 1).getDay();
+            let lastDate = new Date(year, month + 1, 0).getDate();
+            let lastDay = new Date(year, month, lastDate).getDay();
+            let monthLastDate = new Date(year, month, 0).getDate();
+            let storage = "";
+
+            for (let i = firstDay; i > 0; i--) {
+                storage += `<li class="inactive"}>${monthLastDate - i + 1}</li>`;
+            }
+            
+            for (let i = 1; i <= lastDate; i++) {
+                let isToday = i=== date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "active" : "";
+                storage += `<li class="${isToday}">${i}</li>`; 
+            }
+
+            for (let i = lastDay; i < 6; i++) {
+                storage += `<li class="inactive">${i - lastDay + 1}</li>`;
+            }
+
+            current.innerText = `${months[month]} ${year}`;
+            day.innerHTML = storage;
+        }
+        createCalendar();
+
+        function chooseDate() {
+            let dates = day.querySelectorAll("li");
+
+            dates.forEach((date) => {
+                date.addEventListener("click", function() {
+                    for(let i = 0; i < dates.length; i++) {
+                        if (dates[i].classList.contains("choose")) {
+                            dates[i].classList.remove("choose");
+                            break;
+                        }
+                    }
+                    this.classList.add("choose");
+                });
+            });
+        }
+        chooseDate();
+
+        calendarIcons.forEach((icon) => {
+            icon.addEventListener("click" ,() => {
+                month = icon.classList.contains("calendar-prev") ? month - 1 : month + 1;
+
+                if (month < 0 || month > 11) {
+                    date = new Date(year, month, new Date().getDate());
+                    year = date.getFullYear();
+                    month = date.getMonth();
+                }
+                else {
+                    date = new Date();
+                }
+                createCalendar();
+            });
+        });
+    },
+
+    chooseCalendar: function() {
+        
     },
 
     addLoading: function (btnElement) {
