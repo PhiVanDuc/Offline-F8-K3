@@ -54,7 +54,7 @@ const blog = {
                         </div>
                         <div class="form-group form-group-calendar mb-3 col-6">
                             <label class="label-calendar mb-2">Ngày đăng:</label>
-                            <input class="input-calendar form-control" placeholder="MM/DD/YYYY">
+                            <input class="input-calendar form-control" placeholder="MM/DD/YYYY" readonly>
                         </div>
                     </div>
 
@@ -63,8 +63,9 @@ const blog = {
                         <textarea class="textarea-content form-control" style="resize: none; height: 150px;" placeholder="Content"></textarea>
                     </div>
 
-                    <div class="btn-post">
+                    <div class="btn-post d-flex align-items-center justify-content-between">
                         <button class="btn btn-primary">Đăng bài</button>
+                        <p class="notify-post"></p>
                     </div>
                 </form>
 
@@ -323,7 +324,7 @@ const blog = {
         const textLoading = root.querySelector(".text-loading");
         const { response, data: infoBlogs } = await client.get(`/blogs?page=${pages}`);
         loadingFlag = false;
-        textLoading.style.display = "none";
+        if (textLoading) textLoading.style.display = "none";
 
         if (response.ok) {
             if (!infoBlogs.data[0].userId) {
@@ -344,8 +345,8 @@ const blog = {
                     </div>
     
                     <div class="post-time-wrap text-end">
-                        <p class="post-date">${date}</p>
-                        <p class="post-time">${time}</p>
+                        <p class="post-date mb-2">${date}</p>
+                        <p class="post-time mb-2">${time}</p>
                         <p class="post-time-passed">Đã đăng: ${this.calcTimePassed(date, time)}</p>
                     </div>
                 </div>
@@ -370,10 +371,9 @@ const blog = {
         };
 
         const formattedStringDate = stringDate.toLocaleString("en-US", option);
-        let { date, time } = formattedStringDate;
+        let date = formattedStringDate.split(",")[0];
+        let time = formattedStringDate.split(",")[1].trim();
         let amOrPm;
-        date = formattedStringDate.slice(0, 10);
-        time = formattedStringDate.slice(12);
 
         if (+time.slice(0, 2) === 24) {
             time = "0" + time.slice(2);
@@ -384,7 +384,7 @@ const blog = {
         else if (+time.match(/^([^:]+)/)[1] >= 12 && +time.match(/^([^:]+)/)[1] <= 17) amOrPm = "Chiều";
         else if (+time.match(/^([^:]+)/)[1] >= 18 && +time.match(/^([^:]+)/)[1] <= 21) amOrPm = "Tối";
         else amOrPm = "Đêm";
-        time = time.trim() + " " + amOrPm;
+        time = time + " " + amOrPm;
 
         return { date, time };
     },
@@ -399,14 +399,20 @@ const blog = {
         let currentYear = objectDate.getFullYear().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
         currentYear = currentYear.slice(0, 1) + currentYear.slice(2);
 
-        prevTime = prevTime.slice(0, 8);
+        prevTime = prevTime.match(/[0-9:]+/)[0];
         const seprateTime = prevTime.split(":");
         const seprateDate = prevDate.split("/");
 
         if (+currentDate === +seprateDate[1] && +currentMonth + 1 === +seprateDate[0] && +currentYear === +seprateDate[2]) {
-            if (+currentSecond >= +seprateTime[2] && +currentMinute === +seprateTime[1] && +currentHour === +seprateTime[0]) return "Vừa xong.";
-            else if (+currentMinute > +seprateTime[1] && +currentHour === +seprateTime[0]) return +currentMinute - +seprateTime[1] + " phút.";
-            else if (+currentHour > +seprateTime[0]) return +currentHour - +seprateTime[0] + " tiếng.";
+            if (+currentSecond >= +seprateTime[2] && +currentMinute === +seprateTime[1] && +currentHour === +seprateTime[0]) {
+                return "Vừa xong.";
+            }
+            else if (+currentMinute > +seprateTime[1] && +currentHour === +seprateTime[0]) {
+                return +currentMinute - +seprateTime[1] + " phút.";
+            }
+            else if (+currentHour > +seprateTime[0]) {
+                return +currentHour - +seprateTime[0] + " tiếng.";
+            }
         }
         else if (+currentDate > +seprateDate[1] && +currentMonth + 1 === +seprateDate[0] && +currentYear === +seprateDate[2]) return +currentDate - +seprateDate[1] + " ngày.";
         else if (+currentMonth + 1 > +seprateDate[0] && +currentYear === +seprateDate[2]) return (+currentMonth + 1) - (+seprateDate[0]) + " tháng.";
@@ -426,6 +432,10 @@ const blog = {
 
     addBlog: function () {
         const formPost = root.querySelector(".form-post");
+        const inputCalendarElement = root.querySelector(".input-calendar");
+        const objDate = new Date();
+        const { date: saveCurrentDate } = this.getDateAndTime(objDate);
+        const arrCurrentDate = saveCurrentDate.split("/");
 
         const stripHtml = (html) => html.replace(/<([^>]+)>/gi, "");
         formPost.addEventListener("submit", async (e) => {
@@ -444,36 +454,56 @@ const blog = {
                 content: stripHtml(contentElement.value),
             });
 
-            if (response.ok) {
-                this.add(data, posts);
-            }
-            else {
-                const newTokens = await requestRefresh(refreshToken);
-                if (newTokens) {
-                    localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
-                    console.log("Refresh lại Token");
-                    loginTokens = localStorage.getItem("login_tokens");
-                    loginTokens = JSON.parse(loginTokens);
-                    const { accessToken } = loginTokens;
-                    client.setToken(accessToken);
-
-                    const { data } = await client.post("/blogs", {
-                        title: stripHtml(titleElement.value),
-                        content: stripHtml(contentElement.value),
-                    });
-
+            let arrInputCalendar;
+            if (inputCalendarElement.value) arrInputCalendar = inputCalendarElement.value.split("/");
+            if (!inputCalendarElement.value || inputCalendarElement.value === saveCurrentDate) {
+                if (response.ok) {
                     this.add(data, posts);
                 }
                 else {
-                    this.handleLogout();
+                    const newTokens = await requestRefresh(refreshToken);
+                    if (newTokens) {
+                        localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
+                        loginTokens = localStorage.getItem("login_tokens");
+                        loginTokens = JSON.parse(loginTokens);
+                        const { accessToken } = loginTokens;
+                        client.setToken(accessToken);
+    
+                        const { data } = await client.post("/blogs", {
+                            title: stripHtml(titleElement.value),
+                            content: stripHtml(contentElement.value),
+                        });
+    
+                        this.add(data, posts);
+                    }
+                    else {
+                        this.handleLogout();
+                    }
                 }
+                inputCalendarElement.value = "";
+            }
+            else if ((arrCurrentDate[1] < arrInputCalendar[1] && arrCurrentDate[0] === arrInputCalendar[0]) || (arrCurrentDate[1] !== arrInputCalendar[1] && arrCurrentDate[0] < arrInputCalendar[0])) {
+                const notifyPost = root.querySelector(".notify-post");
+                let today = new Date();
+                let targetDate = new Date(inputCalendarElement.value);
+                let timeDiff = targetDate.getTime() - today.getTime();
+        
+                let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+                if (days > 0) notifyPost.innerText = "Bài viết sẽ đăng sau: " + days + " ngày và " + hours + " giờ.";
+                else notifyPost.innerText =  "Bài viết sẽ đăng sau: " + hours + " giờ, " + minutes + " phút, và " + seconds + " giây.";
             }
         });
     },
 
     add: function(mainData, postsElement) {
+        console.log(mainData);
         if (!mainData.data.createdAt) return;
         const { date, time } = this.getDateAndTime(mainData.data.createdAt);
+        console.log(date, time);
 
         const postBlock = document.createElement("div");
         postBlock.classList.add("post-block");
@@ -484,10 +514,9 @@ const blog = {
             <p class="post-block-content">Content: ${mainData.data.content}</p>
         </div>
 
-        <div class="post-time-wrap">
-            <p class="post-date">${date}</p>
+        <div class="post-time-wrap text-end">
+            <p class="post-date mb-3">${date}</p>
             <p class="post-time">${time}</p>
-            <p></p>
         </div>
         `;
 
@@ -644,10 +673,10 @@ const blog = {
                                 if (chooseMonth > 12) chooseMonth = 1;
                             }
                         }
-
                         inputCalendarElement.value = `${chooseMonth}/${chooseDate.innerText}/${chooseYear}`;
-                        formGroup.lastElementChild.remove();
                     }
+
+                    if(formGroup.lastElementChild.classList.contains("calendar-container")) formGroup.lastElementChild.remove();
                 }
             }
             else if ( e.target.classList.contains("input-calendar")) return;
