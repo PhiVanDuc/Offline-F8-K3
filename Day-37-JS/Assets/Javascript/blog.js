@@ -291,10 +291,10 @@ const blog = {
             const newTokens = await requestRefresh(refreshToken);
             if (newTokens) {
                 localStorage.setItem("login_tokens", JSON.stringify(newTokens.data.token));
-                // this.render();
+                this.render();
             }
             else {
-                // this.handleLogout();
+                this.handleLogout();
             }
         }
         else {
