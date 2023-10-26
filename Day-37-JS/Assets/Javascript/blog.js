@@ -421,11 +421,11 @@ const blog = {
     },
 
     handleLink: function(dataString) {
-        const urlHomePageG = /(https|http):\/\/([\w-.])+.com\/?/g;
-        const urlVideoG = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/g;
-        const urlVideo = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
-        const urlShareG = /https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+/g;
-        const urlShare = /https:\/\/youtu\.be\/([a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+)/;
+        const urlHomePageG = /^(http|https)?(?:\:\/\/)?([\w\-\.])*youtu(be|\.be)(\.com)?\/?$/;
+        const urlVideoG = /(https\:\/\/|http\:\/\/)?[\w\-\.]*youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/g;
+        const urlVideo = /(?:https\:\/\/|http\:\/\/)?[\w\-\.]*youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+        const urlShareG = /(https\:\/\/|http\:\/\/)?youtu\.be\/[a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+/g;
+        const urlShare = /(?:https\:\/\/|http\:\/\/)?youtu\.be\/([a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+)/;
         const sdt = /((0|\+84)\d{9})/g;
         const email = /([\w.-]+@[\w.-]+\.\w+)/g;
 
@@ -435,7 +435,9 @@ const blog = {
             while(i < result.length) {
                 const path = result[i].match(urlVideo)[1];
                 dataString = dataString.replace(urlVideo, `
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
                 `);
                 i++;
             }
@@ -446,7 +448,9 @@ const blog = {
             while(i < result.length) {
                 const path = result[i].match(urlShare)[1];
                 dataString = dataString.replace(urlShare, `
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
                 `);
                 i++;
             }
@@ -454,7 +458,12 @@ const blog = {
         if (dataString.match(sdt)) dataString = dataString.replace(sdt, `<a href="tel:$1">$1</a>`);
         if (dataString.match(email)) dataString = dataString.replace(email, `<a href="mailto:$1">$1</a>`);
 
-        console.log(dataString);
+        const saveArr = dataString.split(" ");
+        for (let i = 0; i < saveArr.length; i++) {
+            if (urlHomePageG.test(saveArr[i])) saveArr[i] = `<div><a href="${saveArr[i]}">${saveArr[i]}</a></div>`;
+        }
+        dataString = saveArr.join(" ");
+
         return dataString;
     },
 
@@ -736,6 +745,3 @@ const blog = {
     },
 }
 blog.render();
-
-
-// let str = "Đây là một đoạn string https://www.youtube.com để test các https://www.youtube.com/watch?v=VVmyZvu-KjU trường hợp https://youtu.be/VVmyZvu-KjU?si=VGRqncW_7v5EE4VP có thể xảy ra +84328895451 khi người https://www.youtube.com/watch?v=VVmyZvu-KjU dùng phivanduc325@gmail.com nhập dữ liệu";
