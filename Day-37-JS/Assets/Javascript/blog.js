@@ -463,6 +463,7 @@ const blog = {
             if (urlHomePageG.test(saveArr[i])) saveArr[i] = `<div><a href="${saveArr[i]}">${saveArr[i]}</a></div>`;
         }
         dataString = saveArr.join(" ");
+        dataString.replace(/\s+/, " ");
 
         return dataString;
     },
