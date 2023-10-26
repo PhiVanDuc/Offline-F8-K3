@@ -335,14 +335,15 @@ const blog = {
             infoBlogs.data.forEach((blog) => {
                 if (!blog.createdAt) return;
                 const { date, time } = this.getDateAndTime(blog.createdAt);
+                const content = this.handleLink(blog.content);
     
                 posts.innerHTML += `
                 <div class="post-block">
                     <div class="post-content-wrap">
                         <p class="username">User: <span>${blog.userId.name}</span></p>
                         <h4 class="post-block-title">Title: ${blog.title}</h4>
-                        <p class="post-block-content">Content: ${blog.content}</p>
-                    </div>
+                        <p class="post-block-content d-flex align-items-center">Content: <span class="ms-1">${content}</span></p>
+                    </div>  
     
                     <div class="post-time-wrap text-end">
                         <p class="post-date mb-2">${date}</p>
@@ -417,6 +418,44 @@ const blog = {
         else if (+currentDate > +seprateDate[1] && +currentMonth + 1 === +seprateDate[0] && +currentYear === +seprateDate[2]) return +currentDate - +seprateDate[1] + " ngày.";
         else if (+currentMonth + 1 > +seprateDate[0] && +currentYear === +seprateDate[2]) return (+currentMonth + 1) - (+seprateDate[0]) + " tháng.";
         else if (+currentYear >= +seprateDate[2]) return +currentYear - +seprateDate[2] + " năm.";
+    },
+
+    handleLink: function(dataString) {
+        const urlHomePageG = /(https|http):\/\/([\w-.])+.com\/?/g;
+        const urlVideoG = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/g;
+        const urlVideo = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+        const urlShareG = /https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+/g;
+        const urlShare = /https:\/\/youtu\.be\/([a-zA-Z0-9_-]{11}\?si=[a-zA-Z0-9_-]+)/;
+        const sdt = /((0|\+84)\d{9})/g;
+        const email = /([\w.-]+@[\w.-]+\.\w+)/g;
+
+        if (dataString.match(urlVideoG)) {
+            let i = 0;
+            const result = dataString.match(urlVideoG);
+            while(i < result.length) {
+                const path = result[i].match(urlVideo)[1];
+                dataString = dataString.replace(urlVideo, `
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                `);
+                i++;
+            }
+        }
+        if (dataString.match(urlShareG)) {
+            let i = 0;
+            const result = dataString.match(urlShareG);
+            while(i < result.length) {
+                const path = result[i].match(urlShare)[1];
+                dataString = dataString.replace(urlShare, `
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${path}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                `);
+                i++;
+            }
+        }
+        if (dataString.match(sdt)) dataString = dataString.replace(sdt, `<a href="tel:$1">$1</a>`);
+        if (dataString.match(email)) dataString = dataString.replace(email, `<a href="mailto:$1">$1</a>`);
+
+        console.log(dataString);
+        return dataString;
     },
 
     loadMoreBlogs: function() {
@@ -500,10 +539,9 @@ const blog = {
     },
 
     add: function(mainData, postsElement) {
-        console.log(mainData);
         if (!mainData.data.createdAt) return;
         const { date, time } = this.getDateAndTime(mainData.data.createdAt);
-        console.log(date, time);
+        const content = this.handleLink(mainData.data.content);
 
         const postBlock = document.createElement("div");
         postBlock.classList.add("post-block");
@@ -511,7 +549,7 @@ const blog = {
         <div class="post-content-wrap">
             <p class="username">User: <span>${mainData.data.userId.name}</span></p>
             <h4 class="post-block-title">Title: ${mainData.data.title}</h4>
-            <p class="post-block-content">Content: ${mainData.data.content}</p>
+            <p class="post-block-content">Content: <span>${content}</span></p>
         </div>
 
         <div class="post-time-wrap text-end">
@@ -698,3 +736,6 @@ const blog = {
     },
 }
 blog.render();
+
+
+// let str = "Đây là một đoạn string https://www.youtube.com để test các https://www.youtube.com/watch?v=VVmyZvu-KjU trường hợp https://youtu.be/VVmyZvu-KjU?si=VGRqncW_7v5EE4VP có thể xảy ra +84328895451 khi người https://www.youtube.com/watch?v=VVmyZvu-KjU dùng phivanduc325@gmail.com nhập dữ liệu";
