@@ -2,7 +2,7 @@ import Navigo from "navigo";
 import {error} from "../error";
 
 export const router = (array, layout) => {
-    const objRouter = new Navigo("https://phivanduc.github.io/Offline-F8-K3/Day-38-JS/dist/", {linksSelector: "a"});
+    const objRouter = new Navigo("/Offline-F8-K3/Day-38-JS/dist", {linksSelector: "a"});
     const app = document.querySelector("#app");
     
     array.forEach((obj) => {
