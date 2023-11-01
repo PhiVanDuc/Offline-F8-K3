@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import TodoForm from './TodoForm'
 import Todo from './Todo'
+import TodoFormEdit from './TodoFormEdit'
 import { client } from '../api/client'
-import {v4 as uuidv4} from 'uuid'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,11 +11,20 @@ export default class TodoWrap extends Component {
     super();
     this.state = {
       todos: [],
-    }
+    };
   }
 
   componentDidMount() {
     this.handleGetApi();
+  }
+
+  addKeyEdit = (array) => {
+    this.setState({
+      todos: array.map((element) => {
+        element.isEdit = false;
+        return element;
+      }),
+    })
   }
 
   handleGetApi = async () => {
@@ -36,7 +45,7 @@ export default class TodoWrap extends Component {
       });
 
       const { data: dataLoad } = await client.get("/todos");
-      this.setState({ todos: dataLoad.data.listTodo });
+      this.addKeyEdit(dataLoad.data.listTodo);
     }
     else {
       toast.error('Failed get API-Key!', {
@@ -52,21 +61,9 @@ export default class TodoWrap extends Component {
     }
   }
 
-  addTodo = async (nameTask) => {
-    // this.setState({
-    //   todos: [
-    //     {
-    //       _id: uuidv4(),
-    //       todo: nameTask,
-    //       isCompleted: false,
-    //       isEditing: false,
-    //     },
-    //     ...this.state.todos,
-    //   ]
-    // });
-
+  addTodo = async () => {
     const { data: dataLoad } = await client.get("/todos");
-    this.setState({ todos: dataLoad.data.listTodo });
+    this.addKeyEdit(dataLoad.data.listTodo);
   }
 
   handleDelete = (deleteId) => {
@@ -91,10 +88,19 @@ export default class TodoWrap extends Component {
           const newTodos = this.state.todos.filter(({ _id }) => {
             return _id !== deleteId;
           });
-          this.setState({ todos: newTodos });
+          this.addKeyEdit(newTodos);
       }
       else {
-        
+        toast.error('Failed delete todo!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
 
@@ -111,6 +117,46 @@ export default class TodoWrap extends Component {
     });
   }
 
+  editTodo = (id) => {
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        return todo._id === id ? { ...todo, isEdit: !todo.isEdit } : todo;
+      }),
+    });
+  } 
+
+  handleUpdate = async (id, todo, isCompleted = false) => {
+    const { response } = await client.patch(`/todos/${id}`, {todo, isCompleted});
+
+    if (response.ok) {
+      const { data: dataLoad } = await client.get("/todos");
+      this.addKeyEdit(dataLoad.data.listTodo);
+
+      toast.success('Success update todo!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+    else {
+      toast.error('Failed update todo!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+  }
+
   render() {
     return (
       <div className='todo-wrap'>
@@ -119,7 +165,7 @@ export default class TodoWrap extends Component {
 
         {
           this.state.todos.map((element, index) => {
-            return <Todo key={index} todo={element} handleDelete={this.handleDelete}/>
+            return element.isEdit ? <TodoFormEdit key={index} todo={element} handleDelete={this.handleDelete} editTodo={this.editTodo} handleUpdate={this.handleUpdate} /> : <Todo key={index} todo={element} handleDelete={this.handleDelete} editTodo={this.editTodo}/>
           })
         }
         <ToastContainer />
