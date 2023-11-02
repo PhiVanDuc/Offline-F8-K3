@@ -12,7 +12,7 @@ export default class TodoFormEdit extends Component {
 
   handleChangeInput = (e) => {
     this.setState({
-      inputValue: e.target.value,
+      inputValue: this.props.htmlStrip(e.target.value),
     });
   }
 
@@ -27,7 +27,7 @@ export default class TodoFormEdit extends Component {
 
     return (
       <form action="" className="todo-form-edit" onSubmit={(e) => {e.preventDefault() ;handleUpdate(todo._id, this.state.inputValue, this.state.isCompleted)}}>
-        <input type="text" className="input-edit" placeholder="Edit..." value={this.state.inputValue} onChange={this.handleChangeInput} />
+        <input type="text" className={`input-edit${this.state.isCompleted ? " line" : ""}`} placeholder="Edit..." value={this.state.inputValue} onChange={this.handleChangeInput} />
         <div className="control">
           <div className="is-complete">
             <label>

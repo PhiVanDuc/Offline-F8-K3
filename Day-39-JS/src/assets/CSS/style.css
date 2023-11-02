@@ -166,6 +166,9 @@ button {
     border-radius: 4px;
     width: 100%;
 }
+.todo-form-edit .input-edit.line {
+    text-decoration: line-through;
+}
 .todo-form-edit .input-edit::placeholder {
     color: rgb(151, 151, 151);
 }
@@ -194,4 +197,17 @@ button {
 .todo-form-edit .control .is-complete input {
     width: 15px;
     height: 15px;
+}
+
+/* ----------------------------------------------------------- */
+/* spinner-loading */
+/* ----------------------------------------------------------- */
+
+.spinner-loading {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.1)
 }

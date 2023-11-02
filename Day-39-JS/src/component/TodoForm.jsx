@@ -13,7 +13,7 @@ export default class TodoForm extends Component {
 
   handleChange = (e) => {
     this.setState({
-      nameTask: e.target.value,
+      nameTask: this.props.htmlStrip(e.target.value),
     });
   }
 
@@ -37,17 +37,7 @@ export default class TodoForm extends Component {
         });
     }
     else {
-      toast.error('Failed add todo, reload page!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        onClick: () => {window.location.reload()},
-      });
+      this.props.handleError("Failed add, click to reload!");
     }
   }
 
