@@ -16,16 +16,34 @@ export default class TodoForm extends Component {
       nameTask: this.props.htmlStrip(e.target.value),
     });
   }
+  
 
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { response } = await client.post('/todos', {todo: this.state.nameTask});
-    if (response.ok) {
-      this.props.addTodo(this.state.nameTask);
-      this.setState({ nameTask: "" });
+    if (/^.{2,}$/.test(this.state.nameTask)) {
+      const { response } = await client.post('/todos', {todo: this.state.nameTask});
+      if (response.ok) {
+        this.props.addTodo(this.state.nameTask);
+        this.setState({ nameTask: "" });
 
-      toast.success('Success add todo!', {
+        toast.success('Success add todo!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }
+      else {
+        this.props.handleError("Failed add, click to reload!");
+      }
+    }
+    else {
+      toast.warn('Type more than 1 character!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -34,10 +52,7 @@ export default class TodoForm extends Component {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-    }
-    else {
-      this.props.handleError("Failed add, click to reload!");
+      });
     }
   }
 
