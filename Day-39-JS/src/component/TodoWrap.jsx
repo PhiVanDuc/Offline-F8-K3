@@ -36,7 +36,7 @@ export default class TodoWrap extends Component {
         let email = localStorage.getItem("email");
         email = JSON.parse(email);
         const nameUser = email.match(/^(.*?)@/)[1];
-        this.handleSuccess(`Chào mừng ${nameUser}!`);
+        this.handleSuccess(`Welcome ${nameUser}!`);
 
         this.setState({
           todos: data.data.listTodo,
@@ -50,12 +50,19 @@ export default class TodoWrap extends Component {
   updateSearchTodos = async (nameTask) => {
     this.setState({ loading: true })
     const response = await client.get(`/todos?q=${nameTask}`);
-    const data = response.data.data.listTodo;
-    this.setState({ loading: false })
-
-    this.setState({
-      todos: data,
-    })
+    
+    if (response.ok) {
+      handleSuccess("Search function enabled!");
+      const data = response.data.data.listTodo;
+      this.setState({ loading: false })
+      this.setState({
+        todos: data,
+      })
+    }
+    else {
+      this.handleError("Failed search, click to reload!");
+      this.setState({ loading: false });
+    }
   }
 
   // Add key là isEdit vào mỗi phần tử trong todos
@@ -104,6 +111,12 @@ export default class TodoWrap extends Component {
 
   // Hàm lấy dữ liệu dựa vào email và trả về các task todo
   handleGetApi = async (email) => {
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      this.handleError("Invalid Email!");
+      this.setState({ loading: false });
+      return;
+    }
+
     const { response, data } = await client.get(`/api-key?email=${email}`);
     this.setState({ loading: false });
 
@@ -117,6 +130,7 @@ export default class TodoWrap extends Component {
         todos: dataLoad.data.listTodo,
       });
       this.addKeyEdit(dataLoad.data.listTodo);
+      this.handleSuccess(`Welcome ${email.match(/^(.*?)@/)[1]}!`)
     }
     else {
       this.handleError("Failed get data, click to reload!");

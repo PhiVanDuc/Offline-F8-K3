@@ -20,6 +20,7 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
         addTodo(nameTask);
         setNameTask("");
         setSearch(false);
+        handleError("Search function disabled!");
         handleSuccess("Success add todo!");
       }
       else {
@@ -44,7 +45,6 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
     if (!search) {
       setSearch(true);
     }
-    handleSuccess("Đã bật chức năng tìm kiếm!");
     updateSearchTodos(nameTask);
   } 
 
