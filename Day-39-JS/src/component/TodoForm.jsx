@@ -3,9 +3,8 @@ import { client } from '../api/client';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function TodoForm({ addTodo, htmlStrip, handleError, handleSuccess, updateSearchTodos }) {
+export default function TodoForm({ addTodo, htmlStrip, handleError, handleSuccess, updateTodosFromSearch, updateSearch, search }) {
   const [nameTask, setNameTask] = useState("");
-  const [search, setSearch] = useState(false);
 
   const handleChange = (e) => {
     setNameTask(htmlStrip(e.target.value));
@@ -19,7 +18,6 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
       if (response.ok) {
         addTodo(nameTask);
         setNameTask("");
-        setSearch(false);
         handleSuccess("Success add todo!");
       }
       else {
@@ -41,11 +39,9 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
   }
 
   const handleUpdateSearch = () => {
-    if (!search) {
-      setSearch(true);
-    }
-    handleSuccess("Search function enabled!");
-    updateSearchTodos(nameTask);
+    updateSearch(true);
+    handleSuccess("Enable search!");
+    updateTodosFromSearch(nameTask);
   } 
 
   const isMounted = useRef(false);
@@ -57,8 +53,9 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
       }
   
       const debounce = setTimeout(() => {
-        updateSearchTodos(nameTask);
+        updateTodosFromSearch(nameTask);
       }, 1000);
+  
       return () => {
         clearTimeout(debounce);
       }

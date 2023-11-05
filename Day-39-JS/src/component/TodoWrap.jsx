@@ -13,6 +13,7 @@ export default class TodoWrap extends Component {
     this.state = {
       todos: [],
       loading: true,
+      search: false,
     };
   }
 
@@ -76,21 +77,26 @@ export default class TodoWrap extends Component {
   }
 
   // Hàm để update lại todos đã search
-  updateSearchTodos = async (nameTask) => {
+  updateTodosFromSearch = async (nameTask) => {
     this.setState({ loading: true })
-    const response = await client.get(`/todos?q=${nameTask}`);
-    
+    const response = await client.get(`/todos/?q=${nameTask}`);
+    this.setState({ loading: false })
+
     if (response.response.ok) {
       const data = response.data.data.listTodo;
-      this.setState({ loading: false })
       this.setState({
         todos: data,
       })
     }
     else {
       this.handleError("Failed search, click to reload!");
-      this.setState({ loading: false });
     }
+  }
+
+  updateSearch = (boolean) => {
+    this.setState({
+      search: boolean,
+    });
   }
 
   // Add key là isEdit vào mỗi phần tử trong todos
@@ -227,7 +233,7 @@ export default class TodoWrap extends Component {
     return (
       <div className='todo-wrap'>
         <h2>Welcome to Todo App!</h2>
-        <TodoForm addTodo={this.addTodo} htmlStrip={this.htmlStrip} handleError={this.handleError} handleSuccess={this.handleSuccess} updateSearchTodos={this.updateSearchTodos}/>
+        <TodoForm addTodo={this.addTodo} htmlStrip={this.htmlStrip} handleError={this.handleError} handleSuccess={this.handleSuccess} updateTodosFromSearch={this.updateTodosFromSearch} updateSearch={this.updateSearch} search={this.state.search}/>
 
         {
           this.state.todos.map((element, index) => {
