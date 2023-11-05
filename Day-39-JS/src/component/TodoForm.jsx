@@ -18,6 +18,7 @@ export default function TodoForm({ addTodo, htmlStrip, handleError, handleSucces
       if (response.ok) {
         addTodo(nameTask);
         setNameTask("");
+        updateSearch(false);
         handleSuccess("Success add todo!");
       }
       else {
