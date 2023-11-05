@@ -46,35 +46,6 @@ export default class TodoWrap extends Component {
     }
   }
 
-  // Hàm để update lại todos đã search
-  updateSearchTodos = async (nameTask) => {
-    this.setState({ loading: true })
-    const response = await client.get(`/todos?q=${nameTask}`);
-    
-    if (response.ok) {
-      handleSuccess("Search function enabled!");
-      const data = response.data.data.listTodo;
-      this.setState({ loading: false })
-      this.setState({
-        todos: data,
-      })
-    }
-    else {
-      this.handleError("Failed search, click to reload!");
-      this.setState({ loading: false });
-    }
-  }
-
-  // Add key là isEdit vào mỗi phần tử trong todos
-  addKeyEdit = (array) => {
-    this.setState({
-      todos: array.map((element) => {
-        element.isEdit = false;
-        return element;
-      }),
-    })
-  }
-
   // Hàm để dùng lại thông báo lỗi
   handleError = (content) => {
     toast.error(`${content}`, {
@@ -104,6 +75,34 @@ export default class TodoWrap extends Component {
     });
   }
 
+  // Hàm để update lại todos đã search
+  updateSearchTodos = async (nameTask) => {
+    this.setState({ loading: true })
+    const response = await client.get(`/todos?q=${nameTask}`);
+    
+    if (response.response.ok) {
+      const data = response.data.data.listTodo;
+      this.setState({ loading: false })
+      this.setState({
+        todos: data,
+      })
+    }
+    else {
+      this.handleError("Failed search, click to reload!");
+      this.setState({ loading: false });
+    }
+  }
+
+  // Add key là isEdit vào mỗi phần tử trong todos
+  addKeyEdit = (array) => {
+    this.setState({
+      todos: array.map((element) => {
+        element.isEdit = false;
+        return element;
+      }),
+    })
+  }
+
   // Hàm loại bỏ html trong thanh input
   htmlStrip = (data) => {
     return data.replace(/<[^>]*>/gi, "");
@@ -117,6 +116,7 @@ export default class TodoWrap extends Component {
       return;
     }
 
+    this.setState({ loading: true });
     const { response, data } = await client.get(`/api-key?email=${email}`);
     this.setState({ loading: false });
 
