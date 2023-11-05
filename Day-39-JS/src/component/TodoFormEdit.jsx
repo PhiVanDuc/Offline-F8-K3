@@ -28,6 +28,7 @@ export default class TodoFormEdit extends Component {
     return (
       <form action="" className="todo-form-edit" onSubmit={(e) => {e.preventDefault() ;handleUpdate(todo._id, this.state.inputValue, this.state.isCompleted)}}>
         <input type="text" className={`input-edit${this.state.isCompleted ? " line" : ""}`} placeholder="Edit..." value={this.state.inputValue} onChange={this.handleChangeInput} />
+
         <div className="control">
           <div className="is-complete">
             <label>
@@ -37,6 +38,7 @@ export default class TodoFormEdit extends Component {
             </label>
             <input type="checkbox" className="checkbox-complete" onChange={this.handleChangeBox} checked={this.state.isCompleted}/>
           </div>
+          
           <div className="button-group">
             <button type="button" className="button-escape" onClick={() => { editTodo(todo._id) }}>Thoát</button>
             <button className="button-update">Update</button>

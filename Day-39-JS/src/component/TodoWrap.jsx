@@ -33,25 +33,32 @@ export default class TodoWrap extends Component {
         this.handleGetApi(info);
       }
       else {
-        toast.success('Success get API-Key!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        let email = localStorage.getItem("email");
+        email = JSON.parse(email);
+        const nameUser = email.match(/^(.*?)@/)[1];
+        this.handleSuccess(`Chào mừng ${nameUser}!`);
 
         this.setState({
           todos: data.data.listTodo,
         });
-        this.addKeyEdit(dataLoad.data.listTodo);
+        this.addKeyEdit(data.data.listTodo);
       }
     }
   }
 
+  // Hàm để update lại todos đã search
+  updateSearchTodos = async (nameTask) => {
+    this.setState({ loading: true })
+    const response = await client.get(`/todos?q=${nameTask}`);
+    const data = response.data.data.listTodo;
+    this.setState({ loading: false })
+
+    this.setState({
+      todos: data,
+    })
+  }
+
+  // Add key là isEdit vào mỗi phần tử trong todos
   addKeyEdit = (array) => {
     this.setState({
       todos: array.map((element) => {
@@ -61,6 +68,7 @@ export default class TodoWrap extends Component {
     })
   }
 
+  // Hàm để dùng lại thông báo lỗi
   handleError = (content) => {
     toast.error(`${content}`, {
       position: "top-right",
@@ -75,28 +83,34 @@ export default class TodoWrap extends Component {
     });
   }
 
+  // Hàm để dùng lại thông báo thành công
+  handleSuccess = (content) => {
+    toast.success(`${content}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
+  // Hàm loại bỏ html trong thanh input
   htmlStrip = (data) => {
     return data.replace(/<[^>]*>/gi, "");
   }
 
+  // Hàm lấy dữ liệu dựa vào email và trả về các task todo
   handleGetApi = async (email) => {
     const { response, data } = await client.get(`/api-key?email=${email}`);
     this.setState({ loading: false });
 
     if (response.ok) {
       localStorage.setItem("api_key", JSON.stringify(data.data.apiKey));
+      localStorage.setItem("email", JSON.stringify(email))
       client.setApiKey(data.data.apiKey);
-
-      toast.success('Success get API-Key!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
 
       const { data: dataLoad } = await client.get("/todos");
       this.setState({
@@ -109,6 +123,7 @@ export default class TodoWrap extends Component {
     }
   }
 
+  // Hàm gọi API để lấy todos và update lại todos
   addTodo = async () => {
     this.setState({ loading: true });
     const { data: dataLoad } = await client.get("/todos");
@@ -116,6 +131,7 @@ export default class TodoWrap extends Component {
     this.addKeyEdit(dataLoad.data.listTodo);
   }
 
+  // Hàm xóa task và cập nhập lại ở trên API
   handleDelete = (deleteId) => {
     const catchTodo = this.state.todos.find(({ _id }) => {
       return _id === deleteId;
@@ -126,21 +142,12 @@ export default class TodoWrap extends Component {
       const { response } = await client.delete(`/todos/${catchTodo._id}`);
       this.setState({ loading: false });
       if (response.ok) {
-        toast.success('Success delete todo!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
+        this.handleSuccess("Success delete todo!");
 
-          const newTodos = this.state.todos.filter(({ _id }) => {
-            return _id !== deleteId;
-          });
-          this.addKeyEdit(newTodos);
+        const newTodos = this.state.todos.filter(({ _id }) => {
+          return _id !== deleteId;
+        });
+        this.addKeyEdit(newTodos);
       }
       else {
         this.handleError("Failed delete, click to reload!");
@@ -160,6 +167,7 @@ export default class TodoWrap extends Component {
     });
   }
 
+  // Hàm ẩn hiện form edit
   editTodo = (id) => {
     this.setState({
       todos: this.state.todos.map((todo) => {
@@ -170,23 +178,31 @@ export default class TodoWrap extends Component {
 
   handleUpdate = async (id, todo, isCompleted = false) => {
     this.setState({ loading: true });
-    const { response } = await client.patch(`/todos/${id}`, {todo, isCompleted});
+    const { response, data } = await client.patch(`/todos/${id}`, {todo, isCompleted});
     this.setState({ loading: false });
 
     if (response.ok) {
-      const { data: dataLoad } = await client.get("/todos");
-      this.addKeyEdit(dataLoad.data.listTodo);
+      const todoUpdate = data.data;
+      for (let i = 0; i < this.state.todos.length; i++) {
+        if (this.state.todos[i]._id === todoUpdate._id) {
+          const newTodos = this.state.todos.map((todo) => {
+            if (todo._id === todoUpdate._id) {
+              todo = {
+                ...todo,
+                ...todoUpdate,
+                isEdit: false,
+              }
+            }
+            return todo;
+          })
+          this.setState({
+            todos: newTodos,
+          })
 
-      toast.success('Success update todo!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+          break;
+        }
+      }
+      this.handleSuccess("Success update todo!");
     }
     else {
       this.handleError("Failed update, click to reload");
@@ -197,7 +213,7 @@ export default class TodoWrap extends Component {
     return (
       <div className='todo-wrap'>
         <h2>Welcome to Todo App!</h2>
-        <TodoForm addTodo={this.addTodo} handleApi={this.handleApi} htmlStrip={this.htmlStrip} handleError={this.handleError}/>
+        <TodoForm addTodo={this.addTodo} htmlStrip={this.htmlStrip} handleError={this.handleError} handleSuccess={this.handleSuccess} updateSearchTodos={this.updateSearchTodos}/>
 
         {
           this.state.todos.map((element, index) => {

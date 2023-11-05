@@ -76,6 +76,7 @@ button {
     color: rgb(164, 164, 164);
 }
 
+.todo-form .button-search,
 .todo-form .button-add {
     width: 120px;
     font-weight: 800;
@@ -83,6 +84,12 @@ button {
     background-color: rgb(23,184,166);
     padding: 9px 0px;
     border-radius: 3px;
+    margin-right: 5px;
+}
+
+.todo-form .button-search {
+    background-color: rgb(249,115,22);
+    margin-right: 0;
 }
 
 /* ----------------------------------------------------------- */

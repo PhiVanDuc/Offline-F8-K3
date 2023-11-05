@@ -1,45 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useRef, useState } from 'react'
 import { client } from '../api/client';
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-export default class TodoForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nameTask: "",
-    };
+export default function TodoForm({ addTodo, htmlStrip, handleError, handleSuccess, updateSearchTodos }) {
+  const [nameTask, setNameTask] = useState("");
+  const [search, setSearch] = useState(false);
+
+  const handleChange = (e) => {
+    setNameTask(htmlStrip(e.target.value));
   }
 
-  handleChange = (e) => {
-    this.setState({
-      nameTask: this.props.htmlStrip(e.target.value),
-    });
-  }
-  
-
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (/^.{2,}$/.test(this.state.nameTask)) {
-      const { response } = await client.post('/todos', {todo: this.state.nameTask});
+    if (/^.{2,}$/.test(nameTask)) {
+      const { response } = await client.post('/todos', {todo: nameTask});
       if (response.ok) {
-        this.props.addTodo(this.state.nameTask);
-        this.setState({ nameTask: "" });
-
-        toast.success('Success add todo!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
+        addTodo(nameTask);
+        setNameTask("");
+        setSearch(false);
+        handleSuccess("Success add todo!");
       }
       else {
-        this.props.handleError("Failed add, click to reload!");
+        handleError("Failed add, click to reload!");
       }
     }
     else {
@@ -56,12 +40,36 @@ export default class TodoForm extends Component {
     }
   }
 
-  render() {
-    return (
-      <form action="" className="todo-form" onSubmit={this.handleSubmit}>
-        <input value={this.state.nameTask} onChange={this.handleChange} type="text" className="input-add" placeholder="Thêm một việc làm mới" />
-        <button className="button-add">Thêm mới</button>
-      </form>
-    )
-  }
+  const handleUpdateSearch = () => {
+    if (!search) {
+      setSearch(true);
+    }
+    handleSuccess("Đã bật chức năng tìm kiếm!");
+    updateSearchTodos(nameTask);
+  } 
+
+  const isMounted = useRef(false);
+  useEffect(() => {
+    if (search) {
+      if (!isMounted.current) {
+        isMounted.current = true;
+        return;
+      }
+  
+      const debounce = setTimeout(() => {
+        updateSearchTodos(nameTask);
+      }, 500);
+      return () => {
+        clearTimeout(debounce);
+      }
+    }
+  }, [nameTask])
+
+  return (
+    <form action="" className="todo-form" onSubmit={handleSubmit}>
+      <input value={nameTask} onChange={handleChange} type="text" className="input-add" placeholder="Thêm một việc làm mới" />
+      <button className="button-add">Thêm mới</button>
+      <button type='button' className='button-search' onClick={handleUpdateSearch}>Tìm kiếm</button>
+    </form>
+  )
 }
