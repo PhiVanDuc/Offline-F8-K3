@@ -8,12 +8,14 @@ export default function ShopList() {
   return (
     <div className='shop-products'>
       {
-        products.map(({ image, name, price }, index) => {
+        products.map(({ image, name, price, quantity, _id }, index) => {
           return <ShopProduct
             image={image}
             name={name}
             price={price}
             key={index}
+            quantity={quantity}
+            _id={_id}
           />
         })
       }

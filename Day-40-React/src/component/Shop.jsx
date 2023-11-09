@@ -12,12 +12,16 @@ export default function Shop() {
   const [email, setEmail] = useState("");
   const [products, setProducts] = useState([]);
   const [showLogin, setShowLogin] = useState(true);
+  const [cart, setCart] = useState([]);
 
   const handleUpdateEmail = (value) => {
     setEmail(value);
   }
 
-  let mounted = useRef(false);
+  const handleUpdateCart = (array) => {
+    setCart(array)
+  }
+
   useEffect(() => {    
     handleApi();
   }, []);
@@ -60,8 +64,10 @@ export default function Shop() {
     email,
     showLogin,
     products,
+    cart,
     handleApi,
     handleUpdateEmail,
+    handleUpdateCart,
   }
 
   return (
@@ -72,6 +78,9 @@ export default function Shop() {
         }
         <h2 className='shop-heading'>Welcome to Shop!</h2>
         <ShopList />
+        {
+          cart.length > 0 && <ShopCard />
+        }
         <ToastContainer />
       </div>
     </ShopContext.Provider>
