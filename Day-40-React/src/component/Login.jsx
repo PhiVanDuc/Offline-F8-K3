@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import client from '../api/client'
 import { ShopContext } from './Shop'
 import displayNotify from '../utilities/displayNotify';
 
 export default function Login() {
-    const { email, updateEmail, updateLogin } = useContext(ShopContext);
+    const { email, handleApi, handleUpdateEmail } = useContext(ShopContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -11,7 +12,8 @@ export default function Login() {
             displayNotify("error", "Invalid Email!");
             return;
         }
-        updateLogin(false);
+        
+        handleApi();
     }
 
     return (
@@ -21,7 +23,7 @@ export default function Login() {
                 <input 
                     type="text"
                     placeholder='example@example.com'
-                    onChange={(e) => {updateEmail(e.target.value)}}
+                    onChange={(e) => {handleUpdateEmail(e.target.value)}}
                 />
                 <button className='btn-submit'>Submit</button>
             </form>

@@ -9,85 +9,72 @@ import { ToastContainer } from 'react-toastify';
 export const ShopContext = createContext();
 
 export default function Shop() {
-  const [login, setLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [products, setProducts] = useState([]);
+  const [showLogin, setShowLogin] = useState(true);
 
-  const updateEmail = (text) => {
-    setEmail(text);
+  const handleUpdateEmail = (value) => {
+    setEmail(value);
   }
 
-  const updateLogin = (boolen) => {
-    setLogin(boolen);
-  }
-
-  const mounted = useRef(true);
+  let mounted = useRef(false);
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    
+    handleApi();
+  }, []);
 
+  const handleApi = async () => {
     if (!localStorage.getItem("apiKey")) {
-      (
-        async () => {
-          const { response, data } = await client.get(`/api-key?email=${email}`);
+      const { response, data } = await client.get(`/api-key?email=${email}`);
+          
+      if (response.ok) {
+          client.setApiKey(data.data.apiKey);
+          const { data: dataProducts } = await client.get("/products?limit=8");
+          localStorage.setItem("apiKey", JSON.stringify(data.data.apiKey));
+          setShowLogin(false);
+          setProducts(dataProducts.data);
 
-          if (response.ok) {
-            client.setApiKey(data.data.apiKey);
-            localStorage.setItem("apiKey", JSON.stringify(data.data.apiKey));
-            
-            const { data: dataProducts } = await client.get(`/products?limit=8`);
-            setProducts(dataProducts.data);
-            const { data: dataProfile } = await client.get("/users/profile");
-            displayNotify("success", `Chào mừng ${dataProfile.data.emailId.name}!`)
-          }
-        }  
-      )()
+          const { data: dataPofile } = await client.get("/users/profile");
+          displayNotify("success", `Chào mừng ${dataPofile.data.emailId.name}`);
+      }
     }
     else {
       const apiKey = localStorage.getItem("apiKey");
       client.setApiKey(JSON.parse(apiKey));
+      const { response, data } = await client.get("/products?limit=8");
+      const { response: responseProfile, data: dataPofile } = await client.get("/users/profile");
 
-      (
-        async () => {
-          const { response, data } = await client.get(`/products?limit=8`);
-          const { response: responseProfile, data: dataProfile } = await client.get("/users/profile");
-
-          if (response.ok && responseProfile.ok) {
-            if (login === true) {
-              setLogin(false);
-              return;
-            }
-
-            setProducts(data.data);
-            displayNotify("success", `Chào mừng ${dataProfile.data.emailId.name}!`);
-          }
-          else {
-            if (mounted.current) {
-              mounted.current = false;
-              return;
-            }
-            
-            localStorage.removeItem("apiKey");
-            displayNotify("error", `Vui lòng đăng nhập!`);
-            setLogin(true);
-          }
-        }
-      )();
+      if (response.ok && responseProfile.ok) {
+        setShowLogin(false);
+        setProducts(data.data);
+        displayNotify("success", `Chào mừng ${dataPofile.data.emailId.name}`);
+      }
+      else {
+        setShowLogin(true);
+        displayNotify("error", "Vui lòng đăng nhập!");
+        localStorage.removeItem("apiKey");
+      }
     }
-  }, [login]);
+  }
 
   const data = {
     email,
+    showLogin,
     products,
-    updateEmail,
-    updateLogin,
+    handleApi,
+    handleUpdateEmail,
   }
 
   return (
     <ShopContext.Provider value={data}>
       <div className='shop'>
         {
-          login && <Login />
+          showLogin && <Login />
         }
-
         <h2 className='shop-heading'>Welcome to Shop!</h2>
         <ShopList />
         <ToastContainer />

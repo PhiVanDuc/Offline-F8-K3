@@ -180,6 +180,10 @@ Loading
     background-color: rgb(203,213,225);
 }
 
+.wrap-form.inactive {
+    display: none;
+}
+
 .form-login {
     display: flex;
     flex-direction: column;
