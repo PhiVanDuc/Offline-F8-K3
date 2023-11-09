@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+button {
+    border: none;
+    background-color: rgb(40,167,69);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input {
+    font-family: 'Nunito', sans-serif;
+    appearance: none;
+    outline: none;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgb(78, 78, 78);
+    padding: 6px 0px 6px 8px;
+}
+input::placeholder {
+    color: rgb(110, 110, 110);
+    font-size: 1.3rem;
+}
+
+/* 
+------------------------------------------------------------------------------------------------------------
+Shop
+------------------------------------------------------------------------------------------------------------
+*/
+
+.app {
+    width: 1220px;
+    max-width: 100%;
+    margin: 40px auto 40px auto;
+}
+
+.shop {
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 10px;
+    background-color: rgb(51,65,85);
+    border-radius: 5px;
+}
+
+.shop-heading {
+    color: white;
+    font-weight: 800;
+    padding-bottom: 20px;
+}
+
+/* 
+------------------------------------------------------------------------------------------------------------
+Shop Products
+------------------------------------------------------------------------------------------------------------
+*/
+
+.shop-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.shop-products .product {
+    width: 23.5%;
+    height: 370px;
+    border-radius: 4px;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.shop-products .product img {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.shop-products .product .product-name,
+.shop-products .product .product-price {
+    text-align: left;
+    padding: 0px 20px;
+    overflow: hidden;
+}
+
+.shop-products .product .product-name {
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.shop-products .product .product-price {
+    font-size: 1.5rem;
+    padding-top: 10px;
+    font-weight: 700;
+}
+
+.shop-products .product .btn-add {
+    margin-top: 10px;
+}
+
+/* 
+------------------------------------------------------------------------------------------------------------
+Shop Cart
+------------------------------------------------------------------------------------------------------------
+*/
+
+.shop-cart {
+    width: 90%;
+}
+
+.shop-cart table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 4px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.shop-cart table thead {
+    background-color: rgb(249,250,251);
+}
+.shop-cart table th {
+    padding: 20px 0px 20px 20px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: rgb(138, 138, 138);
+}
+
+.shop-cart table tbody {
+    background-color: white;
+}
+.shop-cart table td {
+    padding: 15px 0px 15px 20px;
+    font-weight: 700;
+    color: rgb(99, 99, 99);
+}
+.shop-cart table tbody tr {
+    border-top: 2px solid rgb(235, 235, 235);
+}
+
+/* 
+------------------------------------------------------------------------------------------------------------
+Loading
+------------------------------------------------------------------------------------------------------------
+*/
+
+.wrap-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background-color: rgb(203,213,225);
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+}
+
+.form-login label {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.form-login input {
+    width: 200px;
+    margin-bottom: 10px;
+}
