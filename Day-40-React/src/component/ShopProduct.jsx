@@ -37,7 +37,7 @@ export default function ShopProduct({ image, name, price, quantity, _id }) {
     }
     else {
       handleUpdateCart([info]);
-      localStorage.setItem("carts", JSON.stringify(info));
+      localStorage.setItem("carts", JSON.stringify([info]));
     }
   }
 

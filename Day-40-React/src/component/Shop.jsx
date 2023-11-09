@@ -5,6 +5,7 @@ import ShopList from './ShopList'
 import ShopCard from './ShopCard'
 import displayNotify from '../utilities/displayNotify'
 import { ToastContainer } from 'react-toastify';
+import PuffLoader from 'react-spinners/Puffloader'
 
 export const ShopContext = createContext();
 
@@ -12,7 +13,15 @@ export default function Shop() {
   const [email, setEmail] = useState("");
   const [products, setProducts] = useState([]);
   const [showLogin, setShowLogin] = useState(true);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    if (localStorage.getItem("carts")) {
+      let saveCarts = localStorage.getItem("carts");
+      saveCarts = JSON.parse(saveCarts);
+      return saveCarts;
+    }
+    else return [];
+  });
+  const [loading, setLoading] = useState(false);
 
   const handleUpdateEmail = (value) => {
     setEmail(value);
@@ -22,13 +31,19 @@ export default function Shop() {
     setCart(array)
   }
 
+  const handleUpdateLoading = (boolean) => {
+    setLoading(boolean);
+  }
+
   useEffect(() => {    
     handleApi();
   }, []);
 
   const handleApi = async () => {
     if (!localStorage.getItem("apiKey")) {
+      setLoading(true);
       const { response, data } = await client.get(`/api-key?email=${email}`);
+      setLoading(false);
           
       if (response.ok) {
           client.setApiKey(data.data.apiKey);
@@ -42,10 +57,12 @@ export default function Shop() {
       }
     }
     else {
+      setLoading(true);
       const apiKey = localStorage.getItem("apiKey");
       client.setApiKey(JSON.parse(apiKey));
       const { response, data } = await client.get("/products?limit=8");
       const { response: responseProfile, data: dataPofile } = await client.get("/users/profile");
+      setLoading(false);
 
       if (response.ok && responseProfile.ok) {
         setShowLogin(false);
@@ -60,6 +77,8 @@ export default function Shop() {
     }
   }
 
+  console.log(cart);
+
   const data = {
     email,
     showLogin,
@@ -68,6 +87,7 @@ export default function Shop() {
     handleApi,
     handleUpdateEmail,
     handleUpdateCart,
+    handleUpdateLoading,
   }
 
   return (
@@ -82,6 +102,13 @@ export default function Shop() {
           cart.length > 0 && <ShopCard />
         }
         <ToastContainer />
+        {
+          loading && (
+            <div className='spinner-loading'>
+              <PuffLoader loading={loading} size={150} color="#36d7b7" />
+            </div>
+          )
+        }
       </div>
     </ShopContext.Provider>
   )

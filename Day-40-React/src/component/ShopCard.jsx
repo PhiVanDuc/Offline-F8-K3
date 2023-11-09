@@ -4,9 +4,12 @@ import displayNotify from '../utilities/displayNotify';
 import { ShopContext } from './Shop'
 
 export default function ShopCard() {
-  const { cart, handleUpdateCart, handleApi } = useContext(ShopContext);
+  const { cart, handleUpdateCart, handleApi, handleUpdateLoading } = useContext(ShopContext);
   const handlePay = async () => {
+    handleUpdateLoading(true);
     const { response } = await client.post("/orders", cart);
+    handleUpdateLoading(false);
+    
     if (!response.ok) {
       handleApi();
     }
