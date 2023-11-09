@@ -23,10 +23,6 @@ export default function Shop() {
 
   const mounted = useRef(true);
   useEffect(() => {
-    if (mounted.current) {
-      mounted.current = false;
-      return;
-    }
 
     if (!localStorage.getItem("apiKey")) {
       (
@@ -64,8 +60,13 @@ export default function Shop() {
             displayNotify("success", `Chào mừng ${dataProfile.data.emailId.name}!`);
           }
           else {
-            displayNotify("error", `Vui lòng đăng nhập!`);
+            if (mounted.current) {
+              mounted.current = false;
+              return;
+            }
+            
             localStorage.removeItem("apiKey");
+            displayNotify("error", `Vui lòng đăng nhập!`);
             setLogin(true);
           }
         }
