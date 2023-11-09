@@ -18,12 +18,7 @@ export default function Shop() {
   }
 
   let mounted = useRef(false);
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      return;
-    }
-    
+  useEffect(() => {    
     handleApi();
   }, []);
 
@@ -54,9 +49,9 @@ export default function Shop() {
         displayNotify("success", `Chào mừng ${dataPofile.data.emailId.name}`);
       }
       else {
-        setShowLogin(true);
-        displayNotify("error", "Vui lòng đăng nhập!");
         localStorage.removeItem("apiKey");
+        displayNotify("error", "Vui lòng đăng nhập!");
+        setShowLogin(true);
       }
     }
   }

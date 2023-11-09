@@ -12,7 +12,6 @@ export default function Login() {
             displayNotify("error", "Invalid Email!");
             return;
         }
-        
         handleApi();
     }
 
