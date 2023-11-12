@@ -3,7 +3,6 @@ import BounceLoader from "react-spinners/BounceLoader";
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Loading() {
-    const { isLoading } = useAuth0();
     const override = {
         display: "block",
         margin: "0 auto",
@@ -13,7 +12,7 @@ export default function Loading() {
         <div className="loading">
             <BounceLoader
                 color="#ff8b18"
-                loading={isLoading}
+                loading={true}
                 cssOverride={override}
                 size={100}
                 aria-label="Loading Spinner"
