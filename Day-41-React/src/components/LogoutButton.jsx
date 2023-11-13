@@ -6,7 +6,7 @@ export default function LogoutButton() {
 
     return (
       <div className='btn-logout'>
-        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+        <button onClick={() => logout({ logoutParams: { returnTo: window.location.href } })}>
           Log Out
         </button>
       </div>
