@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: "/Offline-F8-K3/Day-41-React/dist",
   plugins: [react()],
-  server: { port: 3000 }
+  // server: { port: 3000 }
 })
