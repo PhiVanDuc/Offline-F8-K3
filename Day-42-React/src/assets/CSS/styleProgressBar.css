@@ -1,0 +1,14 @@
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+}
+
+.remaining-bar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(140,192,192);
+}

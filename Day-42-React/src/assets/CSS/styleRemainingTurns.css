@@ -1,0 +1,14 @@
+.remaining-turns {
+    font-size: 3.6rem;
+    font-weight: 800;
+}
+
+.remaining-turns h1 {
+    color: rgb(50,151,149);
+    padding-top: 25px;
+}
+
+.remaining-turns h2 {
+    color: rgb(45,122,123);
+    padding-top: 10px;
+}

@@ -1,0 +1,120 @@
+.range-input {
+    padding-top: 10px;
+}
+
+.range-input h2 {
+    font-size: 3.6rem;
+    font-weight: 800;
+    color: rgb(40,94,97);
+    padding-bottom: 10px;
+}
+
+/* .range-slider {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 99px;
+  background-color: rgb(227,232,240);
+} */
+
+/* .range-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 99px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.range-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background-color: rgb(50,151,149);
+  border-radius: 99px;
+  z-index: 1;
+} */
+
+.range-input .range-slider {
+  position: relative;
+  height: fit-content;
+}
+
+.range-input .range-number {
+  visibility: hidden;
+  position: absolute;
+  font-size: 1.4rem;
+  font-weight: 700;
+  top: -30px;
+  left: 0;
+  color: white;
+  padding: 5px 10px;
+  background-color: rgb(50,151,149);
+  border-radius: 4px;
+}
+
+.range-input input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background-color: rgb(227,232,240);
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+.range-input input[type="range"]::-webkit-slider-thumb {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 99px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.range-input input[type="range"]:hover + .range-number {
+  visibility: visible;
+}
+
+.range-input .timeline {
+  position: absolute;
+  font-size: 1.4rem;
+  bottom: -20px;
+}
+
+.range-input form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.range-input form label {
+  font-weight: 700;
+  color: rgb(50,151,149);
+  padding-bottom: 10px;
+}
+
+.range-input form input {
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 5px;
+  padding: 12px 15px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.5rem;
+  transition: outline 0.1s linear;
+}
+
+.range-input form input:focus {
+  outline: 2px solid  rgb(52, 154, 255);
+}
