@@ -1,0 +1,75 @@
+.page-products {
+    margin: 40px 0px 30px 0px;
+}
+
+.page-products .container {
+    width: 1220px;
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 0px 10px;
+}
+
+.page-products .page-heading {
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: rgb(46, 56, 105);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-products .products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.page-products .product {
+    width: calc((100% / 4) - 20px);
+    border-radius: 5px;
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+.page-products .product img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.page-products .product .info-product {
+    font-size: 1.6rem;
+    border: 2px solid rgb(230, 230, 230);
+    border-top: none;
+    border-radius: 0px 0px 5px 5px;
+    padding: 15px;
+}
+
+.page-products .product .name-product {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 10px;    
+}
+
+.page-products .product .buttom-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-products .product .price {
+    font-weight: 600;
+}
+.page-products .product .price span {
+    font-weight: 800;
+}
+
+.page-products .product .icon-add-cart {
+    font-size: 2rem;
+    transition: color 0.2s linear;
+}
+.page-products .product .icon-add-cart:hover {
+    color: rgb(255, 120, 43);
+}

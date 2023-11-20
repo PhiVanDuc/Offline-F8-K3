@@ -1,0 +1,39 @@
+.header {
+    background-color: rgb(37,43,72);
+    color: white;
+    padding: 20px 0px;
+}
+
+.header .container {
+    margin: 0px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .logo {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+}
+
+.header .wrap-cart {
+    position: relative;
+}
+
+.header .icon-cart {
+    font-size: 3.5rem;
+    transition: color 0.2s linear;
+}
+
+.header .icon-cart:hover {
+    color: rgb(255, 120, 43);
+}
+
+.header .quantity {
+    position: absolute;
+    font-size: 1.7rem;
+    font-weight: 600;
+    right: -14px;
+    top: -10px;
+}
