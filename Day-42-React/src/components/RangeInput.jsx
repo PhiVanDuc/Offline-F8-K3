@@ -48,6 +48,8 @@ export default function RangeInput() {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+
+    
   }
 
   const handleChangeInput = (e) => {

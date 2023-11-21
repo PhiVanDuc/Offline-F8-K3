@@ -9,6 +9,7 @@ export const RootContext = createContext();
 
 export default function GuessNumber() {
     const [valueRange, setValueRange] = useState(99);
+    const [histories, setHistories] = useState([]);
     const randomNumber = useRef(Math.floor(Math.random() * valueRange) + 1);
 
     const updateValueRange = (value) => {
