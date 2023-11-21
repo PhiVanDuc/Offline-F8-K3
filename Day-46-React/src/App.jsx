@@ -4,6 +4,7 @@ import { fetchProducts, fetchTotalPage } from './redux/slices/productsSlice'
 import { useDispatch } from 'react-redux'
 import Header from './components/Header'
 import Products from './pages/Products'
+import DetailProduct from './pages/DetailProduct'
 
 export default function App() {
   const dispatch = useDispatch();
@@ -15,7 +16,10 @@ export default function App() {
   }
 
   useEffect(() => {
-    navigate(`/products/${param}`);
+    const currentPath = window.location.pathname;
+
+    if (currentPath === '/') navigate(`/products/1`);
+    else navigate(`/products/${param}`);
     dispatch(fetchProducts(param, 20));
   }, [param]);
 
@@ -28,6 +32,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/products/:pageNumber' element={<Products updatePageNumber={updatePageNumber} />}/>
+        <Route path='/detail-product/:detail' element={<DetailProduct />} />
       </Routes>
     </div>
   )

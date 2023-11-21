@@ -37,6 +37,7 @@
     object-fit: cover;
     object-position: center;
     border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
 }
 
 .page-products .product .info-product {
@@ -69,6 +70,7 @@
 .page-products .product .icon-add-cart {
     font-size: 2rem;
     transition: color 0.2s linear;
+    cursor: pointer;
 }
 .page-products .product .icon-add-cart:hover {
     color: rgb(255, 120, 43);
