@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import Header from './components/Header'
 import Products from './pages/Products'
 import DetailProduct from './pages/DetailProduct'
+import Carts from './pages/Carts'
 
 export default function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function App() {
     const currentPath = window.location.pathname;
 
     if (currentPath === '/') navigate(`/products/1`);
-    else navigate(`/products/${param}`);
+    else if (currentPath === `/products/${param}`)navigate(`/products/${param}`);
     dispatch(fetchProducts(param, 20));
   }, [param]);
 
@@ -33,6 +34,7 @@ export default function App() {
       <Routes>
         <Route path='/products/:pageNumber' element={<Products updatePageNumber={updatePageNumber} />}/>
         <Route path='/detail-product/:detail' element={<DetailProduct />} />
+        <Route path='/cart' element={<Carts />}></Route>
       </Routes>
     </div>
   )

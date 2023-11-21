@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '../redux/slices/productsSlice'
+import { fetchInfoProduct } from '../redux/slices/cartsSlice'
 import { detailProductSlice } from '../redux/slices/detailProductSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -32,6 +33,10 @@ export default function Products({ updatePageNumber }) {
         dispatch(updateDetailProduct({ _id }));
     }
 
+    const handleClickAddCart = (_id) => {
+        dispatch(fetchInfoProduct(_id));
+    }
+    
     return (
         <Fragment>
             <div className='page-products'>
@@ -48,7 +53,7 @@ export default function Products({ updatePageNumber }) {
                                         <h3 className='name-product'>{name}</h3>
                                             <div className="buttom-product">
                                                 <p className="price"><span>$</span> {price}</p>
-                                                <div className="icon-add-cart">
+                                                <div className="icon-add-cart" onClick={() => { handleClickAddCart(_id) }}>
                                                     <FontAwesomeIcon icon={ faCartShopping } />
                                                 </div>
                                             </div>
