@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { client } from "../../api/client"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { client } from "../../utilities/client"
 
 const initialState = {
     products: [],
@@ -10,26 +10,29 @@ const initialState = {
 export const productsSlice = createSlice({
     name: "products",
     initialState,
-    reducers: {
-        updateProducts: (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.products = action.payload;
-        },
-        updateTotalPage: (state, action) => {
+            state.status = 'fulfilled';
+        })
+        .addCase(fetchProducts.pending, (state) => {
+            state.status = 'pending';
+        })
+        .addCase(fetchProducts.rejected, (state) => {
+            state.status = 'rejected';
+        })
+        .addCase(fetchTotalPage.fulfilled, (state, action) => {
             state.totalPage = action.payload;
-        }
+        })
     }
 })
 
-export const fetchProducts = (page, limit) => {
-    return async (dispatch) => {
-        const { data } = await client.get(`/products?page=${page}&limit=${limit}`);
-        dispatch(productsSlice.actions.updateProducts(data.data.listProduct));
-    }
-}
+export const fetchProducts = createAsyncThunk("fetchProducts", async ({ param, limit }) => {
+    const { data } = await client.get(`/products?page=${param}&limit=${limit}`);
+    return data.data.listProduct;
+});
 
-export const fetchTotalPage = () => {
-    return async (dispatch) => {
-        const { data } = await client.get(`/products`);
-        dispatch(productsSlice.actions.updateTotalPage(Math.ceil((data.data.totalPage * 10) / 20)));
-    }
-}
+export const fetchTotalPage = createAsyncThunk("fetchTotalPage", async () => {
+    const { data } = await client.get(`/products`);
+    return Math.ceil((data.data.totalPage * 10) / 20);
+});

@@ -140,10 +140,23 @@
 
 .cart .btn-return {
     width: 30%;
-
 }
 
 .cart .btn-checkout {
     width: 30%;
     background-color: #198754;
+}
+
+.cart .cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-notify {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(194, 194, 194);
+    padding-top: 100px;
+    padding-bottom: 40px;
 }

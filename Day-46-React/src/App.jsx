@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Products from './pages/Products'
 import DetailProduct from './pages/DetailProduct'
 import Carts from './pages/Carts'
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export default function App() {
 
     if (currentPath === '/') navigate(`/products/1`);
     else if (currentPath === `/products/${param}`)navigate(`/products/${param}`);
-    dispatch(fetchProducts(param, 20));
+    dispatch(fetchProducts({ param, limit: 20 }));
   }, [param]);
 
   useEffect(() => {
@@ -29,13 +30,14 @@ export default function App() {
   }, [])
 
   return (
-    <div className='app' style={{ position: "relative" }}>
+    <div className='app'>
       <Header />
       <Routes>
         <Route path='/products/:pageNumber' element={<Products updatePageNumber={updatePageNumber} />}/>
         <Route path='/detail-product/:detail' element={<DetailProduct />} />
         <Route path='/cart' element={<Carts />}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   )
 }

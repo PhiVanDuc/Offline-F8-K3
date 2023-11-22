@@ -1,22 +1,21 @@
 import React from 'react'
 import BarLoader from "react-spinners/BarLoader";
 
-const overrideCss = {
-    display: "block",
-    margin: "0px auto",
-    borderColor: "#dc3545",
-}
-
 export default function Loading() {
+  const cssOverride = {
+    backgroundColor: "rgb(252 222 205)",
+  }
+
   return (
     <div className='loading'>
         <BarLoader
-            color={"#dc3545"}
-            loading={true}
-            size={150}
-            overrideCss={overrideCss}
-            aria-label="Loading Spinner"
-            data-testid="loader"
+          color={"rgb(255, 120, 43)"}
+          loading={true}
+          width={"200px"}
+          height={"5px"}
+          cssOverride={cssOverride}
+          aria-label="Loading Spinner"
+          data-testid="loader"
         />
     </div>
   )
