@@ -29,7 +29,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className='app'>
+    <div className='app' style={{ position: "relative" }}>
       <Header />
       <Routes>
         <Route path='/products/:pageNumber' element={<Products updatePageNumber={updatePageNumber} />}/>

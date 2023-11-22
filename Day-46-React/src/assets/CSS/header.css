@@ -1,7 +1,9 @@
 .header {
+    position: relative;
     background-color: rgb(37,43,72);
     color: white;
     padding: 20px 0px;
+    z-index: 999;
 }
 
 .header .container {

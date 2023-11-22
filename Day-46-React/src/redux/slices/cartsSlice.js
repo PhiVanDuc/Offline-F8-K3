@@ -33,11 +33,42 @@ export const cartsSlice = createSlice({
                 localStorage.setItem("carts", JSON.stringify(state.carts));
             }
         },
+
         increaseCarts: (state, action) => {
-
+            state.carts.forEach(({ _id }, index) => {
+                if (_id === action.payload) {
+                    state.carts[index].amount -= 1;
+                    state.carts[index].quantity += 1;
+                    localStorage.setItem("carts", JSON.stringify(state.carts));
+                    return;
+                }
+            });
         },
-        decreaseCarts: (state, action) => {
 
+        decreaseCarts: (state, action) => {
+            state.carts.forEach(({ _id }, index) => {
+                if (_id === action.payload) {
+                    state.carts[index].amount += 1;
+                    state.carts[index].quantity -= 1;
+                    localStorage.setItem("carts", JSON.stringify(state.carts));
+                    return;
+                }
+            });
+        },
+
+        deleteItemCarts: (state, action) => {
+            state.carts.forEach(({ _id }, index) => {
+                if (_id === action.payload) {
+                    state.carts.splice(index, 1);
+                    localStorage.setItem("carts", JSON.stringify(state.carts));
+                    return;
+                }
+            });
+        },
+
+        clearCarts: (state) => {
+            state.carts = [];
+            localStorage.setItem("carts", JSON.stringify(state.carts));
         }
     }
 });
