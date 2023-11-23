@@ -26,8 +26,6 @@ export default function DetailProduct() {
 
     const handleClickAdd = (_id) => {
         dispatch(fetchInfoProduct(_id));
-        if (statusCarts === "fulfilled") notify("success", "Thêm sản phẩm thành công!");
-        else if (statusCarts === "rejected") notify("error", "Thêm sản phẩm thất bại!");
     }
 
     return (

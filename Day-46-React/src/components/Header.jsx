@@ -11,7 +11,7 @@ export default function Header() {
     const carts = useSelector((state) => state.carts.carts);
     
     const handleClickLogo = () => {
-        dispatch(fetchProducts(1, 20));
+        dispatch(fetchProducts({param: 1, limit: 20}));
     }
 
     const handleClickCart = () => {

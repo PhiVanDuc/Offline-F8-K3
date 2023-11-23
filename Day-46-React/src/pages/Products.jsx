@@ -16,6 +16,7 @@ function Products({ updatePageNumber }) {
     const status = useSelector((state) => state.products.status);
     const statusCarts = useSelector((state) => state.carts.status);
     const totalPage = useSelector((state) => state.products.totalPage);
+    console.log(statusCarts);
 
     const navigate = useNavigate();
     const { pageNumber } = useParams();
@@ -37,8 +38,6 @@ function Products({ updatePageNumber }) {
 
     const handleClickAddCart = (_id) => {
         dispatch(fetchInfoProduct(_id));
-        if (statusCarts === "fulfilled") notify("success", "Thêm sản phẩm thành công!");
-        else if (statusCarts === "rejected") notify("error", "Thêm sản phẩm thất bại!");
     }
     
     return (

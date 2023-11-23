@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { notify } from "../../utilities/notify";
 
 const initialState = {
     carts: localStorage.getItem("carts") ? JSON.parse(localStorage.getItem("carts")) : [],
@@ -73,12 +74,14 @@ export const cartsSlice = createSlice({
             }
 
             state.status = "fulfilled";
+            notify("success", "Thêm sản phẩm thành công!");
         })
         .addCase(fetchInfoProduct.pending, (state) => {
             state.status = "pending";
         })
         .addCase(fetchInfoProduct.rejected, (state) => {
             state.status = "rejected";
+            notify("error", "Thêm sản phẩm thất bại!");
         })
     }
 });
