@@ -1,0 +1,9 @@
+.trello .board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+    height: 100vh;
+    background-color: #040D12;
+    padding: 0px 100px;
+}

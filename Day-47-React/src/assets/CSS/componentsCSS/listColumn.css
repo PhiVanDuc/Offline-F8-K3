@@ -1,0 +1,25 @@
+.trello .list-column {
+    display: flex;
+    align-items: flex-start;
+}
+
+.trello .list-column .btn-add-column .icon-add {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 15px;
+}
+
+.trello .list-column .btn-add-column {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #93B1A6;
+    border-radius: 5px;
+    background-color: transparent;
+    font-family: "Nunito", sans-serif;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 10px 50px;
+    text-wrap: nowrap;
+}
