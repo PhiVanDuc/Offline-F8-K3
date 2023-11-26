@@ -14,6 +14,9 @@ export const tasksSlice = createSlice({
         deleteTask: (state, action) => {
             const index = state.tasks.findIndex((task) => task._id === action.payload);
             state.tasks.splice(index, 1);
+        },
+        updateColumns: (state, action) => {
+            state.columns = action.payload;
         }
     },
     extraReducers: (builder) => {

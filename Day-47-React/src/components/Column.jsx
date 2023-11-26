@@ -1,21 +1,22 @@
 import React, { useContext } from 'react'
 import { BoardContext } from './Board'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
 import Task from './Task'
+import { SortableContext, useSortable, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 export default function Column({ column }) {
     const {_id, column: columnOrder, columnName } = column;
     const { tasks } = useContext(BoardContext);
-
+    
     const {
         attributes,
         listeners,
         setNodeRef,
         transform,
         transition,
+        isDragging
     } = useSortable({
-        _id,
+        id: _id,
         data: {
             type: "Column",
             column,
@@ -27,10 +28,26 @@ export default function Column({ column }) {
         transition,
     };
 
+    if (isDragging) {
+        const styleOverlay = {
+            ...style,
+            backgroundColor: "transparent",
+            border: "2px solid #872341",
+            height: "501px",
+            width: "400px",
+            marginRight: "20px",
+            borderRadius: "5px",
+        }
+
+        return (
+            <div style={styleOverlay} ref={setNodeRef}></div>
+        )
+    }
+
     return (
-        <div className='column' ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <div className="column-header" >
-                <div className="heading" >
+        <div className='column' ref={setNodeRef} style={style} >
+            <div className="column-header" {...attributes} {...listeners}>
+                <div className="heading">
                     <div className="quantity">
                         {
                             tasks.reduce((prev, curr) => {
@@ -48,12 +65,14 @@ export default function Column({ column }) {
             </div>
 
             <div className="tasks">
-                {
-                    tasks.map((task) => {
-                        if (task.column === columnOrder)
-                            return <Task key={task._id} task={task} />
-                    })
-                }
+                <SortableContext items={tasks.map((task) => task._id)} strategy={horizontalListSortingStrategy}>
+                    {
+                        tasks.map((task) => {
+                            if (task.column === columnOrder)
+                                return <Task key={task._id} task={task} />
+                        })
+                    }
+                </SortableContext>
             </div>
 
             <button className='btn-add-task'>
