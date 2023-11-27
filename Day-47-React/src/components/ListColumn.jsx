@@ -126,7 +126,7 @@ export default function ListColumn() {
                                 } /> 
                             }
                             {
-                                activeTask && <Task task={activeTask._id} />
+                                activeTask && <Task task={activeTask} />
                             }
                         </DragOverlay>,
                         document.body
