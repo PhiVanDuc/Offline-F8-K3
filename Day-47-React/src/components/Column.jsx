@@ -4,10 +4,9 @@ import Task from './Task'
 import { SortableContext, useSortable, horizontalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-export default function Column({ column }) {
+export default function Column({ column, tasks }) {
     const {_id, column: columnOrder, columnName } = column;
-    const { tasks } = useContext(BoardContext);
-    
+
     const {
         attributes,
         listeners,
@@ -65,11 +64,10 @@ export default function Column({ column }) {
             </div>
 
             <div className="tasks">
-                <SortableContext items={tasks.map((task) => task._id)} strategy={horizontalListSortingStrategy}>
+                <SortableContext items={tasks.map(({ _id }) => _id) } >
                     {
                         tasks.map((task) => {
-                            if (task.column === columnOrder)
-                                return <Task key={task._id} task={task} />
+                            return <Task key={task._id} task={task} />
                         })
                     }
                 </SortableContext>

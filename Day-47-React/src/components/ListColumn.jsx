@@ -8,24 +8,24 @@ import { useDispatch } from 'react-redux';
 import { tasksSlice } from '../redux/slices/tasksSlice';
 import Task from './Task';
 
-const { updateColumns } = tasksSlice.actions;
+const { updateColumns, updateTasks } = tasksSlice.actions;
 
 export default function ListColumn() {
     const dispatch = useDispatch();
     const { columns } = useContext(BoardContext);
+    const { tasks } = useContext(BoardContext);
     const [activeColumn, setActiveColumn] = useState(null);
     const [activeTask, setActiveTask] = useState(null);
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                distance: 3,
+                distance: 10,
             }
         })
     )
 
     const handleDragStart = (event) => {
-        console.log(event);
         if (event.active.data.current.type === "Column") {
             setActiveColumn(event.active.data.current.column);
             return;
@@ -38,24 +38,79 @@ export default function ListColumn() {
     }
 
     const handleDragEnd = (event) => {
+        setActiveColumn(null);
+        setActiveTask(null);
         const { active, over } = event;
         if (!over) return;
-        const activeColumnId = active.id;
-        const overColumnId = over.id;
+        const activeId = active.id;
+        const overId = over.id;
 
-        if (activeColumnId === overColumnId) return;
-        const activeColumnIndex = columns.findIndex((column) => column._id === activeColumnId);
-        const overColumnIndex = columns.findIndex((column) => column._id === overColumnId);
-        dispatch(updateColumns(arrayMove(columns, activeColumnIndex, overColumnIndex)));
+        const isActiveColumn = active.data.current.type === "Column";
+        const isOverColumn = active.data.current.type === "Column";
+        if (activeId === overId) return;
+        if (isActiveColumn && isOverColumn) {
+            const activeColumnIndex = columns.findIndex((column) => column._id === activeId);
+            const overColumnIndex = columns.findIndex((column) => column._id === overId);
+            dispatch(updateColumns(arrayMove(columns, activeColumnIndex, overColumnIndex)));
+        }
+    }
+
+    const handleDragOver = (event) => {
+        const { active, over } = event;
+        if (!over) return;
+
+        const activeTaskId = active.id;
+        const overTaskId = over.id;
+        if (activeTaskId === overTaskId) return;
+
+        const isActiveTask = active.data.current.type === "Task";
+        const isOverTask = over.data.current.type === "Task";
+
+        if (!isActiveTask) return;
+
+        // Drag a task over another task
+        if (isActiveTask && isOverTask) {
+            const activeIndex = tasks.findIndex((task) => task._id === activeTaskId);
+            const overIndex = tasks.findIndex((task) => task._id === overTaskId);
+
+            const newTasks = [];
+            tasks.forEach((task) => {
+                if (task._id === tasks[activeIndex]._id) newTasks.push({ ...task, column: tasks[overIndex].column });
+                else newTasks.push({ ...task });
+            })
+            dispatch(updateTasks(newTasks));
+
+            dispatch(updateTasks(arrayMove(newTasks, activeIndex, overIndex)));
+        }
+
+        // Drag a task over a column
+        const isOverAColumn = over.data.current.type === "Column";
+        if (isActiveTask && isOverAColumn) {
+            const overColumn = over.data.current.column.column;
+            const activeIndex = tasks.findIndex((task) => task._id === activeTaskId);
+
+            const newTasks = [...tasks];
+            const wantChange = {
+                ...newTasks[activeIndex],
+                column: overColumn,
+            }
+            newTasks[activeIndex] = wantChange;
+
+            dispatch(updateTasks(newTasks));
+        }
     }
 
     return (
         <div className='list-column'>
-            <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+            <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>
                 <SortableContext items={columns.map(({ _id }) => _id)} strategy={horizontalListSortingStrategy}>
                     {
                         columns.map((column) => {
-                            return <Column key={column._id} column={column}/>
+                            return <Column key={column._id} column={column} tasks={
+                                tasks.filter((task) => {
+                                    return task.column === column.column;
+                                })
+                            }/>
                         })
                     }
                 </SortableContext>
@@ -63,9 +118,18 @@ export default function ListColumn() {
                 {
                     createPortal(
                         <DragOverlay>
-                            { activeColumn && <Column column={activeColumn} /> }
-                            { activeTask && <Task task={activeTask} /> }
-                        </DragOverlay>, document.body
+                            {
+                                activeColumn && <Column column={activeColumn} tasks={
+                                tasks.filter((task) => {
+                                        return task.column === activeColumn.column;
+                                    })
+                                } /> 
+                            }
+                            {
+                                activeTask && <Task task={activeTask._id} />
+                            }
+                        </DragOverlay>,
+                        document.body
                     )
                 }
             </DndContext>

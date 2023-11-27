@@ -17,6 +17,9 @@ export const tasksSlice = createSlice({
         },
         updateColumns: (state, action) => {
             state.columns = action.payload;
+        },
+        updateTasks: (state, action) => {
+            state.tasks = action.payload;
         }
     },
     extraReducers: (builder) => {
