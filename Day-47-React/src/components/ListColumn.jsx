@@ -38,64 +38,73 @@ export default function ListColumn() {
     }
 
     const handleDragEnd = (event) => {
+        const { active, over } = event;
         setActiveColumn(null);
         setActiveTask(null);
-        const { active, over } = event;
-        if (!over) return;
-        const activeId = active.id;
-        const overId = over.id;
 
-        const isActiveColumn = active.data.current.type === "Column";
-        const isOverColumn = active.data.current.type === "Column";
-        if (activeId === overId) return;
-        if (isActiveColumn && isOverColumn) {
-            const activeColumnIndex = columns.findIndex((column) => column._id === activeId);
-            const overColumnIndex = columns.findIndex((column) => column._id === overId);
+        if (!over) return;
+        if (active.id === over.id) return;
+
+        // Xử lý swap vị trí của hai cột cho nhau trong mảng columns (arrayMove)
+        if (active.data.current.type === "Column" && over.data.current.type === "Column") {
+            const activeColumnIndex = columns.findIndex((column) => active.id === column._id );
+            const overColumnIndex = columns.findIndex((column) => over.id === column._id );
             dispatch(updateColumns(arrayMove(columns, activeColumnIndex, overColumnIndex)));
+        }
+
+        // Xử lý swap vị trí của hai task với nhau trong mảng tasks (arrayMove)
+        if (active.data.current.type === "Task" && over.data.current.type === "Task") {
+            const activeTaskIndex = tasks.findIndex((task) => task._id === active.id);
+            const overTaskIndex = tasks.findIndex((task) => task._id === over.id);
+            dispatch(updateTasks(arrayMove(tasks, activeTaskIndex, overTaskIndex)));
         }
     }
 
     const handleDragOver = (event) => {
         const { active, over } = event;
+
         if (!over) return;
+        if (active.id === over.id) return;
 
-        const activeTaskId = active.id;
-        const overTaskId = over.id;
-        if (activeTaskId === overTaskId) return;
-
-        const isActiveTask = active.data.current.type === "Task";
-        const isOverTask = over.data.current.type === "Task";
-
-        if (!isActiveTask) return;
-
-        // Drag a task over another task
-        if (isActiveTask && isOverTask) {
-            const activeIndex = tasks.findIndex((task) => task._id === activeTaskId);
-            const overIndex = tasks.findIndex((task) => task._id === overTaskId);
-
-            const newTasks = [];
-            tasks.forEach((task) => {
-                if (task._id === tasks[activeIndex]._id) newTasks.push({ ...task, column: tasks[overIndex].column });
-                else newTasks.push({ ...task });
-            })
-            dispatch(updateTasks(newTasks));
-
-            dispatch(updateTasks(arrayMove(newTasks, activeIndex, overIndex)));
-        }
-
-        // Drag a task over a column
-        const isOverAColumn = over.data.current.type === "Column";
-        if (isActiveTask && isOverAColumn) {
-            const overColumn = over.data.current.column.column;
-            const activeIndex = tasks.findIndex((task) => task._id === activeTaskId);
+        if ((active.data.current.type === "Task" && over.data.current.type === "Column") && (active.data.current.task.column !== over.data.current.column.column)) {
+            const { delta } = event;
+            const activeTaskIndex = tasks.findIndex((task) => task._id === active.id);
 
             const newTasks = [...tasks];
-            const wantChange = {
-                ...newTasks[activeIndex],
-                column: overColumn,
+            const changeActiveTask = {
+                ...newTasks[activeTaskIndex],
+                column: over.data.current.column.column,
             }
-            newTasks[activeIndex] = wantChange;
+            newTasks[activeTaskIndex] = changeActiveTask;
 
+            // Xử lý vị trí drop là ở cuối column hay ở đầu column khi kéo task không chạm vào task của column khác
+            if (delta.y < 0) {
+                const firstIndex = newTasks.findIndex((task) => task.column === over.data.current.column.column);
+                if (firstIndex === -1) return;
+
+                newTasks.splice(firstIndex, 0, changeActiveTask);
+                newTasks.splice(newTasks.findLastIndex((task) => task._id === changeActiveTask._id), 1);
+            }
+            else if (delta.y > 0) {
+                const lastIndex = newTasks.findLastIndex((task) => task.column === over.data.current.column.column);
+                if (lastIndex === -1) return;
+
+                newTasks.splice(lastIndex + 1, 0, changeActiveTask);
+                newTasks.splice(newTasks.findIndex((task) => task._id === changeActiveTask._id), 1);
+            }
+            dispatch(updateTasks(newTasks));
+        }
+        
+        if (!over.data.current.task) return;
+        if (active.data.current.task.column !== over.data.current.task.column) {
+            const activeTaskIndex = tasks.findIndex((task) => task._id === active.id);
+
+            const newTasks = [...tasks];
+            const changeActiveTask = {
+                ...newTasks[activeTaskIndex],
+                column: over.data.current.task.column,
+            }
+            newTasks[activeTaskIndex] = changeActiveTask;
             dispatch(updateTasks(newTasks));
         }
     }

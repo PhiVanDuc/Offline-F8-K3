@@ -10,7 +10,6 @@ html {
 }
 
 body {
-    overflow-y: hidden;
-    overflow-x: auto;
+    overflow:auto;
     font-size: 1.6rem;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { BoardContext } from './Board'
 import Task from './Task'
-import { SortableContext, useSortable, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 export default function Column({ column, tasks }) {
@@ -64,7 +64,7 @@ export default function Column({ column, tasks }) {
             </div>
 
             <div className="tasks">
-                <SortableContext items={tasks.map(({ _id }) => _id) } >
+                <SortableContext items={tasks.map(({ _id }) => _id) } strategy={verticalListSortingStrategy} >
                     {
                         tasks.map((task) => {
                             return <Task key={task._id} task={task} />

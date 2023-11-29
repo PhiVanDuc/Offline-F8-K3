@@ -54,7 +54,8 @@
 .column .tasks {
     padding: 15px;
     background-color: #93B1A6;
-    height: 400px;
+    min-height: 400px;
+    height: fit-content;
     border-radius: 0px 0px 4px 4px;
     overflow-x: auto;
 }
