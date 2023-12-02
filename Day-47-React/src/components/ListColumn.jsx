@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom';
 import { BoardContext } from './Board'
 import { DndContext, DragOverlay, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
@@ -7,6 +7,7 @@ import Column from './Column'
 import { useDispatch } from 'react-redux';
 import { tasksSlice } from '../redux/slices/tasksSlice';
 import Task from './Task';
+import { fetchAddColumn } from '../redux/slices/tasksSlice';
 
 const { updateColumns, updateTasks } = tasksSlice.actions;
 
@@ -17,6 +18,56 @@ export default function ListColumn() {
     const [activeColumn, setActiveColumn] = useState(null);
     const [activeTask, setActiveTask] = useState(null);
 
+    // Xử lý Api
+    const handleClickAddColumn = () => {
+        const newCol = {
+            idColumn: JSON.parse(localStorage.getItem("tempColumn")),
+            column: JSON.parse(localStorage.getItem("tempColumn")),
+            columnName: `Column ${JSON.parse(localStorage.getItem("orderColumn"))}`,
+            orderColumn: JSON.parse(localStorage.getItem("orderColumn")),
+
+            idTask: JSON.parse(localStorage.getItem("tempTask")),
+            content: `Task ${JSON.parse(localStorage.getItem("orderTask"))}`,
+            orderTask: JSON.parse(localStorage.getItem("orderTask")),
+        }
+        localStorage.setItem("tempColumn", JSON.parse(localStorage.getItem("tempColumn")) + 1);
+        localStorage.setItem("orderColumn", JSON.parse(localStorage.getItem("orderColumn")) + 1);
+        localStorage.setItem("tempTask", JSON.parse(localStorage.getItem("tempTask")) + 1);
+        localStorage.setItem("orderTask", JSON.parse(localStorage.getItem("orderTask")) + 1);
+
+        const res = [];
+        columns.forEach((column) => {
+            tasks.forEach((task) => {
+                if (task.column === column.column) {
+                    res.push({
+                        column: column.column,
+                        content: task.content,
+                        columnName: column.columnName,
+                    });
+                }
+            });
+        });
+
+        const payload = { res, newCol };
+        dispatch(fetchAddColumn(payload));
+    }
+
+    const firstRender = useRef(true);
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        
+        if(columns.length === 0) {
+            localStorage.setItem("tempColumn", 9999999);
+            localStorage.setItem("tempTask", 999999999);
+            localStorage.setItem("orderColumn", 1);
+            localStorage.setItem("orderTask", 1);
+        }
+    }, [columns]);
+
+    // Xử lý drag and drop
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
@@ -94,7 +145,7 @@ export default function ListColumn() {
             }
             dispatch(updateTasks(newTasks));
         }
-        
+    
         if (!over.data.current.task) return;
         if (active.data.current.task.column !== over.data.current.task.column) {
             const activeTaskIndex = tasks.findIndex((task) => task._id === active.id);
@@ -109,6 +160,7 @@ export default function ListColumn() {
         }
     }
 
+    // Render giao diện
     return (
         <div className='list-column'>
             <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>
@@ -132,7 +184,7 @@ export default function ListColumn() {
                                 tasks.filter((task) => {
                                         return task.column === activeColumn.column;
                                     })
-                                } /> 
+                                } />
                             }
                             {
                                 activeTask && <Task task={activeTask} />
@@ -143,7 +195,7 @@ export default function ListColumn() {
                 }
             </DndContext>
 
-            <button className='btn-add-column'>
+            <button className='btn-add-column' onClick={handleClickAddColumn}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 icon-add">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

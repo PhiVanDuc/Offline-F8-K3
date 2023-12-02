@@ -1,18 +1,14 @@
-import React from 'react'
-import { tasksSlice } from '../redux/slices/tasksSlice';
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { BoardContext } from './Board';
+import { fetchDeleteTask } from '../redux/slices/tasksSlice';
 
-const { deleteTask } = tasksSlice.actions;
-
-function Task({ task }) {
-    const { _id: id, content } = task;
+function Task({ task, column }) {
     const dispatch = useDispatch();
-
-    const handleClickDeleteTask = async () => {
-        dispatch(deleteTask(id));
-    }
+    const { _id: id, content } = task;
+    const { columns, tasks } = useContext(BoardContext);
 
     const {
         attributes,
@@ -66,6 +62,37 @@ function Task({ task }) {
         width: "20px",
         transition: "0.3s linear",
         transitionProperty: "color, visibility, opacity",
+    }
+
+    // Xử lý Api
+    const handleClickDeleteTask = () => {
+        const deleteTask = {
+            idTask: task._id,
+        }
+
+        const res = [];
+        columns.forEach((column) => {
+            tasks.forEach((task) => {
+                if (task.column === column.column) {
+                    res.push({
+                        idTask: task._id,
+                        column: column.column,
+                        content: task.content,
+                        columnName: column.columnName,
+                    });
+                }
+            });
+        });
+
+        for (let i = res.length - 1; i >= 0; i--) {
+            if (res[i].idTask === deleteTask.idTask) {
+                res.splice(i, 1);
+                break;
+            }
+        }
+
+        const payload = { res, deleteTask };
+        dispatch(fetchDeleteTask(payload));
     }
 
     return (

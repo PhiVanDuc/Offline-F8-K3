@@ -22,9 +22,7 @@ export default function Board() {
     return (
         <BoardContext.Provider value={boardData}>
             <div className='board'>
-                {
-                    columns.length > 0 && <ListColumn />
-                }
+                <ListColumn />
             </div>
         </BoardContext.Provider>
     )
