@@ -1,16 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Task from './Task'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities';
+import { CSS } from '@dnd-kit/utilities'
 import { useDispatch } from 'react-redux'
 import { BoardContext } from './Board'
-import { fetchDeleteColumn, fetchAddTask } from '../redux/slices/tasksSlice';
+import { fetchDeleteColumn, fetchAddTask, fetchChangeColumnName } from '../redux/slices/tasksSlice'
+import { notify } from '../utilities/notify'
+import { stripHTML } from '../utilities/stripHTML'
 
 export default function Column({ column, tasks }) {
     const dispatch = useDispatch();
     const { columns } = useContext(BoardContext);
     const { tasks: globalTasks } = useContext(BoardContext);
     const {_id, column: columnOrder, columnName } = column;
+
+    const [editMode, setEditMode] = useState(false);
+    const [stateColumnName, setStateColumnName] = useState(`${column.columnName}`);
 
     // Xử lý drag and drop
     const {
@@ -108,10 +113,51 @@ export default function Column({ column, tasks }) {
         dispatch(fetchAddTask(payload));
     }
 
+    const handleBlurInputColumnName = (event) => {
+        if (event.target.value === "") {
+            event.target.focus();
+            notify("warn", "Vui lòng không để trống ô nhập!");
+        }
+        else if (stateColumnName !== column.columnName) {
+            setEditMode(!editMode);
+
+            const newColumnName = {
+                _id: column._id,
+                column: column.column,
+                columnName: event.target.value,
+                order: column.order,
+            };
+
+            const res = [];
+            columns.forEach((column) => {
+                globalTasks.forEach((task) => {
+                    if (task.column === column.column) {
+                        res.push({
+                            column: column.column,
+                            content: task.content,
+                            columnName: column.columnName,
+                        });
+                    }
+                });
+            });
+            
+            res.forEach((element, index) => {
+                if (element.column === column.column) {
+                    element.columnName = stateColumnName;
+                    res[index] = element;
+                }
+            });
+
+            const payload = { res, newColumnName };
+            dispatch(fetchChangeColumnName(payload));
+        }
+        else setEditMode(!editMode);
+    }
+
     // Render giao diện
     return (
         <div className='column' ref={setNodeRef} style={style} >
-            <div className="column-header" {...attributes} {...listeners}>
+            <div className="column-header" {...attributes} {...listeners} >
                 <div className="heading">
                     <div className="quantity">
                         {
@@ -121,7 +167,11 @@ export default function Column({ column, tasks }) {
                             }, 0)
                         }
                     </div>
-                    <h2>{ columnName }</h2>
+                    {
+                        !editMode ? 
+                        <h2 onClick={() => { setEditMode(!editMode) }} >{ stateColumnName }</h2> :
+                        <input className='input-edit-column-name' type="text" placeholder='Edit column name...' value={stateColumnName} autoFocus onBlur={handleBlurInputColumnName} onChange={(event) => { setStateColumnName(stripHTML(event.target.value)) }} />
+                    }
                 </div>
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 icon-delete" onClick={handleClickDeleteColumn}>

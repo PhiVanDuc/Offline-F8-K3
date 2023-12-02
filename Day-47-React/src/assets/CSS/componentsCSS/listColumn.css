@@ -12,6 +12,7 @@
 .trello .list-column .btn-add-column {
     display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     border: 2px solid #93B1A6;
     border-radius: 5px;
@@ -20,6 +21,7 @@
     color: white;
     font-size: 1.8rem;
     font-weight: 600;
-    padding: 10px 50px;
+    padding: 10px 0px;
     text-wrap: nowrap;
+    width: 400px;
 }

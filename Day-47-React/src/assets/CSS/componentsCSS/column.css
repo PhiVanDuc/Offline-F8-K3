@@ -10,6 +10,7 @@
     align-items: center;
     color: white;
     background-color: #183D3D;
+    padding: 10px 0px;
 }
 
 .column .column-header {
@@ -31,6 +32,26 @@
 .column .column-header .heading h2 {
     font-size: 2.2rem;
     font-weight: 700;
+    width: fit-content;
+}
+
+.column .column-header .heading .input-edit-column-name {
+    width: 300px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background-color: transparent;
+    font-family: "Nunito", sans-serif;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.column .column-header .heading .input-edit-column-name::placeholder {
+    color: white;
+    opacity: 0.8;
+    font-weight: 600;
+    font-size: 1.6rem;
 }
 
 .column .tasks .task .icon-delete,

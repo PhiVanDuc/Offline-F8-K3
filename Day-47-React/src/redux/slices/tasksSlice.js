@@ -119,6 +119,21 @@ export const tasksSlice = createSlice({
         .addCase(fetchDeleteTask.rejected, (state) => {
             state.status = "rejected";
         })
+        .addCase(fetchChangeColumnName.fulfilled, (state, action) => {
+            state.columns.forEach((column, index) => {
+                if (column.column === action.payload.column) {
+                    state.columns[index] = action.payload;
+                    return;
+                }
+            })
+            state.status = "fulfilled";
+        })
+        .addCase(fetchChangeColumnName.pending, (state) => {
+            state.status = "pending";
+        })
+        .addCase(fetchChangeColumnName.rejected, (state) => {
+            state.status = "rejected";
+        })
     }
 });
 
@@ -206,5 +221,13 @@ export const fetchDeleteTask = createAsyncThunk("fetchDeleteTask", async (payloa
     const { response } = await client.post("/tasks", format);
     if (response.ok) {
         return deleteTask;
+    }
+});
+
+export const fetchChangeColumnName = createAsyncThunk("fetchChangeColumnName", async (payload) => {
+    const { res, newColumnName } = payload;
+    const { response } = await client.post("/tasks", res);
+    if (response.ok) {
+        return newColumnName
     }
 });
